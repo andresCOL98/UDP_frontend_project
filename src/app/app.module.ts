@@ -3,35 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AsistenciaeventoCreateComponent } from './component/asistenciaevento-create/asistenciaevento-create.component';
-import { AsistenciamedicaCreateComponent } from './component/asistenciamedica-create/asistenciamedica-create.component';
-import { AsistenciasubcategoriaCreateComponent } from './component/create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
-import { CategoriaCreateComponent } from './component/create/categoria-create/categoria-create.component';
-import { CategoriausuarioCreateComponent } from './component/create/categoriausuario-create/categoriausuario-create.component';
-import { EventoCreateComponent } from './component/create/evento-create/evento-create.component';
-import { InventarioCreateComponent } from './component/create/inventario-create/inventario-create.component';
-import { InventarioitemCreateComponent } from './component/create/inventarioitem-create/inventarioitem-create.component';
-import { ItemCreateComponent } from './component/create/item-create/item-create.component';
-import { PeriodoacademicoCreateComponent } from './component/create/periodoacademico-create/periodoacademico-create.component';
-import { PermisoCreateComponent } from './component/create/permiso-create/permiso-create.component';
-import { ReporteCreateComponent } from './component/create/reporte-create/reporte-create.component';
-import { CategoriaListComponent } from './component/list/categoria-list/categoria-list.component';
-import { CategoriaEditComponent } from './component/edit/categoria-edit/categoria-edit.component';
-import { InventarioEditComponent } from './component/edit/inventario-edit/inventario-edit.component';
-import { ItemEditComponent } from './component/edit/item-edit/item-edit.component';
-import { InventarioListComponent } from './component/list/inventario-list/inventario-list.component';
-import { ItemListComponent } from './component/list/item-list/item-list.component';
-import { EventoListComponent } from './component/list/evento-list/evento-list.component';
-import { ReporteListComponent } from './component/list/reporte-list/reporte-list.component';
-import { PeriodoacademicoListComponent } from './component/list/periodoacademico-list/periodoacademico-list.component';
-import { RolListComponent } from './component/list/rol-list/rol-list.component';
-import { RolCreateComponent } from './component/create/rol-create/rol-create.component';
-import { PermisoListComponent } from './component/list/permiso-list/permiso-list.component';
-import { PermisoEditComponent } from './component/edit/permiso-edit/permiso-edit.component';
-import { RolEditComponent } from './component/edit/rol-edit/rol-edit.component';
-import { PeriodoacademicoEditComponent } from './component/edit/periodoacademico-edit/periodoacademico-edit.component';
-import { EventoEditComponent } from './component/edit/evento-edit/evento-edit.component';
+
 import { LoginComponent } from './component/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
+import { AsistenciaeventoCreateComponent } from './component/Create/asistenciaevento-create/asistenciaevento-create.component';
+import { AsistenciamedicaCreateComponent } from './component/Create/asistenciamedica-create/asistenciamedica-create.component';
+import { AsistenciasubcategoriaCreateComponent } from './component/Create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
+import { CategoriaCreateComponent } from './component/Create/categoria-create/categoria-create.component';
+import { EventoCreateComponent } from './component/Create/evento-create/evento-create.component';
+import { InventarioCreateComponent } from './component/Create/inventario-create/inventario-create.component';
+import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
+import { PeriodoacademicoCreateComponent } from './component/Create/periodoacademico-create/periodoacademico-create.component';
+import { PermisoCreateComponent } from './component/Create/permiso-create/permiso-create.component';
+import { ReporteCreateComponent } from './component/Create/reporte-create/reporte-create.component';
+import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
+import { CategoriaEditComponent } from './component/Edit/categoria-edit/categoria-edit.component';
+import { InventarioEditComponent } from './component/Edit/inventario-edit/inventario-edit.component';
+import { ItemEditComponent } from './component/Edit/item-edit/item-edit.component';
+import { InventarioListComponent } from './component/List/inventario-list/inventario-list.component';
+import { ItemListComponent } from './component/List/item-list/item-list.component';
+import { EventoListComponent } from './component/List/evento-list/evento-list.component';
+import { ReporteListComponent } from './component/List/reporte-list/reporte-list.component';
+import { PeriodoacademicoListComponent } from './component/List/periodoacademico-list/periodoacademico-list.component';
+import { RolListComponent } from './component/List/rol-list/rol-list.component';
+import { RolCreateComponent } from './component/Create/rol-create/rol-create.component';
+import { PermisoListComponent } from './component/List/permiso-list/permiso-list.component';
+import { PermisoEditComponent } from './component/Edit/permiso-edit/permiso-edit.component';
+import { RolEditComponent } from './component/Edit/rol-edit/rol-edit.component';
+import { PeriodoacademicoEditComponent } from './component/Edit/periodoacademico-edit/periodoacademico-edit.component';
+import { EventoEditComponent } from './component/Edit/evento-edit/evento-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,8 @@ import { LoginComponent } from './component/login/login.component';
     AsistenciamedicaCreateComponent,
     AsistenciasubcategoriaCreateComponent,
     CategoriaCreateComponent,
-    CategoriausuarioCreateComponent,
     EventoCreateComponent,
     InventarioCreateComponent,
-    InventarioitemCreateComponent,
     ItemCreateComponent,
     PeriodoacademicoCreateComponent,
     PermisoCreateComponent,
@@ -68,7 +67,9 @@ import { LoginComponent } from './component/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
