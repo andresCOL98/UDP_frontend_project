@@ -33,6 +33,8 @@ import { PermisoEditComponent } from './component/Edit/permiso-edit/permiso-edit
 import { RolEditComponent } from './component/Edit/rol-edit/rol-edit.component';
 import { PeriodoacademicoEditComponent } from './component/Edit/periodoacademico-edit/periodoacademico-edit.component';
 import { EventoEditComponent } from './component/Edit/evento-edit/evento-edit.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,10 @@ import { EventoEditComponent } from './component/Edit/evento-edit/evento-edit.co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FlexLayoutModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
