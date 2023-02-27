@@ -17,14 +17,14 @@ export class SesionServiceService {
   setUserLoggedIn(user: Usuario) {
     this.isUserLoggedIn = true;
     sessionStorage.setItem('currentUser',JSON.stringify(user));
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUser',JSON.stringify(user));
     
   }
 
   
   getUserLoggedIn() {
     console.log(sessionStorage.getItem('currentUser'));
-    return localStorage.getItem('currentUser');
+    return JSON.parse(localStorage.getItem('currentUser') || "[]");
   }
 
  
