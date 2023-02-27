@@ -1,21 +1,34 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Usuario } from '../domain/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  /*
+  
   private logged = new Subject<boolean>();
+ 
 
-  public url:string ="";
-  constructor(public httpClient:HttpClient) { }
+  public url:string ="http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin?";
 
+  constructor(public httpClient:HttpClient)  { }
 
-  login(usuario:Usuario):Observable<any>{
-    return this.httpClient.post(this.url,usuario);
+  getLogged(){
+    this.logged.next(false);
+    return this.logged.asObservable();
   }
-*/
+
+  login(user:string, conta:string):Observable<any>{
+
+    let newUrl = `${this.url}usuario=${user}&pass=${conta}`;
+
+    let queryParams = {usuario:user,pass:conta};
+
+    
+    return this.httpClient.post(newUrl,"");
+    
+
+  }
+
 }

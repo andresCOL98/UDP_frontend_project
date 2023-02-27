@@ -319,8 +319,8 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div class="row">
-  <div *ngIf="isLoggedUser == 'true'" class="col-lg-3 col-md-3 col-sm-3">
+<div>
+  <div *ngIf="validation == true">
     <app-sidebar></app-sidebar>
   </div>
 <router-outlet></router-outlet>

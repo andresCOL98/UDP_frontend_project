@@ -12,9 +12,10 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  /*
-  usuario:Usuario=new Usuario(0,"","",0);
-
+  
+  u:Usuario=new Usuario(0,"","",0);
+  user:string="";
+  pass:string="";
   c:number=0;
 
 
@@ -34,17 +35,15 @@ export class LoginComponent {
   }
   verificar() {
     
-    this.router.navigate(['index-menu']);
      
-    this.loginService.login(this.usuario).subscribe(
+  
+    this.loginService.login(this.user,this.pass).subscribe(
 
       res => {
-        this.sesionService.setUserLoggedIn(this.usuario);
+        this.sesionService.setUserLoggedIn(this.user);
           this.router.navigate(['index-menu']);
       },
       error => {
-        this.c++;
-        console.error("h"+this.c);
        
         
         this.openSnackBar(error.error.mensaje,"ERROR");
@@ -54,6 +53,6 @@ export class LoginComponent {
         );}
 
 
-  */
+  
 
 }

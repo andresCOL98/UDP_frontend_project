@@ -6,15 +6,15 @@ import { Usuario } from '../domain/usuario';
 })
 export class SesionServiceService {
 
-  private isUserLoggedIn;
-  private isAccountLoggedIn;
+  public isUserLoggedIn;
+  public isAccountLoggedIn;
  
   constructor() {
     this.isUserLoggedIn = false;
     this.isAccountLoggedIn=false;
   }
 
-  setUserLoggedIn(user: Usuario) {
+  setUserLoggedIn(user: string) {
     this.isUserLoggedIn = true;
     sessionStorage.setItem('currentUser',JSON.stringify(user));
     localStorage.setItem('currentUser',JSON.stringify(user));

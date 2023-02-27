@@ -18,12 +18,12 @@
             <mat-card-content>
               <h3 class="text-light mb-2">Usuario</h3>
               <mat-form-field class="input-formulario">
-                <input matInput placeholder="Usuario">
+                <input matInput [(ngModel)]="user" #username id="Usuario" name="Usuario" placeholder="Usuario " type="text" required />
                 <mat-icon matPrefix>person</mat-icon>
               </mat-form-field>
               <h3 class="text-light mb-2">Contraseña</h3>
               <mat-form-field class="input-formulario">
-                <input matInput placeholder="Contraseña">
+                <input matInput [(ngModel)]="pass" #clave id="Password" name="Password"  type="password" placeholder="Password" type="password" required />
                 <mat-icon matPrefix>vpn_key</mat-icon>
               </mat-form-field>
             </mat-card-content>
@@ -32,7 +32,7 @@
                 <input type="checkbox">
                 <label>Recordarme</label>
               </div>
-              <button mat-raised-button class="ps-4 pe-4">Ingresar</button>
+              <button mat-raised-button class="ps-4 pe-4" (click)="verificar()">Ingresar</button>
             </div>
             <div class="text-center mt-3">
               <a href="#" class="link-olvidaste">¿Olvidaste tus datos?</a>

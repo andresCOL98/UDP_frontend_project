@@ -10,14 +10,24 @@ export class AppComponent {
   title = 'udp-ng';
 
   isLoggedUser: any;
+  validation:boolean=false;
 
 
   ngOnInit() {
+    this.validarSesion();
+    
+  }
+
+  validarSesion(){
     this.isLoggedUser = sessionStorage.getItem('currentUser');
-    if (sessionStorage.getItem('currentUser') === 'true') {
-      this.isLoggedUser = 'true';
+
+    if (sessionStorage.getItem('currentUser')) {
+      this.validation = true;
     } else {
-      this.isLoggedUser = 'false';
+      sessionStorage.removeItem('currentUser');
+      localStorage.removeItem('currentUser');
+      this.validation = false;
     }
+    console.log(this.validation);
   }
 }

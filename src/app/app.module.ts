@@ -37,6 +37,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { SidebarComponent } from './component/core/sidebar/sidebar.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,9 @@ import { SidebarComponent } from './component/core/sidebar/sidebar.component';
     AngularMaterialModule,
     FlexLayoutModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
