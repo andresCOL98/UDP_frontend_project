@@ -319,6 +319,8 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<app-sidebar></app-sidebar>
+<div class="row">
+  <div *ngIf="isLoggedUser == 'true'" class="col-lg-3 col-md-3 col-sm-3">
+    <app-sidebar></app-sidebar>
+  </div>
 <router-outlet></router-outlet>

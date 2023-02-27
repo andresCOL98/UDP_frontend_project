@@ -7,6 +7,7 @@ import { Usuario } from '../domain/usuario';
   providedIn: 'root'
 })
 export class LoginService {
+  /*
   private logged = new Subject<boolean>();
 
   public url:string ="";
@@ -16,5 +17,5 @@ export class LoginService {
   login(usuario:Usuario):Observable<any>{
     return this.httpClient.post(this.url,usuario);
   }
-
+*/
 }
