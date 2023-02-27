@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Usuario } from '../domain/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +9,12 @@ import { Observable, Subject } from 'rxjs';
 export class LoginService {
   private logged = new Subject<boolean>();
 
-  constructor() { }
+  public url:string ="";
+  constructor(public httpClient:HttpClient) { }
 
-  loggear(accion:boolean) {
-    this.logged.next(accion);
+
+  login(usuario:Usuario):Observable<any>{
+    return this.httpClient.post(this.url,usuario);
   }
 
-  isLogged(): Observable<boolean> {
-    return this.logged.asObservable();
-  }
 }
