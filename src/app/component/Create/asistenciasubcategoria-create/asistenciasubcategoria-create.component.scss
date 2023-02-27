@@ -1,0 +1,21 @@
+.asistencia-container {
+    width: 80%;
+    margin: 0 auto;
+
+    .asistencia-titulo {
+        text-align: center;
+        font-size: 2.5em;
+        margin: 1em 0 1.5em 0
+    }
+
+    .formulario-asistencia {
+        background-color: #55aad1;
+        border-radius: 8px;
+        padding: 12px 24px;
+
+        .label-formulario {
+            font-size: 1.15em;
+            font-weight: 500;
+        }
+    }
+}

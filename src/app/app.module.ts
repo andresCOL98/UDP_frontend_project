@@ -35,6 +35,8 @@ import { PeriodoacademicoEditComponent } from './component/Edit/periodoacademico
 import { EventoEditComponent } from './component/Edit/evento-edit/evento-edit.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IndexMenuComponent } from './component/index-menu/index-menu.component';
+import { SidebarComponent } from './component/core/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RolEditComponent,
     PeriodoacademicoEditComponent,
     EventoEditComponent,
-    LoginComponent
+    LoginComponent,
+    IndexMenuComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
