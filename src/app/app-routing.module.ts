@@ -5,6 +5,7 @@ import { CategoriaCreateComponent } from './component/Create/categoria-create/ca
 import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
+import { InventarioListComponent } from './component/List/inventario-list/inventario-list.component';
 import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'crear-categorias', component: CategoriaCreateComponent},
   { path: 'ver-categorias', component: CategoriaListComponent},
   { path: 'registrar-items', component: ItemCreateComponent},
+  { path: 'ver-items', component: InventarioListComponent},
 ];
 
 @NgModule({
