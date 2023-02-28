@@ -1,6 +1,6 @@
 <div class="login-container">
   <div class="navbar-login">
-    <div class="imagen-navbar">
+    <div class="imagen-navbar col-sm-3 col-md-1">
       <img src="../../../assets/escudo-unipacifico.jpg" alt="logo-unipacifico">
     </div>
     <h2 class="text-light mb-0">Bienestar Institucional Universidad Del Pacífico</h2>
@@ -18,12 +18,12 @@
             <mat-card-content>
               <h3 class="text-light mb-2">Usuario</h3>
               <mat-form-field class="input-formulario">
-                <input matInput [(ngModel)]="user" #username id="Usuario" name="Usuario" placeholder="Usuario " type="text" required />
+                <input matInput [(ngModel)]="user" #username id="Usuario" name="Usuario" placeholder="Usuario " type="text" name="usuario" required />
                 <mat-icon matPrefix>person</mat-icon>
               </mat-form-field>
               <h3 class="text-light mb-2">Contraseña</h3>
               <mat-form-field class="input-formulario">
-                <input matInput [(ngModel)]="pass" #clave id="Password" name="Password"  type="password" placeholder="Password" type="password" required />
+                <input matInput [(ngModel)]="pass" #clave id="Password" name="Password"  type="password" placeholder="Password" type="password" name="clave" required />
                 <mat-icon matPrefix>vpn_key</mat-icon>
               </mat-form-field>
             </mat-card-content>
