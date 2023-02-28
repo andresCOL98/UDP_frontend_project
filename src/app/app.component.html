@@ -319,8 +319,9 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div>
-  <div *ngIf="validation == true">
-    <app-sidebar></app-sidebar>
-  </div>
-<router-outlet></router-outlet>
+<div *ngIf="validation">
+  <app-sidebar></app-sidebar>
+</div>
+<div *ngIf="!validation">
+  <router-outlet></router-outlet>
+</div>
