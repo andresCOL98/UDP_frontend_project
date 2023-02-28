@@ -17,7 +17,12 @@
     mat-sidenav {
         // background-color: #0e77a8;
         // color: #fff;
-
+        mat-nav-list {
+            img {
+                width: 100%;
+                padding: 12px 32px;
+            }
+        }
         mat-expansion-panel {
             // background-color: #2a8cb9;
             // color: #fff;
@@ -25,14 +30,13 @@
             mat-expansion-panel-header {
                 font-size: 1.25em;
             }
+
+            mat-nav-list {
+                a {
+                    margin-bottom: 0.5em;
+                }
+            }
         }
         
     }
-}
-
-.app-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
 }
