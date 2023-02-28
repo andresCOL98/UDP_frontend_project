@@ -13,8 +13,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class SidebarComponent {
 
   isLoggedUser: any;
-  validation:boolean=false;
-  prueba:any;
+  validation:boolean = false;
+  usuario = '';
 
 
   constructor(private router: Router,
@@ -23,6 +23,7 @@ export class SidebarComponent {
     private usuarioService:UsuarioService) { }
 
   ngOnInit() {
+    this.usuario = this.loginService.getUserLoggedIn();
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
