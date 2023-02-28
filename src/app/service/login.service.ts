@@ -8,15 +8,10 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class LoginService {
   
-  private logged = new BehaviorSubject<boolean>(false);
+  public logged = new BehaviorSubject<boolean>(false);
   public url:string ="http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin?";
-  public isUserLoggedIn;
-  public isAccountLoggedIn;
  
-  constructor(private router: Router, public httpClient:HttpClient) {
-    this.isUserLoggedIn = false;
-    this.isAccountLoggedIn=false;
-  }
+  constructor(private router: Router, public httpClient:HttpClient) {}
 
   getIsLogged(){
     return this.logged.asObservable();
@@ -25,7 +20,7 @@ export class LoginService {
   login(user:string, conta:string):Observable<any>{
     let newUrl = `${this.url}usuario=${user}&pass=${conta}`;
     let queryParams = {usuario:user,pass:conta};
-    return this.httpClient.post(newUrl,{});
+    return this.httpClient.post(newUrl, queryParams);
   }
 
   setUserLoggedIn(user: string) {
@@ -36,7 +31,7 @@ export class LoginService {
   }
 
   getUserLoggedIn() {
-    return JSON.parse(localStorage.getItem('currentUser') || "[]");
+    return JSON.parse(localStorage.getItem('currentUser') || "");
   }
 
   logOut(){

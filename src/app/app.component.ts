@@ -9,17 +9,19 @@ import { LoginService } from './service/login.service';
 export class AppComponent {
   title = 'udp-ng';
 
-  isLoggedUser: any;
   validation:boolean = false;
 
   constructor(private loginService:LoginService) {}
 
 
   ngOnInit() {
-    // this.validarSesion();
     this.loginService.getIsLogged().subscribe(res => {
       this.validation = res;
-      console.log(res);
-    })
+    });
+
+    if(!this.validation) {
+      let user = this.loginService.getUserLoggedIn();
+      if(user) this.loginService.logged.next(true);
+    }
   }
 }
