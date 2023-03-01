@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoriaCreateComponent } from '../../Create/categoria-create/categoria-create.component';
 
 @Component({
   selector: 'app-categoria-list',
@@ -12,7 +14,7 @@ export class CategoriaListComponent implements OnInit, AfterViewInit  {
   public displayedColumns: string[] = ['id', 'nombre', 'acciones'];
   @ViewChild('paginator') paginator: any = MatPaginator;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngAfterViewInit(): void {
     this.categorias.paginator = this.paginator;
@@ -25,5 +27,14 @@ export class CategoriaListComponent implements OnInit, AfterViewInit  {
       {id: 3, nombre:"Gimnasio"},
       {id: 4, nombre:"Danzas"},
     ];
+  }
+
+  crearNuevaCategoria() {
+    let dialogRef = this.dialog.open(CategoriaCreateComponent, {
+      width: '400px',
+      height: 'max-content',
+      autoFocus: false,
+      data: {}
+    });
   }
 }

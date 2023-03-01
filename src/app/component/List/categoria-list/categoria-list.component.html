@@ -1,7 +1,7 @@
 <div class="categoria-container">
     <h2 class="categoria-titulo">Categorías</h2>
 
-    <button mat-raised-button color="primary" class="mb-4">Crear categoría</button>
+    <button mat-raised-button color="primary" class="mb-4" (click)="crearNuevaCategoria()">Crear categoría</button>
     
     <div class="contenedor-tabla">
         <table mat-table [dataSource]="categorias" class="mat-elevation-z8" class="tabla-resultados" matSort #tablaResultados>
