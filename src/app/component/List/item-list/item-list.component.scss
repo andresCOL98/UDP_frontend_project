@@ -8,11 +8,13 @@
         margin: 1em 0 1.5em 0
     }
 
-    .tabla-resultados {
+    .contenedor-tabla {
         width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
 
-        .mat-mdc-header-cell, .mat-mdc-cell {
-            // width: 20%;
+        .tabla-resultados {
+            width: 100%;
         }
     }
 }
