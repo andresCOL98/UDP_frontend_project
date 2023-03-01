@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class LoginService {
   
   public logged = new BehaviorSubject<boolean>(false);
-  public url:string ="http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin?";
+  public url:string ="http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin";
  
   constructor(private router: Router, public httpClient:HttpClient) {}
 
@@ -18,9 +18,9 @@ export class LoginService {
   }
 
   login(user:string, conta:string):Observable<any>{
-    let newUrl = `${this.url}usuario=${user}&pass=${conta}`;
+ 
     let queryParams = {usuario:user,pass:conta};
-    return this.httpClient.post(newUrl, queryParams);
+    return this.httpClient.post(this.url, queryParams);
   }
 
   setUserLoggedIn(user: string) {
