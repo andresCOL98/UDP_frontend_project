@@ -11,10 +11,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  u: Usuario = new Usuario(0, '', '', 0);
   user: string = '';
   pass: string = '';
-  c: number = 0;
 
   constructor(
     private router: Router,
