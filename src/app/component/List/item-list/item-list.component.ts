@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ItemCreateComponent } from '../../Create/item-create/item-create.component';
 
 @Component({
   selector: 'app-item-list',
@@ -12,7 +14,7 @@ export class ItemListComponent {
   public displayedColumns: string[] = ['id', 'item', 'cantidad', 'categoria', 'acciones'];
   @ViewChild('paginator') paginator: any = MatPaginator;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngAfterViewInit(): void {
     this.inventario.paginator = this.paginator;
@@ -25,5 +27,14 @@ export class ItemListComponent {
       {id: 3, item:'Colchoneta', cantidad:15, categoria:"Gimnasio"},
       {id: 4, item:'Tambores', cantidad:2, categoria:"Danzas"},
     ];
+  }
+
+  crearNuevoItem() {
+    let dialogRef = this.dialog.open(ItemCreateComponent, {
+      width: '400px',
+      height: 'max-content',
+      autoFocus: false,
+      data: {}
+    });
   }
 }

@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CategoriaCreateComponent } from '../categoria-create/categoria-create.component';
 
 @Component({
   selector: 'app-item-create',
   templateUrl: './item-create.component.html',
   styleUrls: ['./item-create.component.scss']
 })
-export class ItemCreateComponent {
+export class ItemCreateComponent implements OnInit {
+  form = {
+    nombre: '',
+    cantidad: null,
+    categoria: ''
+  }
+
   categorias = [
     {value: '', name:"Seleccionar..."},
     {value: 1, name:"Deportes"},
@@ -14,8 +22,19 @@ export class ItemCreateComponent {
     {value: 4, name:"Danzas"},
   ];
 
-  constructor() {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
+    public dialogRef: MatDialogRef<CategoriaCreateComponent>
+  ) { }
 
   ngOnInit() {
+  }
+
+  crearCategoria() {
+    console.log(this.form);
+    this.cerrar();
+  }
+
+  cerrar() {
+    this.dialogRef.close();
   }
 }

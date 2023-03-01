@@ -7,8 +7,8 @@
             <input
                 type="text"
                 class="form-control"
-                placeholder="Escriba un nombre..."
-                #nombre
+                name="nombreCategoria"
+                [(ngModel)]="nombreCategoria"
             />
         </div>
 
@@ -17,7 +17,7 @@
             mat-raised-button
             class="col-sm-12 col-md-5"
             color="primary" 
-            (click)="crearCategoria(nombre.value)">
+            (click)="crearCategoria()">
                 Crear nuevo
             </button>
         </div>
