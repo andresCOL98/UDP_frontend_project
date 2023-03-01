@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./categoria-create.component.scss']
 })
 export class CategoriaCreateComponent implements OnInit {
+  nombreCategoria:string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<CategoriaCreateComponent>
@@ -15,8 +16,8 @@ export class CategoriaCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearCategoria(nombre:string) {
-    console.log(nombre);
+  crearCategoria() {
+    console.log(this.nombreCategoria);
     this.cerrar();
   }
 

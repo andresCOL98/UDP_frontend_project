@@ -1,7 +1,7 @@
 <div class="inventario-container">
     <h2 class="inventario-titulo">Lista de items</h2>
 
-    <button mat-raised-button color="primary" class="mb-4">Crear item</button>
+    <button mat-raised-button color="primary" class="mb-4" (click)="crearNuevoItem()">Crear item</button>
 
     <div class="contenedor-tabla">
         <table mat-table [dataSource]="inventario" class="mat-elevation-z8" class="tabla-resultados" matSort #tablaResultados>
