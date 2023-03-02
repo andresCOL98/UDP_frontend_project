@@ -29,19 +29,17 @@
             </mat-card-content>
             <div class="final-form-login col-12 ps-3 pe-3">
               <div class="checkbox-recordarme">
-                <input type="checkbox">
+                <input type="checkbox" name="checkbox" [(ngModel)]="checkboxUser"  >
                 <label>Recordarme</label>
               </div>
               <button mat-raised-button class="ps-4 pe-4" (click)="verificar()">Ingresar</button>
             </div>
-            <div class="text-center mt-3">
-              <a href="#" class="link-olvidaste">¿Olvidaste tus datos?</a>
-            </div>
+           
           </form>
         </mat-card>
-        <button mat-raised-button class="boton-accion-secundaria">¿No puedes ingresar al sistema?</button>
-        <button mat-raised-button class="boton-accion-secundaria">Manual de usuario UDP</button>
-        <button mat-raised-button class="boton-accion-secundaria">Sitio web UDP</button>
+        <button mat-raised-button color="accent" class="boton-accion-secundaria" (click)="abrirForm()">¿Olvidastes tus datos?</button>
+        <button mat-raised-button color="accent" class="boton-accion-secundaria">Manual de usuario UDP</button>
+        <a mat-raised-button href="http://www.unipacifico.edu.co/" target="_blank" color="accent" class="boton-accion-secundaria">Sitio web UDP</a>
       </div>
     </div>
   </div>

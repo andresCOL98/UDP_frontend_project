@@ -1,0 +1,46 @@
+<div class="categoria-container">
+    <h3 class="categoria-titulo">Recuperar Cuenta</h3>
+    
+    <form class="formulario-categoria row">
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Nombre completo:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="nombre"
+                [(ngModel)]="nombre"
+            />
+        </div>
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Cédula de ciudadanía:</label>
+            <input
+                type="textarea"
+                class="form-control"
+                name="cedula"
+                [(ngModel)]="cedula"
+            />
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Detalles:</label>
+            <textarea  class="form-control"
+            name="detalle"
+            [(ngModel)]="detalle">
+                
+               
+            </textarea>
+        </div>
+
+        <a  href="mailto:os-w316@hotmail.com?Subject=Recuperar%20cuenta" target="_blank"
+             class="boton-registrar col-sm-12 mt-2 mb-2">
+            <button
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="accent" 
+            (click)="enviarForm()"> 
+             Enviar
+            </button>
+        </a>
+    </form>
+
+</div>
