@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./asistenciasubcategoria-create.component.scss']
 })
 export class AsistenciasubcategoriaCreateComponent {
+
+  form = {
+    cedula: null,
+    nombres: '',
+    apellidos: '',
+    categoria: '',
+    fecha: '',
+    hora: ''
+  }
+
   categorias = [
     {value: '', name:"Seleccionar..."},
     {value: 1, name:"Deportes"},
@@ -17,5 +27,20 @@ export class AsistenciasubcategoriaCreateComponent {
   constructor() {}
 
   ngOnInit() {
+  }
+
+  registrarAsistencia() {
+    console.log(this.form);
+  }
+
+  limpiarCampos() {
+    this.form = {
+      cedula: null,
+      nombres: '',
+      apellidos: '',
+      categoria: '',
+      fecha: '',
+      hora: ''
+    }
   }
 }

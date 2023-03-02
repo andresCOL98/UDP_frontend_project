@@ -9,13 +9,19 @@
     }
 
     .formulario-asistencia {
-        background-color: #55aad1;
+        background-color: #fff;
         border-radius: 8px;
         padding: 12px 24px;
 
         .label-formulario {
             font-size: 1.15em;
             font-weight: 500;
+        }
+
+        .boton-registrar {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
         }
     }
 }
