@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AsistenciasubcategoriaCreateComponent } from './component/Create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
 import { CategoriaCreateComponent } from './component/Create/categoria-create/categoria-create.component';
+import { EventoCreateComponent } from './component/Create/evento-create/evento-create.component';
 import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'ver-categorias', component: CategoriaListComponent},
   { path: 'registrar-items', component: ItemCreateComponent},
   { path: 'ver-items', component: ItemListComponent},
+  { path: 'registrar-eventos', component: EventoCreateComponent},
 ];
 
 @NgModule({

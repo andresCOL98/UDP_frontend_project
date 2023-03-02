@@ -5,38 +5,39 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Cédula:</label>
-            <input type="number" class="form-control" placeholder="Cédula...">
+            <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedula" placeholder="Cédula...">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Nombres:</label>
-            <input type="text" class="form-control" placeholder="Nombres...">
+            <input type="text" class="form-control" name="nombres" [(ngModel)]="form.nombres" placeholder="Nombres...">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Apellidos:</label>
-            <input type="text" class="form-control" placeholder="Apellidos...">
+            <input type="text" class="form-control" name="apellidos" [(ngModel)]="form.apellidos" placeholder="Apellidos...">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
-            <select class="form-select">
+            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
                 <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
             </select>
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha:</label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" name="fecha" [(ngModel)]="form.fecha">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Hora:</label>
-            <input type="time" class="form-control">
+            <input type="time" class="form-control" name="hora" [(ngModel)]="form.hora">
         </div>
 
-        <div class="text-right mt-3 mb-2">
-            <button mat-raised-button class="col-sm-12 col-md-2" color="primary">Registrar</button>
+        <div class="boton-registrar mt-3 mb-2">
+            <button mat-raised-button class="col-sm-12 col-md-2" color="warn" (click)="limpiarCampos()">Limpiar</button>
+            <button mat-raised-button class="col-sm-12 col-md-2" color="primary" (click)="registrarAsistencia()">Registrar</button>
         </div>
     </form>
 

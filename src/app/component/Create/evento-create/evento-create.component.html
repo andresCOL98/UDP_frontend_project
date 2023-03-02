@@ -1,1 +1,39 @@
-<p>evento-create works!</p>
+<div class="evento-container">
+    <h2 class="evento-titulo">Registrar Evento</h2>
+
+    <form class="formulario-evento row">
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Nombre del evento:</label>
+            <input type="number" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Cédula...">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Categoría:</label>
+            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
+                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Fecha de inicio:</label>
+            <input type="date" class="form-control" name="fechaInicio" min="{{fechaHoy}}" [(ngModel)]="form.fechaIni">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Fecha final:</label>
+            <input type="date" class="form-control" name="fechaFin" min="{{form.fechaIni || fechaHoy}}" [(ngModel)]="form.fechaFin">
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Descripción:</label>
+            <textarea class="form-control" name="descripcion" [(ngModel)]="form.descripcion"></textarea>
+        </div>
+
+        <div class="boton-registrar mt-3 mb-2">
+            <button mat-raised-button class="col-sm-12 col-md-2" color="warn" (click)="limpiarCampos()">Limpiar</button>
+            <button mat-raised-button class="col-sm-12 col-md-2" color="primary" (click)="registrarEvento()">Registrar</button>
+        </div>
+    </form>
+
+</div>
