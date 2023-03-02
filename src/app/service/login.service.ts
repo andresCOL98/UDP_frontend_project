@@ -27,7 +27,6 @@ export class LoginService {
     this.logged.next(true);
     sessionStorage.setItem('currentUser',JSON.stringify(user));
     localStorage.setItem('currentUser',JSON.stringify(user));
-    this.router.navigate(['/index-menu']);
   }
 
   getUserLoggedIn() {
