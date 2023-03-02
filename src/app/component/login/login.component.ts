@@ -31,10 +31,12 @@ export class LoginComponent {
   verificar() {
     this.loginService.login(this.user, this.pass).subscribe(
       (res) => {
-        this.loginService.setUserLoggedIn(this.user);
+        if(res.msj) return this.openSnackBar(res.msj, 'OK');
+        this.loginService.setUserLoggedIn(res.nombre);
+        this.router.navigate(['/index-menu']);
       },
       (error) => {
-        this.openSnackBar(error.error.mensaje, 'ERROR');
+        this.openSnackBar(error.error.mensaje || 'Ha ocurrido un error al intentar iniciar sesion', 'OK');
       }
     );
   }
