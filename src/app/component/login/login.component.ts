@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/domain/usuario';
 import { LoginService } from 'src/app/service/login.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ForgetDataComponent } from '../forget-data/forget-data.component';
+import { LoadingService } from 'src/app/service/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -16,27 +17,22 @@ export class LoginComponent implements OnInit {
   pass: string = '';
   checkboxUser:boolean=false;
 
-
-
-
-
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private loginService: LoginService,
-    private snackBar: MatSnackBar ) {}
+    private snackBar: MatSnackBar,
+    private loadingService: LoadingService ) {}
 
   ngOnInit() {
-
     if(localStorage.getItem('rememberUser')){
       let guardado = JSON.parse(localStorage.getItem('rememberUser') || "");
-      console.log(guardado);
       this.user=guardado.usuario;
       this.pass=guardado.pass;
       this.checkboxUser=guardado.check;
-
     }
   }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000,
@@ -51,30 +47,30 @@ export class LoginComponent implements OnInit {
       data: {}
     });
   }
-  
-  
 
   recordar(){
-    
     if(this.checkboxUser==true){
       let recordarUser = {usuario:this.user,pass:this.pass,check:this.checkboxUser};
       localStorage.setItem('rememberUser',JSON.stringify(recordarUser));
     }else{
       localStorage.removeItem('rememberUser');
     }
-    
-    console.log(this.checkboxUser);
   }
+
   verificar() {
+    this.loadingService.cargando.next(true);
+
     this.loginService.login(this.user, this.pass).subscribe(
       (res) => {
         if(res.msj) return this.openSnackBar(res.msj, 'OK');
         this.loginService.setUserLoggedIn(res.nombre);
         this.router.navigate(['/index-menu']);
         this.recordar();
+        this.loadingService.cargando.next(false);
       },
       (error) => {
         this.openSnackBar(error.error.mensaje || 'Ha ocurrido un error al intentar iniciar sesion', 'OK');
+        this.loadingService.cargando.next(false);
       }
     );
   }

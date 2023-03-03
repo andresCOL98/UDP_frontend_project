@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './service/loading.service';
 import { LoginService } from './service/login.service';
 
 @Component({
@@ -10,11 +11,16 @@ export class AppComponent {
   title = 'udp-ng';
 
   validation:boolean = false;
+  iconoCargando:boolean = false;
 
-  constructor(private loginService:LoginService) {}
+  constructor(private loginService:LoginService, private loadingService:LoadingService) {}
 
 
   ngOnInit() {
+    this.loadingService.getCargando().subscribe(res => {
+      this.iconoCargando = res;
+    });
+
     this.loginService.getIsLogged().subscribe(res => {
       this.validation = res;
     });
