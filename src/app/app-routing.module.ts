@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AsistenciamedicaCreateComponent } from './component/Create/asistenciamedica-create/asistenciamedica-create.component';
 import { AsistenciasubcategoriaCreateComponent } from './component/Create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
 import { CategoriaCreateComponent } from './component/Create/categoria-create/categoria-create.component';
 import { EventoCreateComponent } from './component/Create/evento-create/evento-create.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'ver-items', component: ItemListComponent},
   { path: 'registrar-eventos', component: EventoCreateComponent},
   { path: 'cronograma-eventos', component: EventoListComponent},
-  { path: 'ver-roles', component: RolListComponent}
+  { path: 'ver-roles', component: RolListComponent},
+  { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent},
 ];
 
 @NgModule({
