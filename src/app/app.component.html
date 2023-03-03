@@ -319,6 +319,14 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div class="icono-cargando" *ngIf="iconoCargando">
+  <mat-progress-spinner
+    class="example-margin"
+    color="accent"
+    mode="indeterminate"
+    value="50">
+  </mat-progress-spinner>
+</div>
 <div *ngIf="validation">
   <app-sidebar></app-sidebar>
 </div>
