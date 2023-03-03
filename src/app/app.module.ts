@@ -40,6 +40,7 @@ import { SidebarComponent } from './component/core/sidebar/sidebar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgetDataComponent } from './component/forget-data/forget-data.component';
 import { EventoParticipacionCreateComponent } from './component/Create/evento-participacion-create/evento-participacion-create.component';
+import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { EventoParticipacionCreateComponent } from './component/Create/evento-pa
     SidebarComponent,
     ForgetDataComponent,
     EventoParticipacionCreateComponent,
+    AsistenciamedicaListComponent,
   ],
   imports: [
     BrowserModule,
