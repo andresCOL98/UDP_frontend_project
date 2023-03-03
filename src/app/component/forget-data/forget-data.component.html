@@ -3,12 +3,14 @@
     
     <form class="formulario-categoria row">
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Nombre completo:</label>
+            <label class="col-form-label label-formulario" >Nombre completo:</label>
             <input
                 type="text"
                 class="form-control"
                 name="nombre"
                 [(ngModel)]="nombre"
+                placeholder="Nombre..."
+                required minlength="4"
             />
         </div>
         <div class="col-sm-12 mb-3">
@@ -18,6 +20,8 @@
                 class="form-control"
                 name="cedula"
                 [(ngModel)]="cedula"
+                placeholder="Cédula..." 
+                required minlength="4"
             />
         </div>
 
@@ -25,22 +29,23 @@
             <label class="col-form-label label-formulario">Detalles:</label>
             <textarea  class="form-control"
             name="detalle"
-            [(ngModel)]="detalle">
-                
-               
+            [(ngModel)]="detalle" placeholder="Detalle..." required minlength="4" >
             </textarea>
         </div>
 
-        <a  href="mailto:os-w316@hotmail.com?Subject=Recuperar%20cuenta" target="_blank"
-             class="boton-registrar col-sm-12 mt-2 mb-2">
+        <div href="mailto:os-w316@hotmail.com?Subject=Recuperar%20cuenta" target="_blank"
+             class="boton-registrar col-sm-12 mt-2 mb-2" > 
+             
+              
             <button
             mat-raised-button
             class="col-sm-12 col-md-5"
             color="accent" 
-            (click)="enviarForm()"> 
+            role="link" (click)="enviarForm()"> 
              Enviar
             </button>
-        </a>
+            
+        </div>
     </form>
 
 </div>

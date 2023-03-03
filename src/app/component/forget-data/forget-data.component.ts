@@ -8,9 +8,9 @@ import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ForgetDataComponent implements OnInit{
   nombre:string='';
-  cedula:number=0;
+  cedula:any=null;
   detalle:string='';
-  msj:string='';
+ 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<ForgetDataComponent>
@@ -20,7 +20,7 @@ export class ForgetDataComponent implements OnInit{
   }
 
   enviarForm() {
-    this.msj="Hola necesito recuperar acceso a mi cuenta, mi nombres es: "+this.nombre+", mi cédula: "+this.cedula+", detalles: "+this.detalle;
+    window.open('mailto:os-w316@hotmail.com?Subject=Recuperar%20cuenta%20UDP&body=Hola perdí el acceso a mi cuenta. NOMBRE:'+this.nombre+', CEDULA:'+this.cedula+', DETALLE:'+this.detalle,'_blank');
     this.cerrar();
   }
 
