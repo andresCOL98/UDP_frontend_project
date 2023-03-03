@@ -29,7 +29,7 @@ export class ItemCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  crearCategoria() {
+  crearItem() {
     console.log(this.form);
     this.cerrar();
   }

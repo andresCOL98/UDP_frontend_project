@@ -13,9 +13,14 @@
         border-radius: 8px;
         padding: 12px 24px;
 
+        .bg-azulito {
+            background-color: #e1eef3 !important;
+        }
+
         .card-custom {
             position: relative;
             font-size: 1.1rem;
+            margin-bottom: 0;
 
             .card-custom-icon {
                 background-color: #096f9c;

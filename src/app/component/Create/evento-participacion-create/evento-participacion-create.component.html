@@ -1,0 +1,72 @@
+<div class="participacion-container pb-2">
+    <h2 class="participacion-titulo">Registrar participación en: {{data.titulo.toLowerCase()}}</h2>
+
+    <form class="formulario-participacion row">
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Cédula:</label>
+            <input
+                type="number"
+                class="form-control"
+                placeholder="Cedula..."
+                name="cedula"
+                [(ngModel)]="form.cedula"
+            />
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Nombres:</label>
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Nombres..."
+                name="nombre"
+                [(ngModel)]="form.nombres"
+            />
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Apellidos:</label>
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Apellidos..."
+                name="apellidos"
+                [(ngModel)]="form.apellidos"
+            />
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Fecha inicial:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="fechaIni"
+                [(ngModel)]="form.fechaIni"
+                disabled
+            />
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Fecha final:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="fechaFin"
+                [(ngModel)]="form.fechaFin"
+                disabled
+            />
+        </div>
+
+        <div class="boton-registrar col-sm-12 mt-2 mb-2">
+            <button
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="primary"
+            (click)="registrarParticipacion()">
+                Registrar
+            </button>
+        </div>
+    </form>
+
+</div>

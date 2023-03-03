@@ -39,6 +39,7 @@ import { IndexMenuComponent } from './component/index-menu/index-menu.component'
 import { SidebarComponent } from './component/core/sidebar/sidebar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgetDataComponent } from './component/forget-data/forget-data.component';
+import { EventoParticipacionCreateComponent } from './component/Create/evento-participacion-create/evento-participacion-create.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ForgetDataComponent } from './component/forget-data/forget-data.compone
     IndexMenuComponent,
     SidebarComponent,
     ForgetDataComponent,
+    EventoParticipacionCreateComponent,
   ],
   imports: [
     BrowserModule,
