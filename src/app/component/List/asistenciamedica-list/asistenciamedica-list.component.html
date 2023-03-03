@@ -1,0 +1,39 @@
+<div class="evento-container">
+    <h2 class="evento-titulo">Historias Clínicas</h2>
+
+    <form class="row contenedor-evento pt-4 pb-4">
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Cédula del paciente:</label>
+            <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedula" placeholder="Cédula...">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Fecha de la consulta:</label>
+            <input type="date" class="form-control" name="fecha" [(ngModel)]="form.fecha">
+        </div>
+
+        <div class="boton-centrado col-sm-12">
+            <button mat-raised-button color="primary" class="col-sm-12 col-md-2">Buscar</button>
+        </div>
+    </form>
+
+    <mat-accordion class="col-sm-12 row mt-3" *ngFor="let historia of historias">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{historia.nombrePaciente}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{historia.fechaConsulta}} - {{historia.diagnostico}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            <b>Detalles de la consulta:</b> <br> {{historia.descripcion}}
+          </p>
+          <p class="mt-2">
+            <b>Tratamiento recomendado:</b> <br> {{historia.tratamiento}}
+          </p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

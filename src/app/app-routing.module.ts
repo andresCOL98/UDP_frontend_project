@@ -6,6 +6,7 @@ import { CategoriaCreateComponent } from './component/Create/categoria-create/ca
 import { EventoCreateComponent } from './component/Create/evento-create/evento-create.component';
 import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
+import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
 import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'cronograma-eventos', component: EventoListComponent},
   { path: 'ver-roles', component: RolListComponent},
   { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent},
+  { path: 'historias-clinicas', component: AsistenciamedicaListComponent},
 ];
 
 @NgModule({
