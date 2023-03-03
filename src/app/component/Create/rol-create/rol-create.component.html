@@ -1,1 +1,26 @@
-<p>rol-create works!</p>
+<div class="categoria-container">
+    <h3 class="categoria-titulo">Crear rol</h3>
+    
+    <form class="formulario-categoria row">
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Nombre del rol:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="nombreCategoria"
+                [(ngModel)]="nombreRol"
+            />
+        </div>
+
+        <div class="boton-registrar col-sm-12 mt-2 mb-2">
+            <button
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="primary" 
+            (click)="crearRol()">
+                Crear nuevo
+            </button>
+        </div>
+    </form>
+
+</div>
