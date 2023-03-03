@@ -8,6 +8,7 @@ import { IndexMenuComponent } from './component/index-menu/index-menu.component'
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
 import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
+import { RolListComponent } from './component/List/rol-list/rol-list.component';
 import { LoginComponent } from './component/login/login.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'ver-items', component: ItemListComponent},
   { path: 'registrar-eventos', component: EventoCreateComponent},
   { path: 'cronograma-eventos', component: EventoListComponent},
+  { path: 'ver-roles', component: RolListComponent}
 ];
 
 @NgModule({

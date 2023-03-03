@@ -38,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { SidebarComponent } from './component/core/sidebar/sidebar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ForgetDataComponent } from './component/forget-data/forget-data.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LoginComponent,
     IndexMenuComponent,
     SidebarComponent,
+    ForgetDataComponent,
   ],
   imports: [
     BrowserModule,
