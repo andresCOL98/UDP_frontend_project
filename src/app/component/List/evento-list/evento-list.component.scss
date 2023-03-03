@@ -1,0 +1,70 @@
+.evento-container {
+    width: 90%;
+    margin: 0 auto;
+
+    .evento-titulo {
+        text-align: center;
+        font-size: 2.5em;
+        margin: 1em 0
+    }
+
+    .contenedor-evento {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 12px 24px;
+
+        .card-custom {
+            position: relative;
+            font-size: 1.1rem;
+
+            .card-custom-icon {
+                background-color: #096f9c;
+                min-width: 40%;
+                min-height: 15%;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                padding: 16px;
+                position: absolute;
+                top: -40px;
+                left: -25px;
+                color: #fff;
+                font-weight: 500;
+            }
+
+            .card-custom-footer {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+          }
+
+
+        .boton-centrado {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .subtitulo-evento {
+            font-size: 2em;
+            font-weight: 500;
+        }
+
+        .titulo-card {
+            font-size: 1.5em;
+            padding-bottom: 0.5em;
+            margin-bottom: 0.5em;
+            width: 100%;
+            font-weight: 500;
+            border-bottom: 1px solid #e75e1e;
+        }
+
+        .fechas-card {
+            font-size: 1.5em;
+            padding-bottom: 0.5em;
+            margin-bottom: 0.5em;
+            width: 100%;
+        }
+    }
+}
