@@ -6,6 +6,7 @@ import { EventoCreateComponent } from './component/Create/evento-create/evento-c
 import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
+import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
 import { LoginComponent } from './component/login/login.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'registrar-items', component: ItemCreateComponent},
   { path: 'ver-items', component: ItemListComponent},
   { path: 'registrar-eventos', component: EventoCreateComponent},
+  { path: 'cronograma-eventos', component: EventoListComponent},
 ];
 
 @NgModule({

@@ -1,1 +1,49 @@
-<p>evento-list works!</p>
+<div class="evento-container">
+    <h2 class="evento-titulo">Cronograma de eventos</h2>
+
+    <form class="row contenedor-evento pt-4 pb-4">
+
+        <div class="col-sm-12 col-md-4 mb-3">
+            <label class="col-form-label label-formulario">Nombre del evento:</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento...">
+        </div>
+
+        <div class="col-sm-12 col-md-4 mb-3">
+            <label class="col-form-label label-formulario">Fecha de inicio:</label>
+            <input type="date" class="form-control" name="fecha" [(ngModel)]="form.fecha">
+        </div>
+
+        <div class="col-sm-12 col-md-4 mb-3">
+            <label class="col-form-label label-formulario">Categoría:</label>
+            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
+                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+            </select>
+        </div>
+
+        <div class="boton-centrado col-sm-12">
+            <button mat-raised-button color="primary" class="col-sm-12 col-md-2">Buscar</button>
+        </div>
+    </form>
+
+    <div class="mt-3 contenedor-evento row" color="primary">
+        <div class="col-sm-12 mt-5 mb-3"  *ngFor="let evento of eventos">
+            <div class="card">
+                <div class="card-body">
+                <blockquote class="card-custom bg-white pt-4">
+                    <div class="card-custom-icon shadow-1-strong">
+                    {{evento.titulo}}
+                    </div>
+                    <div class="row">
+                        <span class="mb-0 mt-2 col-sm-12 font-italic">{{evento.descripcion}}</span>
+                        <span class="mb-0 mt-3 col-sm-12 col-md-4 font-italic"><b>Fecha inicial: </b>{{evento.fechaInicio}}</span>
+                        <span class="mb-0 mt-3 col-sm-12 col-md-4 font-italic"><b>Fecha final: </b>{{evento.fechaFin}}</span>
+                    </div>
+                    <footer class="card-custom-footer mt-3">
+                    <button mat-raised-button color="accent">Registrar participación</button>
+                    </footer>
+                </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
