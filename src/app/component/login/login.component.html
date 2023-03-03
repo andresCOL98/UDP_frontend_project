@@ -32,11 +32,21 @@
                 <input type="checkbox" name="checkbox" [(ngModel)]="checkboxUser"  >
                 <label>Recordarme</label>
               </div>
+              
               <button mat-raised-button class="ps-4 pe-4" (click)="verificar()">Ingresar</button>
             </div>
+
+            <mat-progress-spinner
+                class="example-margin"
+                color="accent"
+                mode="indeterminate"
+                value="50">
+            </mat-progress-spinner>
+
            
           </form>
         </mat-card>
+        
         <button mat-raised-button color="accent" class="boton-accion-secundaria" (click)="abrirForm()">¿Olvidastes tus datos?</button>
         <button mat-raised-button color="accent" class="boton-accion-secundaria">Manual de usuario UDP</button>
         <a mat-raised-button href="http://www.unipacifico.edu.co/" target="_blank" color="accent" class="boton-accion-secundaria">Sitio web UDP</a>
