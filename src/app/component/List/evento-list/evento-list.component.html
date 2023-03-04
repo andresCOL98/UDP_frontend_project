@@ -1,7 +1,7 @@
 <div class="evento-container">
     <h2 class="evento-titulo">Cronograma de eventos</h2>
 
-    <form class="row contenedor-evento pt-4 pb-4">
+    <form class="row contenedor-filtros pt-4 pb-4">
 
         <div class="col-sm-12 col-md-4 mb-3">
             <label class="col-form-label label-formulario">Nombre del evento:</label>
@@ -20,30 +20,29 @@
             </select>
         </div>
 
-        <div class="boton-centrado col-sm-12">
+        <div class="d-flex justify-content-center col-sm-12">
             <button mat-raised-button color="primary" class="col-sm-12 col-md-2">Buscar</button>
         </div>
     </form>
 
-    <div class="mt-3 contenedor-evento row" color="primary">
-        <div class="col-sm-12 mt-5 mb-3"  *ngFor="let evento of eventos">
-            <div class="card bg-azulito">
-                <div class="card-body">
-                    <blockquote class="card-custom pt-4">
-                        <div class="card-custom-icon shadow-1-strong">
-                        {{evento.titulo}}
-                        </div>
-                        <div class="row">
-                            <span class="mb-0 mt-2 col-sm-12 font-italic">{{evento.descripcion}}</span>
-                            <span class="mb-0 mt-3 col-sm-12 col-md-4 font-italic"><b>Fecha inicial: </b>{{evento.fechaInicio}}</span>
-                            <span class="mb-0 mt-3 col-sm-12 col-md-4 font-italic"><b>Fecha final: </b>{{evento.fechaFin}}</span>
-                        </div>
-                        <footer class="card-custom-footer mt-3">
-                            <button mat-raised-button color="accent" (click)="registrarParticipacion(evento)">Registrar participación</button>
-                        </footer>
-                    </blockquote>
+    <mat-accordion class="col-sm-12 row mt-3" *ngFor="let evento of eventos">
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header class="border-bottom">
+                <mat-panel-title>
+                    <b>{{evento.titulo}}</b>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Inicio: {{evento.fechaInicio}} - Fin: {{evento.fechaFin}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="pt-3">
+                <span class="contenido-card">
+                    <b>Descripción:</b> <br> {{evento.descripcion}}
+                </span>
+                <div class="d-flex justify-content-end mt-3">
+                    <button mat-raised-button color="accent" (click)="registrarParticipacion(evento)">Registrar participación</button>
                 </div>
             </div>
-        </div>
-    </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
