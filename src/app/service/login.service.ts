@@ -30,7 +30,8 @@ export class LoginService {
   }
 
   getUserLoggedIn() {
-    return JSON.parse(localStorage.getItem('currentUser') || "");
+    let currentUser:any = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser) || "";
   }
 
   logOut(){
