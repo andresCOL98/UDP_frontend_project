@@ -62,15 +62,15 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.user, this.pass).subscribe(
       (res) => {
+        this.loadingService.cargando.next(false);
         if(res.msj) return this.openSnackBar(res.msj, 'OK');
         this.loginService.setUserLoggedIn(res.nombre);
         this.router.navigate(['/index-menu']);
         this.recordar();
-        this.loadingService.cargando.next(false);
       },
       (error) => {
-        this.openSnackBar(error.error.mensaje || 'Ha ocurrido un error al intentar iniciar sesion', 'OK');
         this.loadingService.cargando.next(false);
+        this.openSnackBar(error.error.mensaje || 'Ha ocurrido un error al intentar iniciar sesion', 'OK');
       }
     );
   }
