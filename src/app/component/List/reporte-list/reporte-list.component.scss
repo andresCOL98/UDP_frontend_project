@@ -1,0 +1,21 @@
+.reportes-container {
+    width: 90%;
+    margin: 0 auto;
+
+    .reportes-titulo {
+        text-align: center;
+        font-size: 2.5em;
+        margin: 1em 0
+    }
+
+    .contenedor-reporte {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 12px 24px;
+
+        .nombre-reporte{
+            font-size: 1.75em;
+        }
+    }
+    
+}

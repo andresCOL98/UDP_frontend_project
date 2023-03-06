@@ -10,6 +10,7 @@ import { AsistenciamedicaListComponent } from './component/List/asistenciamedica
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
 import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
+import { ReporteListComponent } from './component/List/reporte-list/reporte-list.component';
 import { RolListComponent } from './component/List/rol-list/rol-list.component';
 import { LoginComponent } from './component/login/login.component';
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'ver-roles', component: RolListComponent},
   { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent},
   { path: 'historias-clinicas', component: AsistenciamedicaListComponent},
+  { path: 'generar-reportes', component: ReporteListComponent},
 ];
 
 @NgModule({
