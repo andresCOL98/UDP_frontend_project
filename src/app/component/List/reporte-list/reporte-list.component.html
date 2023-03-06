@@ -1,1 +1,8 @@
-<p>reporte-list works!</p>
+<div class="reportes-container">
+    <h2 class="reportes-titulo">Generar reportes</h2>
+
+    <div class="mt-3 contenedor-reporte row align-items-center" *ngFor="let evento of eventos">
+        <span class="col-sm-12 col-md-10 mb-2 nombre-reporte">{{evento.titulo}}</span>
+        <button mat-raised-button color="primary" class="col-sm-12 col-md-2 mt-2 mb-2" (click)="descargar(evento.id)">Descargar</button>
+    </div>
+</div>
