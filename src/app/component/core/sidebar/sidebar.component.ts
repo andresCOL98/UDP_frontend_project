@@ -12,14 +12,10 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class SidebarComponent {
   isLoggedUser: any;
-  validation:boolean = false;
   usuario = '';
   open = true;
 
-  constructor(private router: Router,
-    private loginService:LoginService,
-    private snackBar: MatSnackBar,
-    private usuarioService:UsuarioService) { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit() {
     this.usuario = this.loginService.getUserLoggedIn();
@@ -37,7 +33,6 @@ export class SidebarComponent {
   
   cerrarSesion() {
     this.loginService.logOut();
-    this.validation=false;
   }
 }
 

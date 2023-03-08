@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class LoginService {
   
   public logged = new BehaviorSubject<boolean>(false);
-  public url:string ="http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin";
+  private url = environment.apiUdp;
  
   constructor(private router: Router, public httpClient:HttpClient) {}
 
