@@ -1,9 +1,9 @@
 export class Persona {
     constructor(
         public id:number,
-        public idPege:string,
+        public idPege:number,
         public nombre:string,
-        public cargo:number,
-        public unidad:string
+        public cargo:string,
+        public unidad:number
     ){}
 }
