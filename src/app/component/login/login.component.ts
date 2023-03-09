@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       this.pass=guardado.pass;
       this.checkboxUser=guardado.check;
     }
+    this.currentUser();
   }
 
   openSnackBar(message: string, action: string) {
@@ -54,6 +55,14 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('rememberUser',JSON.stringify(recordarUser));
     }else{
       localStorage.removeItem('rememberUser');
+    }
+  }
+
+  currentUser(){
+    if(localStorage.getItem('currentUser')){
+      this.router.navigate(['/index-menu']);
+    }else{
+      this.router.navigate(['/login']);
     }
   }
 

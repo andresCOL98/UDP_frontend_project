@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Categoria } from 'src/app/domain/categoria';
 import { CategoriaService } from 'src/app/service/categoria.service';
+import { LoadingService } from 'src/app/service/loading.service';
 
 @Component({
   selector: 'app-categoria-create',
@@ -18,8 +19,9 @@ export class CategoriaCreateComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<CategoriaCreateComponent>,
-    public matSnackBar:MatSnackBar,
-    public categoriaService:CategoriaService
+    public snackBar:MatSnackBar,
+    public categoriaService:CategoriaService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit(): void {
@@ -27,19 +29,22 @@ export class CategoriaCreateComponent implements OnInit {
   }
 
   public openSnackBar(mesagge:string,action:string){
-    this.matSnackBar.open(mesagge,action,{duration:3000});
+    this.snackBar.open(mesagge,action,{duration:3000});
   }
 
   crearCategoria() {
-    this.categoriaService.createCategoria(this.categoria).subscribe(data=>{
-     
-      this.openSnackBar('Categoría creada exitosamente','Exito');
-      this.cerrar();
-    },error=>{
-      this.openSnackBar(error.error.mensaje,'Error');
-    }
+    if(this.nombreCategoria.length < 3) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
 
-    );
+    this.loading.cargando.next(true);
+
+    this.categoriaService.createCategoria(this.nombreCategoria).subscribe(data=>{
+      this.openSnackBar('Categoría creada exitosamente','Exito');
+      this.dialogRef.close(true);
+    },error=>{
+      this.snackBar.open('Ha fallado la creación de la categoría', undefined, {duration: 3000});
+    })
+    return this.loading.cargando.next(false);
+
   
   }
 

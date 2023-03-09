@@ -21,9 +21,9 @@ export class CategoriaService {
     return this.httpClient.get(url);
   }
 
-  createCategoria(categoria:Categoria) {
+  createCategoria(nombre:string) {
     let url = this.api + "categoria/save";
-    return this.httpClient.post(url, categoria)
+    return this.httpClient.post(url, {nombre})
   }
 
   updateCategoria(categoria:Categoria) {
