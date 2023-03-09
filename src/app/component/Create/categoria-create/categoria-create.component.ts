@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Categoria } from 'src/app/domain/categoria';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { LoadingService } from 'src/app/service/loading.service';
 

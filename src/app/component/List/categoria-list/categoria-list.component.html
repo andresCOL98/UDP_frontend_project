@@ -1,5 +1,5 @@
 <div class="categoria-container">
-    <h2 class="categoria-titulo">Administrar Categorías</h2>
+    <h2 class="categoria-titulo">Administración de categorías</h2>
     <div class="d-flex justify-content-between align-items-center">
         <button mat-raised-button color="primary" class="mb-4" (click)="crearNuevaCategoria()">Crear categoría</button>
         <mat-slide-toggle
@@ -26,7 +26,6 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-raised-button color="accent" class="me-3" (click)="editarCategoria(element)">Editar</button>
-                    <button mat-raised-button color="warn">Ver permisos</button>
                 </td>
             </ng-container>
     
