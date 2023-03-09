@@ -41,6 +41,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ForgetDataComponent } from './component/forget-data/forget-data.component';
 import { EventoParticipacionCreateComponent } from './component/Create/evento-participacion-create/evento-participacion-create.component';
 import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
+import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { AsistenciamedicaListComponent } from './component/List/asistenciamedica
     ForgetDataComponent,
     EventoParticipacionCreateComponent,
     AsistenciamedicaListComponent,
+    RutaListComponent,
   ],
   imports: [
     BrowserModule,

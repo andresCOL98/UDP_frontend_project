@@ -11,28 +11,28 @@ export class RolService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getRoles() {
-    let url = this.api + "rol/findAll";
-    return this.httpClient.get(url);
+  getRoles(estado:boolean) {
+    let url = this.api + "roles/rol/findAll";
+    return this.httpClient.post(url, {estado});
   }
 
   getRolById(id:number) {
-    let url = this.api + "rol/" + id;
+    let url = this.api + "roles/rol/" + id;
     return this.httpClient.get(url);
   }
 
-  createRol(rol:Rol) {
-    let url = this.api + "rol/save";
-    return this.httpClient.post(url, rol)
+  createRol(nombre:string) {
+    let url = this.api + "roles/rol/save";
+    return this.httpClient.post(url, {nombre})
   }
 
   updateRol(rol:Rol) {
-    let url = this.api + "rol/update";
+    let url = this.api + "roles/rol/update";
     return this.httpClient.put(url, rol)
   }
 
   deleteRol(id:number) {
-    let url = this.api + "rol/" + id;
+    let url = this.api + "roles/rol/" + id;
     return this.httpClient.delete(url);
   }
 }
