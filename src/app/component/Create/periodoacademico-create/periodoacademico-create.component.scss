@@ -1,0 +1,24 @@
+.categoria-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .categoria-titulo {
+        font-size: 1.75em;
+        margin: 0.5em 0;
+        color: #096f9c;
+        font-weight: 500;
+    }
+
+    .formulario-categoria {
+        border-top: 1px solid #b4b4b4;
+        width: 100%;
+
+        .label-formulario {
+            font-size: 1.15em;
+            font-weight: 500;
+        }
+    }
+}

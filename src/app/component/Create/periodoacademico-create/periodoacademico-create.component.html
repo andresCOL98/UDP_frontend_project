@@ -1,1 +1,49 @@
-<p>periodoacademico-create works!</p>
+<div class="categoria-container">
+    <h3 class="categoria-titulo">{{data.id ? 'Editar período' : 'Crear período'}}</h3>
+    
+    <form class="formulario-categoria row">
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Período:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="nombreCategoria"
+                [(ngModel)]="nombrePeriodo"
+            />
+        </div>
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Año:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="anio"
+                [(ngModel)]="anio"
+            />
+        </div>
+
+        <div
+        class="d-flex col-sm-12 mt-2 mb-2 align-items-center"
+        [ngClass]="{'justify-content-center': !data.id, 'justify-content-between': data.id}">
+            <button
+            *ngIf="!data.id"
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="primary" 
+            (click)="crearPeriodo()">
+                Crear
+            </button>
+
+            <mat-slide-toggle class="col-sm-12 col-md-5" *ngIf="data.id" [(ngModel)]="data.activo" name="estado">Activo</mat-slide-toggle>
+            <button
+            *ngIf="data.id"
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="accent" 
+            (click)="editarPeriodo()">
+                Editar
+            </button>
+
+        </div>
+    </form>
+
+</div>
