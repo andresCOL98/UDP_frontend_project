@@ -36,14 +36,6 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
-                <mat-expansion-panel-header>Categorías</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="ver-categorias" (click)="onWindowResize()">
-                        <span>Administrar categorías</span>
-                    </a>
-                </mat-nav-list>
-            </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Asistencias</mat-expansion-panel-header>
@@ -87,7 +79,11 @@
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
-                <mat-expansion-panel-header>Roles, periodos y permisos</mat-expansion-panel-header>
+                <mat-expansion-panel-header>Configuración sistema </mat-expansion-panel-header>
+
+                <a mat-list-item routerLink="ver-categorias" (click)="onWindowResize()">
+                    <span>Administrar categorías</span>
+                </a>
                 
                 <mat-nav-list>
                     <a mat-list-item routerLink="ver-roles" (click)="onWindowResize()">Administrar Roles</a>
