@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Item } from '../domain/item';
+import { Inventario } from '../domain/inventario';
 
 @Injectable({
   providedIn: 'root'
@@ -11,28 +11,28 @@ export class ItemService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getItems() {
-    let url = this.api + "item/findAll";
-    return this.httpClient.get(url);
+  getItems(estado:boolean) {
+    let url = this.api + "inventario/inventarios/findAll";
+    return this.httpClient.post(url,{estado});
   }
 
   getItemById(id:number) {
-    let url = this.api + "item/" + id;
+    let url = this.api + "inventario/inventarios/" + id;
     return this.httpClient.get(url);
   }
 
-  createItem(item:Item) {
-    let url = this.api + "item/save";
+  createItem(item:Inventario) {
+    let url = this.api + "inventario/inventarios/save";
     return this.httpClient.post(url, item)
   }
 
-  updateItem(item:Item) {
-    let url = this.api + "item/update";
+  updateItem(item:Inventario) {
+    let url = this.api + "inventario/inventarios/update";
     return this.httpClient.put(url, item)
   }
 
   deleteItem(id:number) {
-    let url = this.api + "item/" + id;
+    let url = this.api + "inventario/inventarios/" + id;
     return this.httpClient.delete(url);
   }
 }

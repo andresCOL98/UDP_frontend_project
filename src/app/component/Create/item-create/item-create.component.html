@@ -1,5 +1,5 @@
 <div class="item-container">
-    <h2 class="item-titulo">Registrar Item</h2>
+    <h2 class="item-titulo">{{data.id ? 'Editar item' : 'Crear item'}}</h2>
 
     <form class="formulario-item row">
 
@@ -10,7 +10,7 @@
                 class="form-control"
                 placeholder="Nombre del item..."
                 name="nombre"
-                [(ngModel)]="form.nombre"
+                [(ngModel)]="nombreItem"
             />
         </div>
 
@@ -21,25 +21,39 @@
                 class="form-control"
                 placeholder="0"
                 name="cantidad"
-                [(ngModel)]="form.cantidad"
+                [(ngModel)]="cantidad"
             />
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
-            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
-                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+            <select class="form-select" name="subcategoria_id" [(ngModel)]="subcategoria_id">
+                <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
         </div>
 
-        <div class="boton-registrar col-sm-12 mt-2 mb-2">
+        <div
+        class="d-flex col-sm-12 mt-2 mb-2 align-items-center"
+        [ngClass]="{'justify-content-center': !data.id, 'justify-content-between': data.id}">
             <button
+            *ngIf="!data.id"
             mat-raised-button
             class="col-sm-12 col-md-5"
-            color="primary"
+            color="primary" 
             (click)="crearItem()">
-                Registrar
+                Crear
             </button>
+
+            <mat-slide-toggle class="col-sm-12 col-md-5" *ngIf="data.id" [(ngModel)]="data.estado" name="estado">Activo</mat-slide-toggle>
+            <button
+            *ngIf="data.id"
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="accent" 
+            (click)="editarItem()">
+                Editar
+            </button>
+
         </div>
     </form>
 

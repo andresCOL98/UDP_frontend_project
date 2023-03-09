@@ -20,6 +20,9 @@ export class CategoriaListComponent implements OnInit, AfterViewInit  {
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   activos:boolean = true;
+
+
+  
   constructor(public dialog: MatDialog,
     private categoriaService:CategoriaService,
     private loading:LoadingService,

@@ -11,28 +11,28 @@ export class PeriodoacademicoService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getPeriodosAcademicos() {
-    let url = this.api + "periodoAcademico/findAll";
-    return this.httpClient.get(url);
+  getPeriodosAcademicos(activo:boolean) {
+    let url = this.api + "evento/periodoacademico/findAll";
+    return this.httpClient.post(url,{activo});
   }
 
   getPeriodoById(id:number) {
-    let url = this.api + "periodoAcademico/" + id;
+    let url = this.api + "evento/periodoacademico/" + id;
     return this.httpClient.get(url);
   }
 
   createPeriodo(periodoAcademico:Periodoacademico) {
-    let url = this.api + "periodoAcademico/save";
+    let url = this.api + "evento/periodoacademico/save";
     return this.httpClient.post(url, periodoAcademico)
   }
 
   updatePeriodo(periodoAcademico:Periodoacademico) {
-    let url = this.api + "periodoAcademico/update";
+    let url = this.api + "evento/periodoacademico/update";
     return this.httpClient.put(url, periodoAcademico)
   }
 
   deletePeriodo(id:number) {
-    let url = this.api + "periodoAcademico/" + id;
+    let url = this.api + "evento/periodoacademico/" + id;
     return this.httpClient.delete(url);
   }
 }

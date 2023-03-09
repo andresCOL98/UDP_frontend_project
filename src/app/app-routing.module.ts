@@ -10,6 +10,7 @@ import { AsistenciamedicaListComponent } from './component/List/asistenciamedica
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
 import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
+import { PeriodoacademicoListComponent } from './component/List/periodoacademico-list/periodoacademico-list.component';
 import { ReporteListComponent } from './component/List/reporte-list/reporte-list.component';
 import { RolListComponent } from './component/List/rol-list/rol-list.component';
 import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent, canActivate: [LoggedInGuard] },
   { path: 'historias-clinicas', component: AsistenciamedicaListComponent, canActivate: [LoggedInGuard] },
   { path: 'generar-reportes', component: ReporteListComponent, canActivate: [LoggedInGuard] },
+  { path: 'ver-periodos', component: PeriodoacademicoListComponent, canActivate: [LoggedInGuard] },
+
 ];
 
 @NgModule({
