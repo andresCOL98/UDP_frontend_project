@@ -1,7 +1,6 @@
 import { Component,Inject, OnInit  } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/domain/usuario';
 import { LoginService } from 'src/app/service/login.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ForgetDataComponent } from '../forget-data/forget-data.component';

@@ -87,13 +87,16 @@
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
-                <mat-expansion-panel-header>Roles y permisos</mat-expansion-panel-header>
+                <mat-expansion-panel-header>Roles, periodos y permisos</mat-expansion-panel-header>
                 
                 <mat-nav-list>
                     <a mat-list-item routerLink="ver-roles" (click)="onWindowResize()">Administrar Roles</a>
                 </mat-nav-list>
                 <mat-nav-list>
                     <a mat-list-item routerLink="ver-rutas" (click)="onWindowResize()">Administrar Rutas</a>
+                </mat-nav-list>
+                <mat-nav-list>
+                    <a mat-list-item routerLink="ver-rutas" (click)="onWindowResize()">Administrar Periodos Academicos</a>
                 </mat-nav-list>
             
             </mat-expansion-panel>
