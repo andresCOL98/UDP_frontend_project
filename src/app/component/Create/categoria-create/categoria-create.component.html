@@ -1,5 +1,5 @@
 <div class="categoria-container">
-    <h3 class="categoria-titulo">Crear categoría</h3>
+    <h3 class="categoria-titulo">{{data.id ? 'Editar categoría' : 'Crear categoría'}}</h3>
     
     <form class="formulario-categoria row">
         <div class="col-sm-12 mb-3">
@@ -12,13 +12,26 @@
             />
         </div>
 
-        <div class="boton-registrar col-sm-12 mt-2 mb-2">
+        <div
+        class="d-flex col-sm-12 mt-2 mb-2 align-items-center"
+        [ngClass]="{'justify-content-center': !data.id, 'justify-content-between': data.id}">
             <button
+            *ngIf="!data.id"
             mat-raised-button
             class="col-sm-12 col-md-5"
             color="primary" 
             (click)="crearCategoria()">
                 Crear nuevo
+            </button>
+
+            <mat-slide-toggle class="col-sm-12 col-md-5" *ngIf="data.id" [(ngModel)]="data.estado" name="estado">Activo</mat-slide-toggle>
+            <button
+            *ngIf="data.id"
+            mat-raised-button
+            class="col-sm-12 col-md-5"
+            color="accent" 
+            (click)="editarCategoria()">
+                Editar
             </button>
         </div>
     </form>

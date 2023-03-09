@@ -11,9 +11,9 @@ export class CategoriaService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getCategorias() {
-    let url = this.api + "categoria/findAll";
-    return this.httpClient.get(url);
+  getCategorias(estado:boolean) {
+    let url = this.api + "categorias/categoria/findAll";
+    return this.httpClient.post(url, {estado});
   }
 
   getCategoriaById(id:number) {
@@ -21,13 +21,13 @@ export class CategoriaService {
     return this.httpClient.get(url);
   }
 
-  createCategoria(nombre:string) {
-    let url = this.api + "categoria/save";
-    return this.httpClient.post(url, {nombre})
+  createCategoria(nombreC:string) {
+    let url = this.api + "categorias/categoria/save";
+    return this.httpClient.post(url, {nombre:nombreC,estado:true})
   }
 
   updateCategoria(categoria:Categoria) {
-    let url = this.api + "categoria/update";
+    let url = this.api + "categorias/categoria/update";
     return this.httpClient.put(url, categoria)
   }
 

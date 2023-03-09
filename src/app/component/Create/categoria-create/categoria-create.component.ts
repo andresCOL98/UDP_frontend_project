@@ -12,10 +12,7 @@ import { LoadingService } from 'src/app/service/loading.service';
 })
 export class CategoriaCreateComponent implements OnInit {
   nombreCategoria:string = '';
-
-  categoria:Categoria=new Categoria(0,false,"");
-  showMsg:boolean=false;
-  msj:string="";
+  
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<CategoriaCreateComponent>,
@@ -25,7 +22,7 @@ export class CategoriaCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoria=new Categoria(0,false,"");
+    this.nombreCategoria = this.data.nombre || '';
   }
 
   public openSnackBar(mesagge:string,action:string){
@@ -46,6 +43,24 @@ export class CategoriaCreateComponent implements OnInit {
     return this.loading.cargando.next(false);
 
   
+  }
+  editarCategoria() {
+    if(this.nombreCategoria.length < 3) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
+    let datosCategoria = {
+      id: this.data.id,
+      nombre: this.nombreCategoria,
+      estado: this.data.estado
+    };
+
+    this.loading.cargando.next(true);
+
+    this.categoriaService.updateCategoria(datosCategoria).subscribe(res => {
+      this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
+      this.dialogRef.close(true);
+    },(error) => {
+      this.snackBar.open('Ha fallado la actualización de la categoría', undefined, {duration: 3000});
+    })
+    return this.loading.cargando.next(false);
   }
 
   cerrar() {

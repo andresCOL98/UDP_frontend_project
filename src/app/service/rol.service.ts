@@ -21,9 +21,9 @@ export class RolService {
     return this.httpClient.get(url);
   }
 
-  createRol(nombre:string) {
+  createRol(nombreR:string) {
     let url = this.api + "roles/rol/save";
-    return this.httpClient.post(url, {nombre})
+    return this.httpClient.post(url, {nombre:nombreR,estado:true})
   }
 
   updateRol(rol:Rol) {
