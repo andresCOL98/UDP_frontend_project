@@ -68,14 +68,12 @@ export class ItemCreateComponent implements OnInit {
     })
   }
 
-  
-
   crearItem() {
     if(this.nombreItem.length < 2) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
-    if(this.cantidad <= 0) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
-    if(this.nombreItem.length < 4) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
+    if(this.cantidad <= 0) return this.snackBar.open('Inserte una cantidad', undefined, {duration: 3000});
+    if(!this.subcategoria_id) return this.snackBar.open('Seleccione una categoría', undefined, {duration: 3000});
 
-    let datosInventario={
+    let datosInventario = {
       id: this.data.id,
       fecha: this.hoy.toLocaleDateString(),
       subcategoria_id:this.subcategoria_id,
@@ -88,11 +86,12 @@ export class ItemCreateComponent implements OnInit {
     this.itemService.createItem(datosInventario).subscribe(res => {
       this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
       this.dialogRef.close(true);
-      this.log("Crear item inventario","Usuario: "+this.user+" creó un item en inventario");
+      this.log("Crear item inventario",`Usuario: ${this.user} creó el item en inventario con datos: ${JSON.stringify(datosInventario)}`);
     },(error) => {
-      this.log("Crear item inventario","Usuario: "+this.user+" fallo al crear un item en inventario");
+      this.log("Crear item inventario",`Usuario: ${this.user} falló al crear el item en inventario con datos: ${JSON.stringify(datosInventario)}`);
       this.snackBar.open('Ha fallado la creación del item', undefined, {duration: 3000});
-    })
+    });
+    
     return this.loading.cargando.next(false);
   }
 
@@ -115,14 +114,13 @@ export class ItemCreateComponent implements OnInit {
 
     this.itemService.updateItem(datosInventario).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
-      this.log("Editar item inventario","Usuario: "+this.user+" editó un item en inventario");
-
+      this.log("Editar item inventario", `Usuario: ${this.user} editó el item en inventario: ${JSON.stringify(datosInventario)}`);
       this.dialogRef.close(true);
     },(error) => {
-      this.log("Editar item inventario","Usuario: "+this.user+" falló al crear un item en inventario");
-
+      this.log("Editar item inventario", `Usuario: ${this.user} falló al editar el item en inventario id: ${this.data.id}`);
       this.snackBar.open('Ha fallado la actualización del inventario', undefined, {duration: 3000});
-    })
+    });
+
     return this.loading.cargando.next(false);
   }
 }

@@ -33,7 +33,6 @@ export class CategoriaCreateComponent implements OnInit {
   log(evento:string,mensaje:string){
     let tiempoTranscurrido = Date.now();
     let hoy = new Date(tiempoTranscurrido);
-    let u=localStorage.getItem('currentUser');
     let logg={
        id:0,
        evento:evento,
@@ -52,10 +51,10 @@ export class CategoriaCreateComponent implements OnInit {
     this.categoriaService.createCategoria(this.nombreCategoria).subscribe(data=>{
       this.openSnackBar('Categoría creada exitosamente','Exito');
       this.dialogRef.close(true);
-      this.log("Crear categoria","Usuario: "+this.user+" creo una categoria");
+      this.log("Crear categoria","Usuario: " + this.user + " creo la categoría " + this.nombreCategoria);
     },error=>{
       this.snackBar.open('Ha fallado la creación de la categoría', undefined, {duration: 3000});
-      this.log("Crear categoria","Usuario: "+this.user+" fallo al crear una categoria");
+      this.log("Crear categoria","Usuario: " + this.user + " fallo al crear la categoría " + this.nombreCategoria);
 
     })
     return this.loading.cargando.next(false);
@@ -73,19 +72,14 @@ export class CategoriaCreateComponent implements OnInit {
     this.loading.cargando.next(true);
 
     this.categoriaService.updateCategoria(datosCategoria).subscribe(res => {
-      this.log("Editar categoria","Usuario: "+this.user+" edito una categoria");
-
+      this.log("Editar categoria","Usuario: "+this.user+" edito la categoría " + this.data.id);
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
       this.dialogRef.close(true);
     },(error) => {
       this.snackBar.open('Ha fallado la actualización de la categoría', undefined, {duration: 3000});
-      this.log("Editar categoria","Usuario: "+this.user+" fallo al editar una categoria");
+      this.log("Editar categoria","Usuario: "+this.user+" fallo al editar la categoría " + this.data.id);
 
     })
     return this.loading.cargando.next(false);
-  }
-
-  cerrar() {
-    this.dialogRef.close();
   }
 }

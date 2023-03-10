@@ -28,15 +28,17 @@ export class EventoCreateComponent {
     {value: 4, name:"Danzas"},
   ];
 
-  constructor(private snackBar: MatSnackBar,
-    private logService:LogService) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private logService:LogService
+  ) {}
 
   ngOnInit() {
   }
+
   log(evento:string,mensaje:string){
     let tiempoTranscurrido = Date.now();
     let hoy = new Date(tiempoTranscurrido);
-    let u=localStorage.getItem('currentUser');
     let logg={
        id:0,
        evento:evento,

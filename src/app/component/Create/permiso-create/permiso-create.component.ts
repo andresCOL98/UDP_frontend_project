@@ -43,6 +43,7 @@ export class PermisoCreateComponent implements OnInit  {
     }
     this.logService.createLog(logg);
   }
+
   crearRutas() {
     if(this.nombreRuta.length < 3) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
 
@@ -50,17 +51,17 @@ export class PermisoCreateComponent implements OnInit  {
 
     this.rutaService.createRuta(this.nombreRuta).subscribe(data=>{
       this.openSnackBar('Ruta creada exitosamente','Exito');
-      this.log("Crear Path","Usuario: "+this.user+" creó un path");
+      this.log("Crear Path","Usuario: " + this.user + " creó la ruta " + this.nombreRuta);
       this.dialogRef.close(true);
     },error=>{
-      this.log("Crear ath","Usuario: "+this.user+" falló al crear un path");
+      this.log("Crear Path","Usuario: " + this.user + " falló al crear la ruta " + this.nombreRuta);
 
       this.snackBar.open('Ha fallado la creación de la ruta', undefined, {duration: 3000});
-    })
-    return this.loading.cargando.next(false);
+    });
 
-  
+    return this.loading.cargando.next(false);
   }
+
   editarRuta() {
     if(this.nombreRuta.length < 3) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
     let datosRuta = {
@@ -72,18 +73,14 @@ export class PermisoCreateComponent implements OnInit  {
 
     this.rutaService.updateRuta(datosRuta).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
-      this.log("Editar Path","Usuario: "+this.user+" edito un path");
+      this.log("Editar Path","Usuario: " + this.user + " editó la ruta " + this.data.id);
 
       this.dialogRef.close(true);
     },(error) => {
-      this.log("Editar Path","Usuario: "+this.user+" falló al editar un path");
-      this.snackBar.open('Ha fallado la actualización de la categoría', undefined, {duration: 3000});
+      this.log("Editar Path","Usuario: " + this.user + " falló al editar la ruta " + this.data.id);
+      this.snackBar.open('Ha fallado la actualización de la ruta', undefined, {duration: 3000});
     })
     return this.loading.cargando.next(false);
-  }
-
-  cerrar() {
-    this.dialogRef.close();
   }
 }
 

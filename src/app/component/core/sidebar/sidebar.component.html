@@ -29,72 +29,43 @@
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Inicio</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="index-menu" (click)="onWindowResize()">
-                        <span>Página de inicio</span>
-                    </a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="index-menu" (click)="onWindowResize()">Página de inicio</a>
             </mat-expansion-panel>
 
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Asistencias</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="registrar-asistencias" (click)="onWindowResize()">Registrar asistencias</a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="registrar-asistencias" (click)="onWindowResize()">Registrar asistencias</a>
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Eventos</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="registrar-eventos" (click)="onWindowResize()">Registrar evento</a>
-                </mat-nav-list>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="cronograma-eventos" (click)="onWindowResize()">Cronograma de eventos</a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="registrar-eventos" (click)="onWindowResize()">Registrar evento</a>
+                <a mat-list-item routerLink="cronograma-eventos" (click)="onWindowResize()">Cronograma de eventos</a>
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Inventario</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="ver-items" (click)="onWindowResize()">Administrar items</a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="ver-items" (click)="onWindowResize()">Administrar items</a>
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Atención Médica y psicológica</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="registrar-asistencia-medica" (click)="onWindowResize()">Registrar atención</a>
-                </mat-nav-list>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="historias-clinicas" (click)="onWindowResize()">Historias clínicas</a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="registrar-asistencia-medica" (click)="onWindowResize()">Registrar atención</a>
+                <a mat-list-item routerLink="historias-clinicas" (click)="onWindowResize()">Historias clínicas</a>
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Reportes</mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="generar-reportes" (click)="onWindowResize()">Generar reportes</a>
-                </mat-nav-list>
+                <a mat-list-item routerLink="generar-reportes" (click)="onWindowResize()">Generar reportes</a>
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Configuración sistema </mat-expansion-panel-header>
-
-                <a mat-list-item routerLink="ver-categorias" (click)="onWindowResize()">
-                    <span>Administrar categorías</span>
-                </a>
-                
-                <mat-nav-list>
-                    <a mat-list-item routerLink="ver-roles" (click)="onWindowResize()">Administrar Roles</a>
-                </mat-nav-list>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="ver-rutas" (click)="onWindowResize()">Administrar Rutas</a>
-                </mat-nav-list>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="ver-periodos" (click)="onWindowResize()">Administrar Periodos Academicos</a>
-                </mat-nav-list>
-            
+                <a mat-list-item routerLink="ver-categorias" (click)="onWindowResize()">Administrar categorías</a>
+                <a mat-list-item routerLink="ver-roles" (click)="onWindowResize()">Administrar Roles</a>
+                <a mat-list-item routerLink="ver-rutas" (click)="onWindowResize()">Administrar Rutas</a>
+                <a mat-list-item routerLink="ver-periodos" (click)="onWindowResize()">Administrar Periodos Academicos</a>
             </mat-expansion-panel>
 
         </mat-nav-list>

@@ -16,6 +16,7 @@ export class PeriodoacademicoCreateComponent implements OnInit{
   anio:number=0;
   estado:boolean=true; 
   user=localStorage.getItem('currentUser');
+  anioActual = new Date().getFullYear();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<PeriodoacademicoCreateComponent>,
@@ -31,27 +32,27 @@ export class PeriodoacademicoCreateComponent implements OnInit{
   }
 
   crearPeriodo() {
-    if(this.nombrePeriodo < 0 || this.nombrePeriodo > 3) return this.snackBar.open('Inserte un período válido', undefined, {duration: 3000});
-    if(this.anio < 2023) return this.snackBar.open('Inserte un año válido', undefined, {duration: 3000});
+    if(this.nombrePeriodo < 0 || this.nombrePeriodo > 3) return this.snackBar.open('Inserte un periodo válido', undefined, {duration: 3000});
+    if(this.anio < this.anioActual) return this.snackBar.open('Inserte un año válido', undefined, {duration: 3000});
 
     let datosPeriodo={
       id: this.data.id,
       periodo: this.nombrePeriodo,
       anio:this.anio,
       activo:true
-
     };
 
     this.loading.cargando.next(true);
+
     this.periodoService.createPeriodo(datosPeriodo).subscribe(res => {
       this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
-      this.log("Crear período academico","Usuario: "+this.user+" creó un período academico");
+      this.log("Crear periodo academico","Usuario: " + this.user + " creó el periodo " + this.nombrePeriodo);
       this.dialogRef.close(true);
     },(error) => {
-      this.snackBar.open('Ha fallado la creación del período', undefined, {duration: 3000});
-      this.log("Crear período academico","Usuario: "+this.user+" falló al crear un período academico");
+      this.snackBar.open('Ha fallado la creación del periodo', undefined, {duration: 3000});
+      this.log("Crear periodo academico","Usuario: " + this.user + " falló al crear el periodo " + this.nombrePeriodo);
+    });
 
-    })
     return this.loading.cargando.next(false);
   }
 
@@ -68,9 +69,11 @@ export class PeriodoacademicoCreateComponent implements OnInit{
     }
     this.logService.createLog(logg);
   }
+
   editarPeriodo() {
-    if(this.nombrePeriodo < 0 || this.nombrePeriodo > 3) return this.snackBar.open('Inserte un período válido', undefined, {duration: 3000});
-    if(this.anio < 2023) return this.snackBar.open('Inserte un año válido', undefined, {duration: 3000});
+    if(this.nombrePeriodo < 0 || this.nombrePeriodo > 3) return this.snackBar.open('Inserte un periodo válido', undefined, {duration: 3000});
+    if(this.anio < this.anioActual) return this.snackBar.open('Inserte un año válido', undefined, {duration: 3000});
+
     let datosPeriodo={
       id: this.data.id,
       periodo: this.nombrePeriodo,
@@ -78,18 +81,20 @@ export class PeriodoacademicoCreateComponent implements OnInit{
       activo:this.data.activo
 
     };
+
     this.loading.cargando.next(true);
 
     this.periodoService.updatePeriodo(datosPeriodo).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
-      this.log("Editar período academico","Usuario: "+this.user+" editó un período academico");
+      this.log("Editar periodo academico","Usuario: " + this.user + " editó el periodo academico " + this.data.id);
 
       this.dialogRef.close(true);
     },(error) => {
-      this.log("Editar período academico","Usuario: "+this.user+" falló al editar un período academico");
+      this.log("Editar periodo academico","Usuario: " + this.user + " falló al editar el periodo academico " + this.data.id);
 
-      this.snackBar.open('Ha fallado la actualización del período', undefined, {duration: 3000});
-    })
+      this.snackBar.open('Ha fallado la actualización del periodo', undefined, {duration: 3000});
+    });
+    
     return this.loading.cargando.next(false);
   }
 }
