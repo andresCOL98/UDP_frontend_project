@@ -8,7 +8,6 @@ import { ItemService } from 'src/app/service/item.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Inventario } from 'src/app/domain/inventario';
-import { Categoria } from 'src/app/domain/categoria';
 import { CategoriaService } from 'src/app/service/categoria.service';
 
 @Component({
@@ -18,13 +17,13 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 })
 export class ItemListComponent implements OnInit, AfterViewInit{
   public inventario = new MatTableDataSource<any>();
-  public displayedColumns: string[] = ['id', 'item', 'cantidad', 'subcategoria_id', 'acciones'];
-  public items = new MatTableDataSource<any>();
+  public displayedColumns: string[] = ['id', 'item', 'cantidad', 'nombreCategoria', 'acciones'];
+  public itemsTabla = new MatTableDataSource<any>();
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   activos:boolean = true;
-
-  public listaCategorias: Categoria[];
+  valoresItems:any;
+  valoresCategorias:any;
 
   constructor(public dialog: MatDialog,
     private itemService:ItemService,
@@ -33,30 +32,38 @@ export class ItemListComponent implements OnInit, AfterViewInit{
     private categoriaService:CategoriaService) {}
 
   ngAfterViewInit(): void {
-    this.items.paginator = this.paginator;
-    this.items.sort = this.sort
+    this.itemsTabla.paginator = this.paginator;
+    this.itemsTabla.sort = this.sort
   }
 
   ngOnInit():void {
     this.traerItems();
-    this.getListaCategorias();
-
-  }
-
-  public getListaCategorias() {
-    this.categoriaService.getCategorias(this.activos).subscribe((res:any) => {
-      this.listaCategorias = res;
-    })
   }
 
   traerItems() {
     this.loading.cargando.next(true);
     this.itemService.getItems(this.activos).subscribe((res:any) => {
-      this.items.data = res;
+      this.valoresItems = res;
+      this.traerCategorias();
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
     });
     this.loading.cargando.next(false);
+  }
+
+  traerCategorias() {
+    this.categoriaService.getCategorias(this.activos).subscribe((res:any) => {
+      this.valoresCategorias = res;
+      this.imprimirTabla();
+    })
+  }
+
+  imprimirTabla() {
+    this.valoresItems.map((item:any) => {
+      let catego = this.valoresCategorias.filter((res:any) => res.id == item.subcategoria_id)
+      item.nombreCategoria = catego;
+    });
+    this.itemsTabla.data = this.valoresItems;
   }
 
   crearNuevoItem() {
