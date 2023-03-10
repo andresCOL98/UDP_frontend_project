@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogService } from 'src/app/service/log.service';
 
 @Component({
   selector: 'app-asistenciasubcategoria-create',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AsistenciasubcategoriaCreateComponent {
 
+  user=localStorage.getItem('currentUser');
   form = {
     cedula: null,
     nombres: '',
@@ -24,9 +26,28 @@ export class AsistenciasubcategoriaCreateComponent {
     {value: 4, name:"Danzas"},
   ];
 
-  constructor() {}
+  constructor(private logService:LogService) {}
 
   ngOnInit() {
+  }
+  log(evento:string,mensaje:string){
+    let tiempoTranscurrido = Date.now();
+    let hoy = new Date(tiempoTranscurrido);
+    let user=localStorage.getItem('currentUser');
+    let logg={
+       id:0,
+       evento:evento,
+       fecha: hoy.toLocaleDateString(),
+       mensaje:mensaje,
+       nivel:"INFO"
+    }
+    this.logService.createLog(logg).subscribe(
+      (res) => {
+
+      },
+      (error) => {
+      }
+    );
   }
 
   registrarAsistencia() {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
+import { LogService } from 'src/app/service/log.service';
 
 @Component({
   selector: 'app-asistenciamedica-create',
@@ -9,6 +10,7 @@ import * as moment from 'moment';
 })
 export class AsistenciamedicaCreateComponent {
   fechaHoy = moment().format('YYYY-MM-DD');
+  user=localStorage.getItem('currentUser');
   form = {
     cedulaPaciente: '',
     nombrePaciente: '',
@@ -18,10 +20,31 @@ export class AsistenciamedicaCreateComponent {
     tratamiento: '',
   }
 
-  constructor(private snackBar: MatSnackBar,) {}
+  constructor(private snackBar: MatSnackBar,
+    private logService:LogService) {}
 
   ngOnInit() {
   }
+  log(evento:string,mensaje:string){
+    let tiempoTranscurrido = Date.now();
+    let hoy = new Date(tiempoTranscurrido);
+    let user=localStorage.getItem('currentUser');
+    let logg={
+       id:0,
+       evento:evento,
+       fecha: hoy.toLocaleDateString(),
+       mensaje:mensaje,
+       nivel:"INFO"
+    }
+    this.logService.createLog(logg).subscribe(
+      (res) => {
+
+      },
+      (error) => {
+      }
+    );
+  }
+
 
   registrarEvento() {
     return console.log(this.form);
