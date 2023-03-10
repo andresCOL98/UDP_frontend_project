@@ -37,7 +37,7 @@ export class EventoParticipacionCreateComponent {
   log(evento:string,mensaje:string){
     let tiempoTranscurrido = Date.now();
     let hoy = new Date(tiempoTranscurrido);
-    let user=localStorage.getItem('currentUser');
+    
     let logg={
        id:0,
        evento:evento,
@@ -45,13 +45,7 @@ export class EventoParticipacionCreateComponent {
        mensaje:mensaje,
        nivel:"INFO"
     }
-    this.logService.createLog(logg).subscribe(
-      (res) => {
-
-      },
-      (error) => {
-      }
-    );
+    this.logService.createLog(logg);
   }
 
   registrarParticipacion() {

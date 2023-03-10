@@ -114,15 +114,7 @@ export class LoginComponent implements OnInit {
        mensaje:"Usuario: "+this.user+" inicio sesión.",
        nivel:"INFO"
     }
-    this.logService.createLog(logg).subscribe(
-      (res) => {
-        this.openSnackBar('LOG Creado', 'OK');
-
-      },
-      (error) => {
-        this.openSnackBar('Ha ocurrido un error en LOG', 'OK');
-      }
-    );
+    this.logService.createLog(logg);
   }
 
   

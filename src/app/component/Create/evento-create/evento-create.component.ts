@@ -44,13 +44,7 @@ export class EventoCreateComponent {
        mensaje:mensaje,
        nivel:"INFO"
     }
-    this.logService.createLog(logg).subscribe(
-      (res) => {
-
-      },
-      (error) => {
-      }
-    );
+    this.logService.createLog(logg);
   }
 
   registrarEvento() {
