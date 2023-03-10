@@ -17,7 +17,7 @@ export class LogService {
   }
 
   createLog(log:Log) {
-    let url = this.api + "log/save";
+    let url = this.api + "logs/log/save";
     return this.httpClient.post(url, log)
   }
 

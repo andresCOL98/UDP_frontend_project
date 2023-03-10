@@ -6,6 +6,7 @@ import { Inventario } from 'src/app/domain/inventario';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ItemService } from 'src/app/service/item.service';
 import { LoadingService } from 'src/app/service/loading.service';
+import { LogService } from 'src/app/service/log.service';
 import { CategoriaCreateComponent } from '../categoria-create/categoria-create.component';
 
 
@@ -23,6 +24,7 @@ export class ItemCreateComponent implements OnInit {
   cantidad:number=0;
   estado:boolean=true;
   activos:boolean = true;
+  user=localStorage.getItem('currentUser');
   public listaCategorias: Categoria[];
 
   public inventario:Inventario;
@@ -34,7 +36,8 @@ export class ItemCreateComponent implements OnInit {
     private itemService: ItemService,
     private snackBar: MatSnackBar,
     private loading: LoadingService,
-    private categoriaService:CategoriaService
+    private categoriaService:CategoriaService,
+    private logService:LogService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +47,25 @@ export class ItemCreateComponent implements OnInit {
 
     this.getListaCategorias();
 
+  }
+  log(evento:string,mensaje:string){
+    let tiempoTranscurrido = Date.now();
+    let hoy = new Date(tiempoTranscurrido);
+    let user=localStorage.getItem('currentUser');
+    let logg={
+       id:0,
+       evento:evento,
+       fecha: hoy.toLocaleDateString(),
+       mensaje:mensaje,
+       nivel:"INFO"
+    }
+    this.logService.createLog(logg).subscribe(
+      (res) => {
+
+      },
+      (error) => {
+      }
+    );
   }
 
   public getListaCategorias() {
@@ -72,7 +94,9 @@ export class ItemCreateComponent implements OnInit {
     this.itemService.createItem(datosInventario).subscribe(res => {
       this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
       this.dialogRef.close(true);
+      this.log("Crear item inventario","Usuario: "+this.user+" creó un item en inventario");
     },(error) => {
+      this.log("Crear item inventario","Usuario: "+this.user+" fallo al crear un item en inventario");
       this.snackBar.open('Ha fallado la creación del item', undefined, {duration: 3000});
     })
     return this.loading.cargando.next(false);
@@ -97,8 +121,12 @@ export class ItemCreateComponent implements OnInit {
 
     this.itemService.updateItem(datosInventario).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
+      this.log("Editar item inventario","Usuario: "+this.user+" editó un item en inventario");
+
       this.dialogRef.close(true);
     },(error) => {
+      this.log("Editar item inventario","Usuario: "+this.user+" falló al crear un item en inventario");
+
       this.snackBar.open('Ha fallado la actualización del inventario', undefined, {duration: 3000});
     })
     return this.loading.cargando.next(false);

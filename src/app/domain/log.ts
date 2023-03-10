@@ -2,7 +2,7 @@ export class Log {
     constructor(
         public id:number,
         public evento:string,
-        public fecha:Date,
+        public fecha:string,
         public mensaje:string,
         public nivel:string
     ){}

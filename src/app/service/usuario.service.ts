@@ -27,7 +27,7 @@ export class UsuarioService {
   }
 
   createUsuario(usuario:Usuario) {
-    let url = this.api + "usuario/save";
+    let url = this.api + "persona/usuario/save";
     return this.httpClient.post(url, usuario)
   }
 

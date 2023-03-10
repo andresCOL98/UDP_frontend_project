@@ -7,8 +7,8 @@ export class Usuario {
         public nombre:string,
         public documento:number,
         public cargo:string,
-        public unidad:string,
         public rol_id:number,
-        public categoria_id:number
+        public categoria_id:number,
+        public estado:number
     ){}
 }

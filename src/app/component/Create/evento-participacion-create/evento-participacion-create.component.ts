@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { LogService } from 'src/app/service/log.service';
 import { CategoriaCreateComponent } from '../categoria-create/categoria-create.component';
 
 @Component({
@@ -16,9 +17,11 @@ export class EventoParticipacionCreateComponent {
     fechaIni: '',
     fechaFin: '',
   }
+  user=localStorage.getItem('currentUser');
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
-    public dialogRef: MatDialogRef<CategoriaCreateComponent>
+    public dialogRef: MatDialogRef<CategoriaCreateComponent>,
+    private logService:LogService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,25 @@ export class EventoParticipacionCreateComponent {
       fechaIni: this.data.fechaInicio,
       fechaFin: this.data.fechaFin,
     }
+  }
+  log(evento:string,mensaje:string){
+    let tiempoTranscurrido = Date.now();
+    let hoy = new Date(tiempoTranscurrido);
+    let user=localStorage.getItem('currentUser');
+    let logg={
+       id:0,
+       evento:evento,
+       fecha: hoy.toLocaleDateString(),
+       mensaje:mensaje,
+       nivel:"INFO"
+    }
+    this.logService.createLog(logg).subscribe(
+      (res) => {
+
+      },
+      (error) => {
+      }
+    );
   }
 
   registrarParticipacion() {
