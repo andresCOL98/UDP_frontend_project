@@ -7,12 +7,6 @@ import { LogService } from 'src/app/service/log.service';
   styleUrls: ['./asistenciaevento-create.component.scss']
 })
 export class AsistenciaeventoCreateComponent {
-
-  user=localStorage.getItem('currentUser');
-
-
-
-
   constructor(
     private logService:LogService
   ) { }

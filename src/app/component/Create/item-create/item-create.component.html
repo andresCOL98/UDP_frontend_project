@@ -28,6 +28,7 @@
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
             <select class="form-select" name="subcategoria_id" [(ngModel)]="subcategoria_id">
+                <option [value]="0">Seleccionar...</option>
                 <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
         </div>
