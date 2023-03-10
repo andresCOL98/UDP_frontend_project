@@ -41,13 +41,7 @@ export class CategoriaCreateComponent implements OnInit {
        mensaje:mensaje,
        nivel:"INFO"
     }
-    this.logService.createLog(logg).subscribe(
-      (res) => {
-
-      },
-      (error) => {
-      }
-    );
+    this.logService.createLog(logg);
   }
 
   crearCategoria() {

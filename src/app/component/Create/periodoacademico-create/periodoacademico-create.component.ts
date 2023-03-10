@@ -58,7 +58,7 @@ export class PeriodoacademicoCreateComponent implements OnInit{
   log(evento:string,mensaje:string){
     let tiempoTranscurrido = Date.now();
     let hoy = new Date(tiempoTranscurrido);
-    let user=localStorage.getItem('currentUser');
+    
     let logg={
        id:0,
        evento:evento,
@@ -66,13 +66,7 @@ export class PeriodoacademicoCreateComponent implements OnInit{
        mensaje:mensaje,
        nivel:"INFO"
     }
-    this.logService.createLog(logg).subscribe(
-      (res) => {
-
-      },
-      (error) => {
-      }
-    );
+    this.logService.createLog(logg);
   }
   editarPeriodo() {
     if(this.nombrePeriodo < 0 || this.nombrePeriodo > 3) return this.snackBar.open('Inserte un período válido', undefined, {duration: 3000});
