@@ -2,10 +2,10 @@ export class Evento {
     constructor(
         public id:number,
         public descripcion:string,
-        public fechaFin:Date,
-        public fechaInicio:Date,
-        public periodoAcademicoId:number,
-        public subcategoriaId:number,
-        public usuarioId:number
+        public fecha_fin:string,
+        public fecha_inicio:string,
+        public periodoacademico_id:number,
+        public subcategoria_id:number,
+        public usuario_id:number
     ){}
 }
