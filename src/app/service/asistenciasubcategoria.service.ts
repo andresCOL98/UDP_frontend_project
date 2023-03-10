@@ -21,14 +21,14 @@ export class AsistenciasubcategoriaService {
     return this.httpClient.get(url);
   }
 
-  createAsistenciaSubcategoria(categoria:Asistenciasubcategoria) {
+  createAsistenciaSubcategoria(formulario:Asistenciasubcategoria) {
     let url = this.api + "asistenciaSubcategoria/save";
-    return this.httpClient.post(url, categoria)
+    return this.httpClient.post(url, formulario)
   }
 
-  updateAsistenciaSubcategoria(categoria:Asistenciasubcategoria) {
+  updateAsistenciaSubcategoria(formulario:Asistenciasubcategoria) {
     let url = this.api + "asistenciaSubcategoria/update";
-    return this.httpClient.put(url, categoria)
+    return this.httpClient.put(url, formulario)
   }
 
   deleteAsistenciaSubcategoria(id:number) {
