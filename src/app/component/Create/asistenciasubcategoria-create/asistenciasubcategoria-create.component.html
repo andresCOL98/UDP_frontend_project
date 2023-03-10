@@ -4,35 +4,39 @@
     <form class="formulario-asistencia row">
 
         <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">PGE:</label>
+            <input type="text" class="form-control" name="id_pge" [(ngModel)]="form.id_pege" placeholder="Código...">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Cédula:</label>
             <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedula" placeholder="Cédula...">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Nombres:</label>
-            <input type="text" class="form-control" name="nombres" [(ngModel)]="form.nombres" placeholder="Nombres...">
+            <label class="col-form-label label-formulario">Nombre:</label>
+            <input type="text" class="form-control" name="nombres" [(ngModel)]="form.nombre" placeholder="Nombre...">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Apellidos:</label>
-            <input type="text" class="form-control" name="apellidos" [(ngModel)]="form.apellidos" placeholder="Apellidos...">
+            <label class="col-form-label label-formulario">Periodo:</label>
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+                <option value="">Seleccionar...</option>
+                <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.nombre}}</option>
+            </select>
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
             <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
-                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+                <option value="">Seleccionar...</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha:</label>
             <input type="date" class="form-control" name="fecha" [(ngModel)]="form.fecha">
-        </div>
-
-        <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Hora:</label>
-            <input type="time" class="form-control" name="hora" [(ngModel)]="form.hora">
         </div>
 
         <div class="boton-registrar mt-3 mb-2">
