@@ -12,17 +12,17 @@ export class UsuarioService {
   constructor(private httpClient:HttpClient) { }
 
   getUsuarios() {
-    let url = this.api + "usuario/findAll";
+    let url = this.api + "persona/usuario/findAll";
     return this.httpClient.get(url);
   }
 
   getByUsuario(user:string) {
-    let url = this.api + "usuario/" + user;
+    let url = this.api + "persona/usuario/" + user;
     return this.httpClient.get(url);
   }
 
   getUsuarioById(id:number) {
-    let url = this.api + "usuario/" + id;
+    let url = this.api + "persona/usuario/" + id;
     return this.httpClient.get(url);
   }
 
@@ -32,12 +32,12 @@ export class UsuarioService {
   }
 
   updateUsuario(usuario:Usuario) {
-    let url = this.api + "usuario/update";
+    let url = this.api + "persona/usuario/update";
     return this.httpClient.put(url, usuario)
   }
 
   deleteUsuario(id:number) {
-    let url = this.api + "usuario/" + id;
+    let url = this.api + "persona/usuario/" + id;
     return this.httpClient.delete(url);
   }
 }
