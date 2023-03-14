@@ -3,38 +3,38 @@
 
     <form class="formulario-evento row">
         <div class="col-sm-12 col-md-4 mb-3">
-            <label class="col-form-label label-formulario">Fecha de consulta:</label>
-            <input type="date" class="form-control" name="fechaInicio" min="{{fechaHoy}}" [(ngModel)]="form.fechaConsulta">
+            <label class="col-form-label label-formulario">PEGE:</label>
+            <input type="number" class="form-control" name="pege" [(ngModel)]="form.id_pege" placeholder="Id...">
         </div>
 
         <div class="col-sm-12 col-md-4 mb-3">
             <label class="col-form-label label-formulario">Cédula del paciente:</label>
-            <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedulaPaciente" placeholder="Cédula...">
+            <input type="number" class="form-control" name="documento" [(ngModel)]="form.documento" placeholder="Cédula...">
         </div>
 
         <div class="col-sm-12 col-md-4 mb-3">
             <label class="col-form-label label-formulario">Nombre del paciente:</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombrePaciente" placeholder="Nombre...">
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre...">
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Diagnóstico:</label>
-            <input type="text" class="form-control" name="diagnostico" [(ngModel)]="form.diagnostico" placeholder="Diagnóstico...">
+            <input type="text" class="form-control" name="observacion" [(ngModel)]="form.observacion" placeholder="Diagnóstico...">
         </div>
 
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Detalles de la consulta:</label>
-            <textarea class="form-control" name="descripcion" [(ngModel)]="form.descripcion" rows="5"></textarea>
+            <label class="col-form-label label-formulario">Detalles:</label>
+            <textarea class="form-control" name="otros_datos" [(ngModel)]="form.otros_datos" rows="5"></textarea>
         </div>
 
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Tratamiento:</label>
-            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.tratamiento" rows="5"></textarea>
+            <label class="col-form-label label-formulario">Tratamiento y/o recomendaciones:</label>
+            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.recomendacion" rows="5"></textarea>
         </div>
 
         <div class="boton-registrar mt-3 mb-2">
             <button mat-raised-button class="col-sm-12 col-md-2" color="warn" (click)="limpiarCampos()">Limpiar</button>
-            <button mat-raised-button class="col-sm-12 col-md-2" color="primary" (click)="registrarEvento()">Registrar</button>
+            <button mat-raised-button class="col-sm-12 col-md-2" color="primary" (click)="registrarAtencion()">Registrar</button>
         </div>
     </form>
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
+import { Asistenciaevento } from 'src/app/domain/asistenciaevento';
+import { AsistenciamedicaService } from 'src/app/service/asistenciamedica.service';
+import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
 
 @Component({
@@ -9,19 +12,20 @@ import { LogService } from 'src/app/service/log.service';
   styleUrls: ['./asistenciamedica-create.component.scss']
 })
 export class AsistenciamedicaCreateComponent {
-  fechaHoy = moment().format('YYYY-MM-DD');
   user=localStorage.getItem('currentUser');
-  form = {
-    cedulaPaciente: '',
-    nombrePaciente: '',
-    fechaConsulta: this.fechaHoy,
-    diagnostico: '',
-    descripcion: '',
-    tratamiento: '',
+  form:any = {
+    observacion: '',
+    recomendacion: '',
+    otros_datos: '',
+    id_pege: null,
+    nombre: '',
+    documento: null
   }
 
   constructor(private snackBar: MatSnackBar,
-    private logService:LogService) {}
+    private logService:LogService,
+    private asistencia:AsistenciamedicaService,
+    private loading:LoadingService) {}
 
   ngOnInit() {
   }
@@ -40,18 +44,41 @@ export class AsistenciamedicaCreateComponent {
   }
 
 
-  registrarEvento() {
-    return console.log(this.form);
+  registrarAtencion() {
+    let datos:Asistenciaevento = {
+      id: 0,
+      fecha: moment().format('DD-MM-YYYY'),
+      observacion: this.form.observacion,
+      recomendacion: this.form.recomendacion,
+      otros_datos: this.form.otros_datos,
+      id_pege: this.form.id_pege,
+      nombre: this.form.nombre,
+      documento: this.form.documento,
+      usuario_id: 0
+    }
+
+    this.loading.cargando.next(true);
+
+    this.asistencia.createAsistenciaMedica(datos).subscribe(res => {
+      this.loading.cargando.next(false);
+      this.limpiarCampos();
+      this.snackBar.open('Historia guardada correctamente', 'OK', {duration: 3000});
+      this.log('Crear atención médica', `Usuario: ${this.user} creó la historia médica de ${this.form.id_pege}`);
+    }, (error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al guardar la historia', 'ERROR', {duration: 3000});
+      this.log('Crear atención médica', `Usuario: ${this.user} falló al crear historia médica de ${this.form.id_pege}`);
+    })
   }
 
   limpiarCampos() {
     this.form = {
-      cedulaPaciente: '',
-      nombrePaciente: '',
-      fechaConsulta: '',
-      diagnostico: '',
-      descripcion: '',
-      tratamiento: '',
+      observacion: '',
+      recomendacion: '',
+      otros_datos: '',
+      id_pege: null,
+      nombre: '',
+      documento: null
     }
   }
 }

@@ -20,16 +20,14 @@ export class ItemCreateComponent implements OnInit {
   nombreItem:string = '';
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);
-  subcategoria_id:number=0;
-  cantidad:number=0;
-  estado:boolean=true;
+  subcategoria_id:number = 0;
+  cantidad:number = 0;
+  estado:boolean = true;
   activos:boolean = true;
   user=localStorage.getItem('currentUser');
   public listaCategorias: Categoria[];
 
   public inventario:Inventario;
-
-
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     public dialogRef: MatDialogRef<ItemCreateComponent>,

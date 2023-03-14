@@ -17,8 +17,9 @@ export class UsuarioService {
   }
 
   getByUsuario(user:string) {
-    let url = this.api + "persona/usuario/" + user;
-    return this.httpClient.get(url);
+    let url = this.api + "persona/usuario/getByUsuario";
+    let data = {estado: true, usuario: user};
+    return this.httpClient.post(url, data);
   }
 
   getUsuarioById(id:number) {
