@@ -43,6 +43,11 @@ export class ItemListComponent implements OnInit, AfterViewInit{
   traerItems() {
     this.loading.cargando.next(true);
     this.itemService.getItems(this.activos).subscribe((res:any) => {
+      if(!res.length) {
+        this.itemsTabla.data = [];
+        this.snackBar.open('Sin resultados', undefined, {duration: 3000});
+        return;
+      }
       this.valoresItems = res;
       this.traerCategorias();
     }, (error) => {
@@ -52,16 +57,17 @@ export class ItemListComponent implements OnInit, AfterViewInit{
   }
 
   traerCategorias() {
-    this.categoriaService.getCategorias(this.activos).subscribe((res:any) => {
-      this.valoresCategorias = res;
+    this.categoriaService.getCategorias(true).subscribe((res:any) => {
+      this.valoresCategorias = res || [];
       this.imprimirTabla();
+      return;
     })
   }
 
   imprimirTabla() {
     this.valoresItems.map((item:any) => {
-      let catego = this.valoresCategorias.filter((res:any) => res.id == item.subcategoria_id)
-      item.nombreCategoria = catego;
+      let catego = this.valoresCategorias.filter((res:any) => res.id == item.subcategoria_id);
+      item.nombreCategoria = catego[0].nombre || '';
     });
     this.itemsTabla.data = this.valoresItems;
   }

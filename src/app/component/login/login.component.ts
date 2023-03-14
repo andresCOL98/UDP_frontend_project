@@ -7,6 +7,7 @@ import { ForgetDataComponent } from '../forget-data/forget-data.component';
 import { LoadingService } from 'src/app/service/loading.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { LogService } from 'src/app/service/log.service';
+import { Usuario } from 'src/app/domain/usuario';
 
 @Component({
   selector: 'app-login',
@@ -47,63 +48,43 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  validarUsuario(){
-    if(this.usuarioService.getByUsuario(this.user)){
-      this.validarUser=true;
-      this.loginService.login(this.user, this.pass).subscribe(
-        (res) => {
-          let u={
-             id:0,
-             id_pege:res.idpege,
-             id_usuario:res.idusuario,
-             usuario:res.usuario,
-             nombre:res.nombre,
-             documento:res.documento,
-             cargo:res.cargo,
-             rol_id:0,
-             categoria_id:0,
-             estado:1
-          }
-          this.usuarioService.updateUsuario(u).subscribe(res => {
-            this.snackBar.open('Actualizado U exitosamente', undefined, {duration: 3000});
-          },(error) => {
-            this.snackBar.open('Ha fallado la creación del usuario', undefined, {duration: 3000});
-          })
-        },(error) => {
-          this.loadingService.cargando.next(false);
-          this.openSnackBar('Ha ocurrido un error al intentar validar usuario', 'OK');
-        }
-      );
-
-    }else{
-      this.validarUser=false;
-      this.loginService.login(this.user, this.pass).subscribe(
-        (res) => {
-          let u={
-             id:0,
-             id_pege:res.idpege,
-             id_usuario:res.idusuario,
-             usuario:res.usuario,
-             nombre:res.nombre,
-             documento:res.documento,
-             cargo:res.cargo,
-             rol_id:1,
-             categoria_id:1,
-             estado:1
-          }
-          this.usuarioService.createUsuario(u).subscribe(res => {
-            this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
-          },(error) => {
-            this.snackBar.open('Ha fallado la creación del usuario', undefined, {duration: 3000});
-          })
-        },(error) => {
-          this.loadingService.cargando.next(false);
-          this.openSnackBar('Ha ocurrido un error al intentar validar usuario', 'OK');
-        }
-      );
-
+  validarUsuario(dataUdp:any){
+    let datos:Usuario = {
+      id: 0,
+      id_pege: dataUdp.idpege,
+      id_usuario: dataUdp.idusuario,
+      usuario: dataUdp.usuario,
+      nombre: dataUdp.nombre,
+      documento: dataUdp.documento,
+      cargo: dataUdp.cargo,
+      rol_id: 0,
+      categoria_id: 0,
+      estado: 1
     }
+    this.usuarioService.getByUsuario(this.user).subscribe((res:any) => {
+      if(res == "Usuario no encontrado") {
+        this.crearUsuario(datos);
+      } else if(res.id) {
+        datos.id = res.id;
+        this.actualizarUsuario(datos);
+      }
+    });
+  }
 
+  crearUsuario(datos:Usuario) {
+    this.usuarioService.createUsuario(datos).subscribe(res => {
+      this.openSnackBar('Usuario creado', 'Ok');
+    }, (error) => {
+      this.openSnackBar('Error al crear usuario', 'Ok');
+    })
+  }
+
+  actualizarUsuario(datos:Usuario) {
+    this.usuarioService.updateUsuario(datos).subscribe(res => {
+      this.openSnackBar('Datos actualizados', 'Ok');
+    }, (error) => {
+      this.openSnackBar('Error al actualizar usuario', 'Ok');
+    })
   }
 
   log(){
@@ -116,8 +97,6 @@ export class LoginComponent implements OnInit {
     }
     this.logService.createLog(logg);
   }
-
-  
 
   abrirForm() {
     let dialogRef = this.dialog.open(ForgetDataComponent, {
@@ -155,7 +134,7 @@ export class LoginComponent implements OnInit {
         this.loginService.setUserLoggedIn(res.nombre);
         this.router.navigate(['/index-menu']);
         this.recordar();
-        this.validarUsuario();
+        this.validarUsuario(res);
         this.log();
       },
       (error) => {
