@@ -36,25 +36,27 @@ export class AsistenciamedicaListComponent {
     } else if(this.form.id_pege && this.form.fecha) {
       this.buscarPorAmbos();
     }
-
-    this.loading.cargando.next(false);
   }
 
   buscarPorFecha() {
     let fecha = moment(this.form.fecha, 'YYYY-MM-DD').format('DD-MM-YYYY');
     this.asistencia.findByFecha(fecha).subscribe(res => {
       this.historiasMedicas = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('No se encontraron resultados');
-    })
+      this.loading.cargando.next(false);
+    });
   }
 
   buscarPorPege() {
     this.asistencia.findByIdPege(this.form.id_pege).subscribe(res => {
       this.historiasMedicas = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('No se encontraron resultados');
-    })
+      this.loading.cargando.next(false);
+    });
   }
 
   buscarPorAmbos() {
@@ -62,8 +64,10 @@ export class AsistenciamedicaListComponent {
     this.asistencia.findByIdPegeAndFecha(fecha, this.form.id_pege).subscribe(res => {
       console.log(res);
       this.historiasMedicas = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('No se encontraron resultados');
-    })
+      this.loading.cargando.next(false);
+    });
   }
 }

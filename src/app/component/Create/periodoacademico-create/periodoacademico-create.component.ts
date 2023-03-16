@@ -87,11 +87,11 @@ export class PeriodoacademicoCreateComponent implements OnInit{
     this.periodoService.updatePeriodo(datosPeriodo).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
       this.log("Editar periodo academico","Usuario: " + this.user + " editó el periodo academico " + this.data.id);
-
+      this.loading.cargando.next(false);
       this.dialogRef.close(true);
     },(error) => {
       this.log("Editar periodo academico","Usuario: " + this.user + " falló al editar el periodo academico " + this.data.id);
-
+      this.loading.cargando.next(false);
       this.snackBar.open('Ha fallado la actualización del periodo', undefined, {duration: 3000});
     });
     

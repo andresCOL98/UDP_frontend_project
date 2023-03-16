@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
       } else if(res.id) {
         datos.id = res.id;
         this.actualizarUsuario(datos);
+        localStorage.setItem('idUser', res.id);
       }
     });
   }
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
   crearUsuario(datos:Usuario) {
     this.usuarioService.createUsuario(datos).subscribe(res => {
       this.openSnackBar('Usuario creado', 'Ok');
+      this.validarUsuario(datos);
     }, (error) => {
       this.openSnackBar('Error al crear usuario', 'Ok');
     })

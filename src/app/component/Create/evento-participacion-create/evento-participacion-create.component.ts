@@ -30,8 +30,8 @@ export class EventoParticipacionCreateComponent {
       cedula: '',
       nombres: '',
       apellidos: '',
-      fechaIni: this.data.fechaInicio,
-      fechaFin: this.data.fechaFin,
+      fechaIni: this.data.fecha_inicio,
+      fechaFin: this.data.fecha_fin,
     }
   }
   log(evento:string,mensaje:string){

@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
+import { CategoriaService } from 'src/app/service/categoria.service';
+import { EventoService } from 'src/app/service/evento.service';
+import { LoadingService } from 'src/app/service/loading.service';
+import { LogService } from 'src/app/service/log.service';
+import { PeriodoacademicoService } from 'src/app/service/periodoacademico.service';
 import { EventoParticipacionCreateComponent } from '../../Create/evento-participacion-create/evento-participacion-create.component';
 
 @Component({
@@ -14,56 +20,63 @@ export class EventoListComponent {
     fecha: '',
     categoria: '',
   }
+  categorias:any;
+  eventos:any = [];
+  eventosFiltrados:any = [];
 
-  categorias = [
-    {value: '', name:"Seleccionar..."},
-    {value: 1, name:"Deportes"},
-    {value: 2, name:"Orquestas"},
-    {value: 3, name:"Gimnasio"},
-    {value: 4, name:"Danzas"},
-  ];
-
-  eventos = [
-    {
-      id: 1,
-      titulo: 'CLASE DE SAXOFON',
-      descripcion: 'Clases personalizadas saxofón desde las 9am hasta las 11pm los lunes, miércoles y viernes',
-      fechaInicio: moment('2023-03-02', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-      fechaFin: moment('2023-03-23', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-    },
-    {
-      id: 2,
-      titulo: 'CLASE DE TROMPETA',
-      descripcion: 'Clases personalizadas trompeta desde las 9am hasta las 11pm los lunes, miércoles y viernes',
-      fechaInicio: moment('2023-03-02', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-      fechaFin: moment('2023-03-23', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-    },
-    {
-      id: 3,
-      titulo: 'CLASE DE CLARINETE',
-      descripcion: 'Clases personalizadas clarinete desde las 9am hasta las 11pm los lunes, miércoles y viernes',
-      fechaInicio: moment('2023-03-02', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-      fechaFin: moment('2023-03-23', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-    },
-    {
-      id: 4,
-      titulo: 'CLASE DE BOMBO',
-      descripcion: 'Clases personalizadas bombo desde las 9am hasta las 11pm los lunes, miércoles y viernes',
-      fechaInicio: moment('2023-03-02', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-      fechaFin: moment('2023-03-23', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-    },
-    {
-      id: 5,
-      titulo: 'CLASE DE MARIMBA',
-      descripcion: 'Clases personalizadas marimba desde las 9am hasta las 11pm los lunes, miércoles y viernes',
-      fechaInicio: moment('2023-03-02', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-      fechaFin: moment('2023-03-23', 'YYYY-MM-DD').format('DD/MM/YYYY'),
-    }
-  ]
-
-  constructor(private dialog:MatDialog) {}
+  constructor(
+    private dialog:MatDialog,
+    private snackBar: MatSnackBar,
+    private categoService:CategoriaService,
+    private loading:LoadingService,
+    private eventoService:EventoService
+  ) {}
 
   ngOnInit() {
+    this.traerCategorias();
+    this.buscar();
+  }
+
+  traerCategorias() {
+    this.categoService.getCategorias(true).subscribe((res:any) => {
+      this.categorias = res;
+    },(error) => {
+      this.snackBar.open('Error al mostrar las categorías', undefined, {duration: 3000});
+    });
+  }
+
+  buscar() {
+    if(this.form.categoria || this.form.fecha) {
+      this.traerEventosFiltro();
+    } else {
+      this.traerEventos();
+    }
+  }
+
+  traerEventos() {
+    this.loading.cargando.next(true);
+    this.eventoService.getEventos().subscribe((res:any) => {
+      this.eventos = res;
+      this.loading.cargando.next(false);
+      this.filtrarNombre();
+    },(error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al mostrar los eventos', undefined, {duration: 3000});
+    });
+  }
+
+  traerEventosFiltro() {
+    this.loading.cargando.next(true);
+    
+    this.eventoService.getByFechaCategoria(this.form.fecha, this.form.categoria).subscribe((res:any) => {
+      this.eventos = res;
+      this.loading.cargando.next(false);
+      this.form.nombre = '';
+      this.filtrarNombre();
+    }, (error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al mostrar los eventos', undefined, {duration: 3000});
+    });
   }
 
   registrarParticipacion(evento:any) {
@@ -73,6 +86,10 @@ export class EventoListComponent {
       autoFocus: false,
       data: evento
     });
+  }
+
+  filtrarNombre() {
+    this.eventosFiltrados = this.eventos.filter((res:any) => res.nombre.toLowerCase().indexOf(this.form.nombre) > -1);
   }
   
 }

@@ -38,11 +38,12 @@ export class PeriodoacademicoListComponent implements  OnInit, AfterViewInit{
   traerPeriodos() {
     this.loading.cargando.next(true);
     this.periodoService.getPeriodosAcademicos(this.activos).subscribe((res:any) => {
+      this.loading.cargando.next(false);
       this.periodos.data = res;
     }, (error) => {
+      this.loading.cargando.next(false);
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
     });
-    this.loading.cargando.next(false);
   }
 
   crearNuevoPeriodo() {
