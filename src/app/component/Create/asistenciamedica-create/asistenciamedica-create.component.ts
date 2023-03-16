@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
 import { Asistenciaevento } from 'src/app/domain/asistenciaevento';
+import { Asistenciamedica } from 'src/app/domain/asistenciamedica';
 import { AsistenciamedicaService } from 'src/app/service/asistenciamedica.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
@@ -47,7 +48,7 @@ export class AsistenciamedicaCreateComponent {
 
 
   registrarAtencion() {
-    let datos:Asistenciaevento = {
+    let datos:Asistenciamedica = {
       id: 0,
       fecha: moment().format('DD-MM-YYYY'),
       observacion: this.form.observacion,
