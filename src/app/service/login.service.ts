@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
   
   public logged = new BehaviorSubject<boolean>(false);
+  public idRol = new BehaviorSubject<number>(0);
   private url = environment.apiUdp;
  
   constructor(private router: Router, public httpClient:HttpClient) {}
@@ -33,6 +34,17 @@ export class LoginService {
   getUserLoggedIn() {
     let currentUser:any = localStorage.getItem('currentUser');
     return JSON.parse(currentUser) || "";
+  }
+
+  getUserRol(){
+    let rol:any = localStorage.getItem('idRol');
+    this.idRol.next(Number(rol));
+    return this.idRol.asObservable();
+  }
+
+  setUserRol(rol:number) {
+    localStorage.setItem('idRol', String(rol));
+    this.idRol.next(rol);
   }
 
   logOut(){

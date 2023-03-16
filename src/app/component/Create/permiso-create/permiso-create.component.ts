@@ -95,7 +95,6 @@ export class PermisoCreateComponent implements OnInit  {
       else res.activo = false;
     });
     this.tabla.data = this.rutas;
-    console.log(this.rutas);
   }
 
   activarDesactivarRuta(permiso:any) {

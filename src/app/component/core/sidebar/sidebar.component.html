@@ -27,6 +27,14 @@
         <mat-nav-list>
             <img src="../../../assets/logo-udp.png" alt="logo-udp">
 
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngFor="let menu of menus">
+                <mat-expansion-panel-header>{{menu.titulo}}</mat-expansion-panel-header>
+                <ng-container *ngFor="let submenu of menu.subtitulos">
+                    <a mat-list-item routerLink="{{submenu.path}}" (click)="onWindowResize()">{{submenu.nombre}}</a>
+                </ng-container>
+            </mat-expansion-panel>
+            
+            <!-- <a mat-list-item routerLink="index-menu" (click)="onWindowResize()">Página de inicio</a>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>Inicio</mat-expansion-panel-header>
                 <a mat-list-item routerLink="index-menu" (click)="onWindowResize()">Página de inicio</a>
@@ -61,12 +69,12 @@
             </mat-expansion-panel>
 
             <mat-expansion-panel [class.mat-elevation-z0]="true">
-                <mat-expansion-panel-header>Configuración sistema </mat-expansion-panel-header>
+                <mat-expansion-panel-header>Configuración sistema</mat-expansion-panel-header>
                 <a mat-list-item routerLink="ver-categorias" (click)="onWindowResize()">Administrar categorías</a>
                 <a mat-list-item routerLink="ver-roles" (click)="onWindowResize()">Administrar Roles</a>
                 <a mat-list-item routerLink="ver-rutas" (click)="onWindowResize()">Administrar Rutas</a>
                 <a mat-list-item routerLink="ver-periodos" (click)="onWindowResize()">Administrar Periodos Academicos</a>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
 
         </mat-nav-list>
     </mat-sidenav>
