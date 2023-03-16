@@ -27,7 +27,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-raised-button color="accent" class="me-3" (click)="editarRol(element)">Editar</button>
-                    <button mat-raised-button color="warn">Ver permisos</button>
+                    <button mat-raised-button color="warn" (click)="verPermisosRol(element)">Permisos</button>
                 </td>
             </ng-container>
     

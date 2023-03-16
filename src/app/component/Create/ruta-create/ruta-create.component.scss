@@ -1,5 +1,5 @@
 .categoria-container {
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -10,11 +10,6 @@
         margin: 0.5em 0;
         color: #096f9c;
         font-weight: 500;
-    }
-
-    .contenedor-tabla {
-        width: 100%;
-        overflow-y: auto;
     }
 
     .formulario-categoria {

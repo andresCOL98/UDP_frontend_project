@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Rol } from 'src/app/domain/rol';
 import { LoadingService } from 'src/app/service/loading.service';
 import { RolService } from 'src/app/service/rol.service';
+import { PermisoCreateComponent } from '../../Create/permiso-create/permiso-create.component';
 import { RolCreateComponent } from '../../Create/rol-create/rol-create.component';
 
 @Component({
@@ -39,10 +40,11 @@ export class RolListComponent implements OnInit, AfterViewInit{
     this.loading.cargando.next(true);
     this.rolService.getRoles(this.activos).subscribe((res:any) => {
       this.roles.data = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
+      this.loading.cargando.next(false);
     });
-    this.loading.cargando.next(false);
   }
 
   crearNuevoRol() {
@@ -68,7 +70,20 @@ export class RolListComponent implements OnInit, AfterViewInit{
 
     dialogRef.afterClosed().subscribe(res => {
       if(res) this.traerRoles();
-    })
+    });
+  }
+
+  verPermisosRol(rol:Rol) {
+    let dialogRef = this.dialog.open(PermisoCreateComponent, {
+      width: '400px',
+      height: '600px',
+      autoFocus: false,
+      data: rol
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if(res) this.traerRoles();
+    });
   }
 
 }
