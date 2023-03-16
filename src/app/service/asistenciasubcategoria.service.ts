@@ -12,27 +12,27 @@ export class AsistenciasubcategoriaService {
   constructor(private httpClient:HttpClient) { }
 
   getAsistenciaSubcategorias() {
-    let url = this.api + "asistenciaSubcategoria/findAll";
+    let url = this.api + "asistencias/asistenciasubcategoria/findAll";
     return this.httpClient.get(url);
   }
 
   getAsistenciaSubcategoriaById(id:number) {
-    let url = this.api + "asistenciaSubcategoria/" + id;
+    let url = this.api + "asistencias/asistenciasubcategoria/" + id;
     return this.httpClient.get(url);
   }
 
   createAsistenciaSubcategoria(formulario:Asistenciasubcategoria) {
-    let url = this.api + "asistenciaSubcategoria/save";
+    let url = this.api + "asistencias/asistenciasubcategoria/save";
     return this.httpClient.post(url, formulario)
   }
 
   updateAsistenciaSubcategoria(formulario:Asistenciasubcategoria) {
-    let url = this.api + "asistenciaSubcategoria/update";
+    let url = this.api + "asistencias/asistenciasubcategoria/update";
     return this.httpClient.put(url, formulario)
   }
 
   deleteAsistenciaSubcategoria(id:number) {
-    let url = this.api + "asistenciaSubcategoria/" + id;
+    let url = this.api + "asistencias/asistenciasubcategoria/" + id;
     return this.httpClient.delete(url);
   }
 }

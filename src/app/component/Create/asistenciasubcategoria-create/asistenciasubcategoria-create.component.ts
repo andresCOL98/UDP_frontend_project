@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 import { Asistenciasubcategoria } from 'src/app/domain/asistenciasubcategoria';
 import { AsistenciasubcategoriaService } from 'src/app/service/asistenciasubcategoria.service';
 import { CategoriaService } from 'src/app/service/categoria.service';
@@ -15,6 +16,7 @@ import { PeriodoacademicoService } from 'src/app/service/periodoacademico.servic
 export class AsistenciasubcategoriaCreateComponent {
 
   user=localStorage.getItem('currentUser');
+  fechaHoy = moment().format('YYYY-MM-DD');
   form = {
     id_pege: '',
     cedula: '',
@@ -25,6 +27,8 @@ export class AsistenciasubcategoriaCreateComponent {
   }
   categorias:any;
   periodos:any;
+
+  idUser = localStorage.getItem('idUser');
 
   constructor(
     private asistenciaService:AsistenciasubcategoriaService,
@@ -61,16 +65,20 @@ export class AsistenciasubcategoriaCreateComponent {
     });
   }
 
+
   traerPeriodos() {
-    this.periodoService.getPeriodosAcademicos(true).subscribe(res => {
+    this.loading.cargando.next(true);
+    this.periodoService.getPeriodosAcademicos(true).subscribe((res:any) => {
       this.periodos = res;
-    }, (error) => {
-      this.snackBar.open('Error al mostrar las categorías', undefined, {duration: 3000});
-    });
+      this.loading.cargando.next(false);
+    },(error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al mostrar los periodos académicos', undefined, {duration: 3000});
+    })
   }
 
   registrarAsistencia() {
-    if(!this.form.id_pege || !this.form.cedula || !this.form.nombre || !this.form.periodo || !this.form.categoria || this.form.fecha) {
+    if(!this.form.id_pege || !this.form.cedula || !this.form.nombre || !this.form.periodo || !this.form.categoria || !this.form.fecha) {
       return this.snackBar.open('Llene los campos correctamente', 'OK', {duration: 3000})
     }
 
@@ -82,9 +90,9 @@ export class AsistenciasubcategoriaCreateComponent {
       id_pege: Number(this.form.id_pege),
       nombre: this.form.nombre,
       documento: Number(this.form.cedula),
-      periodoAcademico_id: Number(this.form.periodo),
+      periodo_academico_id: Number(this.form.periodo),
       subcategoria_id: Number(this.form.categoria),
-      usuario_id: 123 // OJO! AQUÍ PONER EL ID DEL USUARIO, NO SÉ DE QUÉ VARIABLE DEL LOCALSTORAGE SE SACA
+      usuario_id: Number(this.idUser)
     }
 
     this.asistenciaService.createAsistenciaSubcategoria(valores).subscribe(res => {
