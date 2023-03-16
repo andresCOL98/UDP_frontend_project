@@ -5,7 +5,7 @@ export class Asistenciasubcategoria {
         public id_pege:number,
         public nombre:string,
         public documento:number,
-        public periodoAcademico_id:number,
+        public periodo_academico_id:number,
         public subcategoria_id:number,
         public usuario_id:number
     ){}
