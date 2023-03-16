@@ -12,7 +12,8 @@ import { LogService } from 'src/app/service/log.service';
   styleUrls: ['./asistenciamedica-create.component.scss']
 })
 export class AsistenciamedicaCreateComponent {
-  user=localStorage.getItem('currentUser');
+  user = localStorage.getItem('currentUser');
+  idUser = localStorage.getItem('idUser');
   form:any = {
     observacion: '',
     recomendacion: '',
@@ -54,7 +55,7 @@ export class AsistenciamedicaCreateComponent {
       id_pege: this.form.id_pege,
       nombre: this.form.nombre,
       documento: this.form.documento,
-      usuario_id: 0
+      usuario_id: Number(this.idUser)
     }
 
     this.loading.cargando.next(true);

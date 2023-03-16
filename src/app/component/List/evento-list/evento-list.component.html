@@ -3,36 +3,42 @@
 
     <form class="row contenedor-filtros pt-4 pb-4">
 
-        <div class="col-sm-12 col-md-4 mb-3">
-            <label class="col-form-label label-formulario">Nombre del evento:</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento...">
-        </div>
-
-        <div class="col-sm-12 col-md-4 mb-3">
+        <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha de inicio:</label>
             <input type="date" class="form-control" name="fecha" [(ngModel)]="form.fecha">
         </div>
 
-        <div class="col-sm-12 col-md-4 mb-3">
+        <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
             <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
-                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+                <option value="">Seleccionar...</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
         </div>
 
         <div class="d-flex justify-content-center col-sm-12">
-            <button mat-raised-button color="primary" class="col-sm-12 col-md-2">Buscar</button>
+            <button mat-raised-button color="primary" class="col-sm-12 col-md-2" (click)="buscar()">Buscar</button>
         </div>
     </form>
 
-    <mat-accordion class="col-sm-12 row mt-3" *ngFor="let evento of eventos">
+    <div class="row col-sm-12 col-md-6 mt-3 mb-3" *ngIf="eventos.length">
+        <input
+        type="text"
+        class="form-control"
+        name="nombre"
+        [(ngModel)]="form.nombre"
+        placeholder="Filtrar por nombre..."
+        (keyup)="filtrarNombre()">
+    </div>
+
+    <mat-accordion class="col-sm-12 row mt-3" *ngFor="let evento of eventosFiltrados">
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header class="border-bottom">
                 <mat-panel-title>
-                    <b>{{evento.titulo}}</b>
+                    <b>{{evento.nombre}}</b>
                 </mat-panel-title>
                 <mat-panel-description>
-                    Inicio: {{evento.fechaInicio}} - Fin: {{evento.fechaFin}}
+                    Inicio: {{evento.fecha_inicio}} / Fin: {{evento.fecha_fin}}
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="pt-3">

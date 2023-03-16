@@ -46,21 +46,24 @@ export class ItemListComponent implements OnInit, AfterViewInit{
       if(!res.length) {
         this.itemsTabla.data = [];
         this.snackBar.open('Sin resultados', undefined, {duration: 3000});
+        this.loading.cargando.next(false);
         return;
       }
       this.valoresItems = res;
       this.traerCategorias();
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
+      this.loading.cargando.next(false);
     });
-    this.loading.cargando.next(false);
   }
 
   traerCategorias() {
     this.categoriaService.getCategorias(true).subscribe((res:any) => {
       this.valoresCategorias = res || [];
       this.imprimirTabla();
-      return;
+      this.loading.cargando.next(false);
+    }, (error) => {
+      this.loading.cargando.next(false);
     })
   }
 

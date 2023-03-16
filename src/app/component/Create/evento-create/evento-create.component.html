@@ -4,15 +4,18 @@
     <form class="formulario-evento row">
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Nombre del evento:</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento...">
+            <label class="col-form-label label-formulario">Periodo académico</label>
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+                <option value="0" disabled>Seleccionar...</option>
+                <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
+            </select>
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Categoría:</label>
             <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
-                <option value="">Seleccionar...</option>
-                <option *ngFor="let categoria of categorias" [value]="categoria.value">{{categoria.name}}</option>
+                <option value="0" disabled>Seleccionar...</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
         </div>
 
@@ -24,6 +27,11 @@
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha final:</label>
             <input type="date" class="form-control" name="fechaFin" min="{{form.fechaIni || fechaHoy}}" [(ngModel)]="form.fechaFin">
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <label class="col-form-label label-formulario">Nombre del evento:</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento...">
         </div>
 
         <div class="col-sm-12 mb-3">
