@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
 import { Permiso } from 'src/app/domain/permiso';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
@@ -55,12 +56,12 @@ export class PermisoCreateComponent implements OnInit  {
     let logg={
        id:0,
        evento:evento,
-       fecha: hoy.toLocaleDateString(),
+       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
        mensaje:mensaje,
        nivel:"INFO",
        id_usuario:Number(localStorage.getItem('idUser'))
     }
-    this.logService.createLog(logg);
+    this.logService.createLog(logg).subscribe();
   }
 
   traerRutas() {
