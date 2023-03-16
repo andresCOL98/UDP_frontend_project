@@ -73,7 +73,8 @@ export class EventoCreateComponent {
        evento:evento,
        fecha: hoy.toLocaleDateString(),
        mensaje:mensaje,
-       nivel:"INFO"
+       nivel:"INFO",
+       id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg);
   }

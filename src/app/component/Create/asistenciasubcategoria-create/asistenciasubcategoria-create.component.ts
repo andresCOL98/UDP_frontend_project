@@ -42,7 +42,9 @@ export class AsistenciasubcategoriaCreateComponent {
   ngOnInit() {
     this.traerCategorias();
     this.traerPeriodos();
+    this.log("hola","hoaa");
   }
+  
 
   log(evento:string,mensaje:string){
     let tiempoTranscurrido = Date.now();
@@ -52,7 +54,8 @@ export class AsistenciasubcategoriaCreateComponent {
        evento:evento,
        fecha: hoy.toLocaleDateString(),
        mensaje:mensaje,
-       nivel:"INFO"
+       nivel:"INFO",
+       id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg);
   }

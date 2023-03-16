@@ -95,7 +95,9 @@ export class LoginComponent implements OnInit {
        evento:"Iniciar Sesion",
        fecha: this.hoy.toLocaleDateString(),
        mensaje:"Usuario: "+this.user+" inicio sesión.",
-       nivel:"INFO"
+       nivel:"INFO",
+       id_usuario:Number(localStorage.getItem('idUser'))
+
     }
     this.logService.createLog(logg);
   }

@@ -4,6 +4,7 @@ export class Log {
         public evento:string,
         public fecha:string,
         public mensaje:string,
-        public nivel:string
+        public nivel:string,
+        public id_usuario:number
     ){}
 }
