@@ -15,48 +15,44 @@
         </div>
 
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Nombres:</label>
+            <label class="col-form-label label-formulario">Nombre completo:</label>
             <input
                 type="text"
                 class="form-control"
-                placeholder="Nombres..."
+                placeholder="Nombre..."
                 name="nombre"
-                [(ngModel)]="form.nombres"
+                [(ngModel)]="form.nombre"
             />
         </div>
 
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Apellidos:</label>
+            <label class="col-form-label label-formulario">PEGE:</label>
             <input
                 type="text"
                 class="form-control"
-                placeholder="Apellidos..."
-                name="apellidos"
-                [(ngModel)]="form.apellidos"
+                placeholder="PEGE..."
+                name="pege"
+                [(ngModel)]="form.id_pege"
             />
         </div>
 
+        
+
         <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Fecha inicial:</label>
+            <label class="col-form-label label-formulario">Fecha participación:</label>
             <input
-                type="text"
+            
+                type="date"
                 class="form-control"
-                name="fechaIni"
-                [(ngModel)]="form.fechaIni"
-                disabled
+                name="fecha"
+                min={{data.fecha_inicio}}
+                max="{{data.fecha_fin}}"
+                [(ngModel)]="form.fecha"
+                
             />
         </div>
 
-        <div class="col-sm-12 mb-3">
-            <label class="col-form-label label-formulario">Fecha final:</label>
-            <input
-                type="text"
-                class="form-control"
-                name="fechaFin"
-                [(ngModel)]="form.fechaFin"
-                disabled
-            />
-        </div>
+    
 
         <div class="boton-registrar col-sm-12 mt-2 mb-2">
             <button

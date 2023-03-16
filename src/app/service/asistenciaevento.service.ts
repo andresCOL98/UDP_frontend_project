@@ -12,27 +12,27 @@ export class AsistenciaeventoService {
   constructor(private httpClient:HttpClient) { }
 
   getAsistenciaEventos() {
-    let url = this.api + "asistenciaEvento/findAll";
+    let url = this.api + "asistencias/asistenciaevento/findAll";
     return this.httpClient.get(url);
   }
 
   getAsistenciaEventoById(id:number) {
-    let url = this.api + "asistenciaEvento/" + id;
+    let url = this.api + "asistencias/asistenciaevento/" + id;
     return this.httpClient.get(url);
   }
 
   createAsistenciaEvento(asistenciaEvento:Asistenciaevento) {
-    let url = this.api + "asistenciaEvento/save";
+    let url = this.api + "asistencias/asistenciaevento/save";
     return this.httpClient.post(url, asistenciaEvento)
   }
 
   updateAsistenciaEvento(asistenciaEvento:Asistenciaevento) {
-    let url = this.api + "asistenciaEvento/update";
+    let url = this.api + "asistencias/asistenciaevento/update";
     return this.httpClient.put(url, asistenciaEvento)
   }
 
   deleteAsistenciaEvento(id:number) {
-    let url = this.api + "asistenciaEvento/" + id;
+    let url = this.api + "asistencias/asistenciaevento/" + id;
     return this.httpClient.delete(url);
   }
 }
