@@ -38,6 +38,7 @@ import { ForgetDataComponent } from './component/forget-data/forget-data.compone
 import { EventoParticipacionCreateComponent } from './component/Create/evento-participacion-create/evento-participacion-create.component';
 import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
 import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
+import { RutaCreateComponent } from './component/Create/ruta-create/ruta-create.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { RutaListComponent } from './component/List/ruta-list/ruta-list.componen
     EventoParticipacionCreateComponent,
     AsistenciamedicaListComponent,
     RutaListComponent,
+    RutaCreateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 export class Permiso {
     constructor(
-        public id:number,
-        public nombre:string
+        public rol_id:number,
+        public ruta_id:number
     ){}
 }

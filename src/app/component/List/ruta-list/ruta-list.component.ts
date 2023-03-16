@@ -6,9 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Rol } from 'src/app/domain/rol';
 import { LoadingService } from 'src/app/service/loading.service';
-import { PermisoService } from 'src/app/service/permiso.service';
 import { RutaService } from 'src/app/service/ruta.service';
-import { PermisoCreateComponent } from '../../Create/permiso-create/permiso-create.component';
+import { RutaCreateComponent } from '../../Create/ruta-create/ruta-create.component';
 
 @Component({
   selector: 'app-ruta-list',
@@ -41,14 +40,15 @@ export class RutaListComponent {
     this.loading.cargando.next(true);
     this.rutaService.getRutas().subscribe((res:any) => {
       this.rutas.data = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
+      this.loading.cargando.next(false);
     });
-    this.loading.cargando.next(false);
   }
 
   crearNuevaRuta() {
-    let dialogRef = this.dialog.open(PermisoCreateComponent, {
+    let dialogRef = this.dialog.open(RutaCreateComponent, {
       width: '400px',
       height: 'max-content',
       autoFocus: false,
@@ -61,7 +61,7 @@ export class RutaListComponent {
   }
 
   editarRuta(rol:Rol) {
-    let dialogRef = this.dialog.open(PermisoCreateComponent, {
+    let dialogRef = this.dialog.open(RutaCreateComponent, {
       width: '400px',
       height: 'max-content',
       autoFocus: false,
