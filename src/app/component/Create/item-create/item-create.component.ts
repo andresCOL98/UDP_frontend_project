@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 import { Categoria } from 'src/app/domain/categoria';
 import { Inventario } from 'src/app/domain/inventario';
 import { CategoriaService } from 'src/app/service/categoria.service';
@@ -53,12 +54,12 @@ export class ItemCreateComponent implements OnInit {
     let logg={
        id:0,
        evento:evento,
-       fecha: hoy.toLocaleDateString(),
+       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
        mensaje:mensaje,
        nivel:"INFO",
        id_usuario:Number(localStorage.getItem('idUser'))
     }
-    this.logService.createLog(logg);
+    this.logService.createLog(logg).subscribe();
   }
 
   public getListaCategorias() {

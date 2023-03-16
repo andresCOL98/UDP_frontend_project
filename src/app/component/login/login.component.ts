@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
        id_usuario:Number(localStorage.getItem('idUser'))
 
     }
-    this.logService.createLog(logg);
+    this.logService.createLog(logg).subscribe();
   }
 
   abrirForm() {

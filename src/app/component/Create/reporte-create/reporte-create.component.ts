@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
 import { LogService } from 'src/app/service/log.service';
 
 @Component({
@@ -24,12 +25,12 @@ export class ReporteCreateComponent {
     let logg={
        id:0,
        evento:evento,
-       fecha: hoy.toLocaleDateString(),
+       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
        mensaje:mensaje,
        nivel:"INFO",
        id_usuario:Number(localStorage.getItem('idUser'))
     }
-    this.logService.createLog(logg);
+    this.logService.createLog(logg).subscribe();
   }
 
 }

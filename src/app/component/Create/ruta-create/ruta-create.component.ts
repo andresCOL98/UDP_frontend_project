@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as moment from 'moment';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
 import { RutaService } from 'src/app/service/ruta.service';
@@ -38,12 +39,12 @@ export class RutaCreateComponent {
     let logg={
        id:0,
        evento:evento,
-       fecha: hoy.toLocaleDateString(),
+       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
        mensaje:mensaje,
        nivel:"INFO",
        id_usuario:Number(localStorage.getItem('idUser'))
     }
-    this.logService.createLog(logg);
+    this.logService.createLog(logg).subscribe();
   }
 
   crearRutas() {
