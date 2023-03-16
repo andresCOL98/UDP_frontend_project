@@ -57,36 +57,26 @@ export class LoginComponent implements OnInit {
       nombre: dataUdp.nombre,
       documento: dataUdp.documento,
       cargo: dataUdp.cargo,
-      rol_id: 0,
+      rol_id: 1,
       categoria_id: 0,
       estado: 1
     }
     this.usuarioService.getByUsuario(this.user).subscribe((res:any) => {
       if(res == "Usuario no encontrado") {
-        this.crearUsuario(datos);
+        this.usuarioService.createUsuario(datos).subscribe()
       } else if(res.id) {
         datos.id = res.id;
-        this.actualizarUsuario(datos);
+        this.usuarioService.updateUsuario(datos).subscribe()
         localStorage.setItem('idUser', res.id);
+        this.loginService.setUserRol(res.rol_id);
       }
     });
   }
 
   crearUsuario(datos:Usuario) {
-    this.usuarioService.createUsuario(datos).subscribe(res => {
-      this.openSnackBar('Usuario creado', 'Ok');
-      this.validarUsuario(datos);
-    }, (error) => {
-      this.openSnackBar('Error al crear usuario', 'Ok');
-    })
   }
 
   actualizarUsuario(datos:Usuario) {
-    this.usuarioService.updateUsuario(datos).subscribe(res => {
-      this.openSnackBar('Datos actualizados', 'Ok');
-    }, (error) => {
-      this.openSnackBar('Error al actualizar usuario', 'Ok');
-    })
   }
 
   log(){
