@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import { AsistenciaeventoCreateComponent } from './component/Create/asistenciaevento-create/asistenciaevento-create.component';
 import { AsistenciamedicaCreateComponent } from './component/Create/asistenciamedica-create/asistenciamedica-create.component';
 import { AsistenciasubcategoriaCreateComponent } from './component/Create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
 import { CategoriaCreateComponent } from './component/Create/categoria-create/categoria-create.component';
@@ -43,7 +42,6 @@ import { RutaListComponent } from './component/List/ruta-list/ruta-list.componen
 @NgModule({
   declarations: [
     AppComponent,
-    AsistenciaeventoCreateComponent,
     AsistenciamedicaCreateComponent,
     AsistenciasubcategoriaCreateComponent,
     CategoriaCreateComponent,
