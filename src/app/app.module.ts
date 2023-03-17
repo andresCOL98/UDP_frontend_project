@@ -56,7 +56,7 @@ import { RutaCreateComponent } from './component/Create/ruta-create/ruta-create.
     EventoParticipacionCreateComponent,
     AsistenciamedicaListComponent,
     RutaListComponent,
-    RutaCreateComponent,
+    RutaCreateComponent
   ],
   imports: [
     BrowserModule,
