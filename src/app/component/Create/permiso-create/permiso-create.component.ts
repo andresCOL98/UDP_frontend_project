@@ -104,24 +104,25 @@ export class PermisoCreateComponent implements OnInit  {
     }
     if(permiso.activo) {
       this.permisoService.createPermiso(datos).subscribe(res => {
+        this.log('Otorgar permiso', `Usuario ${this.user} asignó la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.openSnackBar('Permiso otorgado', 'OK');
         this.traerPermisos();
       },(error) => {
+        this.log('Otorgar permiso', `Usuario ${this.user} falló al asignar la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.traerPermisos();
         this.openSnackBar('Fallo al otorgar permiso', 'OK');
-      })
+      });
     }
     if(!permiso.activo) {
       this.permisoService.deletePermiso(datos).subscribe(res => {
+        this.log('Remover permiso', `Usuario ${this.user} eliminó la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.openSnackBar('Permiso removido', 'OK');
         this.traerPermisos();
       },(error) => {
+        this.log('Remover permiso', `Usuario ${this.user} falló al quitar la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.traerPermisos();
         this.openSnackBar('Fallo al remover permiso', 'OK');
-      })
+      });
     }
   }
 }
-
-
-
