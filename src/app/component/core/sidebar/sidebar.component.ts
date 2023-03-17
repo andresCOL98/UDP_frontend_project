@@ -57,6 +57,7 @@ export class SidebarComponent {
     this.permisoService.getPermisoByRol(this.rol).subscribe((res:any) => {
       this.permisos = res;
       this.relacionarRutasRol();
+      this.guardarPermisosLocal();
     }, (error) => {
       this.snackBar.open('Error al traer los permisos del rol', undefined, {duration: 4000});
     });
@@ -90,6 +91,15 @@ export class SidebarComponent {
         if(res.id == 14) this.menus[6].subtitulos.push({path: res.path, nombre: 'Periodos académicos'});
       }
     });
+  }
+
+  guardarPermisosLocal() {
+    this.rutas.map((res:any) => {
+      let existe = this.permisos.filter((per:any) => per.ruta_id == res.id);
+      if(existe.length) res.activo = true;
+      else res.activo = false;
+    });
+    localStorage.setItem('permisos', JSON.stringify(this.rutas))
   }
   
   cerrarSesion() {

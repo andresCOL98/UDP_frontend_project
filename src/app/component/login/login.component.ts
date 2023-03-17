@@ -73,21 +73,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  crearUsuario(datos:Usuario) {
-  }
-
-  actualizarUsuario(datos:Usuario) {
-  }
-
   log(){
     let logg={
-       id:0,
-       evento:"Iniciar Sesion",
-       fecha: this.hoy.toLocaleDateString(),
-       mensaje:"Usuario: "+this.user+" inicio sesión.",
-       nivel:"INFO",
-       id_usuario:Number(localStorage.getItem('idUser'))
-
+      id:0,
+      evento:"Iniciar Sesion",
+      fecha: this.hoy.toLocaleDateString(),
+      mensaje:"Usuario: "+this.user+" inicio sesión.",
+      nivel:"INFO",
+      id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg).subscribe();
   }

@@ -52,12 +52,12 @@ export class ItemCreateComponent implements OnInit {
     let hoy = new Date(tiempoTranscurrido);
     
     let logg={
-       id:0,
-       evento:evento,
-       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
-       mensaje:mensaje,
-       nivel:"INFO",
-       id_usuario:Number(localStorage.getItem('idUser'))
+      id:0,
+      evento:evento,
+      fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
+      mensaje:mensaje,
+      nivel:"INFO",
+      id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg).subscribe();
   }
@@ -85,14 +85,16 @@ export class ItemCreateComponent implements OnInit {
     this.loading.cargando.next(true);
     this.itemService.createItem(datosInventario).subscribe(res => {
       this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
+      this.loading.cargando.next(false);
       this.dialogRef.close(true);
       this.log("Crear item inventario",`Usuario: ${this.user} creó el item en inventario con datos: ${JSON.stringify(datosInventario)}`);
     },(error) => {
       this.log("Crear item inventario",`Usuario: ${this.user} falló al crear el item en inventario con datos: ${JSON.stringify(datosInventario)}`);
       this.snackBar.open('Ha fallado la creación del item', undefined, {duration: 3000});
+      this.loading.cargando.next(false);
     });
     
-    return this.loading.cargando.next(false);
+    return;
   }
 
   editarItem() {

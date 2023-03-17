@@ -41,10 +41,11 @@ export class CategoriaListComponent implements OnInit, AfterViewInit  {
     this.loading.cargando.next(true);
     this.categoriaService.getCategorias(this.activos).subscribe((res:any) => {
       this.categorias.data = res;
+      this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
+      this.loading.cargando.next(false);
     });
-    this.loading.cargando.next(false);
   }
 
   crearNuevaCategoria() {

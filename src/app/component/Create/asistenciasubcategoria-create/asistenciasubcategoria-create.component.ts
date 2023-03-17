@@ -50,12 +50,12 @@ export class AsistenciasubcategoriaCreateComponent {
     let tiempoTranscurrido = Date.now();
     let hoy = new Date(tiempoTranscurrido);
     let logg={
-       id:0,
-       evento:evento,
-       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
-       mensaje:mensaje,
-       nivel:"INFO",
-       id_usuario:Number(localStorage.getItem('idUser'))
+      id:0,
+      evento:evento,
+      fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
+      mensaje:mensaje,
+      nivel:"INFO",
+      id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg).subscribe();
   }
@@ -101,12 +101,14 @@ export class AsistenciasubcategoriaCreateComponent {
     this.asistenciaService.createAsistenciaSubcategoria(valores).subscribe(res => {
       this.snackBar.open('Asistencia registrada correctamente', undefined, {duration: 4000});
       this.log('Crear asistencia', `Usuario: ${this.user} registró la asistencia de ${valores.id_pege} en categoría ${valores.subcategoria_id}`);
+      this.loading.cargando.next(false);
       this.limpiarCampos();
     }, (error) => {
       this.snackBar.open('Proceso fallido, intente nuevamente', undefined, {duration: 4000});
       this.log('Crear asistencia', `Usuario: ${this.user} falló al registrar la asistencia de ${valores.id_pege} en categoría ${valores.subcategoria_id}`);
+      this.loading.cargando.next(false);
     });
-    return this.loading.cargando.next(false);
+    return
   }
 
   limpiarCampos() {

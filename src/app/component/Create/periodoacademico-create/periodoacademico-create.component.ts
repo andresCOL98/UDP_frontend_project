@@ -96,8 +96,7 @@ export class PeriodoacademicoCreateComponent implements OnInit{
       this.loading.cargando.next(false);
       this.snackBar.open('Ha fallado la actualización del periodo', undefined, {duration: 3000});
     });
-    
-    return this.loading.cargando.next(false);
+    return;
   }
 }
 
