@@ -30,23 +30,19 @@ export class ReporteListComponent {
   descargar(id:number) {
     switch(id) {
       case 1:
-        window.open('https://6df8-170-238-236-61.ngrok.io/api/v1/inventario/inventarios/reports')
         break;
 
       case 2:
-        this.router.navigate(['/reporte-view/2'])
         break;
 
       case 3:
-        this.router.navigate(['/reporte-view/3'])
+        window.open('https://6df8-170-238-236-61.ngrok.io/api/v1/inventario/inventarios/reports')
         break;
 
       case 4:
-        this.router.navigate(['/reporte-view/4'])
         break;
         
       case 5:
-        this.router.navigate(['/reporte-view/5'])
         break;
     }
   }
