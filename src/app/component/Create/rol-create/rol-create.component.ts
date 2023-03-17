@@ -50,12 +50,14 @@ export class RolCreateComponent  implements OnInit{
     this.rolService.createRol(this.nombreRol).subscribe(res => {
       this.snackBar.open('Creado exitosamente', undefined, {duration: 3000});
       this.log("Crear Rol","Usuario: "+this.user+" creó el rol " + this.nombreRol);
+      this.loading.cargando.next(false);
       this.dialogRef.close(true);
     },(error) => {
       this.log("Crear Rol","Usuario: "+this.user+" fallo al crear el rol " + this.nombreRol);
       this.snackBar.open('Ha fallado la creación del rol', undefined, {duration: 3000});
-    })
-    return this.loading.cargando.next(false);
+      this.loading.cargando.next(false);
+    });
+    return;
   }
 
   editarRol() {
@@ -71,13 +73,14 @@ export class RolCreateComponent  implements OnInit{
     this.rolService.updateRol(datosRol).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
       this.log("Editar Rol","Usuario: "+this.user+" editó el rol " + this.data.id);
-
+      this.loading.cargando.next(false);
       this.dialogRef.close(true);
     },(error) => {
       this.log("Editar Rol","Usuario: "+this.user+" falló al editar el rol " + this.data.id);
       this.snackBar.open('Ha fallado la actualización del rol', undefined, {duration: 3000});
-    })
-    return this.loading.cargando.next(false);
+      this.loading.cargando.next(false);
+    });
+    return;
   }
 }
 

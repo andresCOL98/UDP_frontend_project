@@ -56,13 +56,13 @@ export class RutaCreateComponent {
       this.openSnackBar('Ruta creada exitosamente','Exito');
       this.log("Crear Path","Usuario: " + this.user + " creó la ruta " + this.nombreRuta);
       this.dialogRef.close(true);
+      this.loading.cargando.next(false);
     },error=>{
       this.log("Crear Path","Usuario: " + this.user + " falló al crear la ruta " + this.nombreRuta);
-
       this.snackBar.open('Ha fallado la creación de la ruta', undefined, {duration: 3000});
+      this.loading.cargando.next(false);
     });
-
-    return this.loading.cargando.next(false);
+    return;
   }
 
   editarRuta() {
@@ -77,12 +77,13 @@ export class RutaCreateComponent {
     this.rutaService.updateRuta(datosRuta).subscribe(res => {
       this.snackBar.open('Actualizado exitosamente', undefined, {duration: 3000});
       this.log("Editar Path","Usuario: " + this.user + " editó la ruta " + this.data.id);
-
       this.dialogRef.close(true);
+      this.loading.cargando.next(false);
     },(error) => {
       this.log("Editar Path","Usuario: " + this.user + " falló al editar la ruta " + this.data.id);
       this.snackBar.open('Ha fallado la actualización de la ruta', undefined, {duration: 3000});
+      this.loading.cargando.next(false);
     })
-    return this.loading.cargando.next(false);
+    return;
   }
 }

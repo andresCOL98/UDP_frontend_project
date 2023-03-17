@@ -16,24 +16,25 @@ import { RolListComponent } from './component/List/rol-list/rol-list.component';
 import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
 import { LoginComponent } from './component/login/login.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
+import { VerificarPermisoGuard } from './guards/verificar-permiso.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'index-menu', component: IndexMenuComponent, canActivate: [LoggedInGuard] },
-  { path: 'registrar-asistencias', component: AsistenciasubcategoriaCreateComponent, canActivate: [LoggedInGuard] },
-  { path: 'crear-categorias', component: CategoriaCreateComponent, canActivate: [LoggedInGuard] },
-  { path: 'ver-categorias', component: CategoriaListComponent, canActivate: [LoggedInGuard] },
-  { path: 'registrar-items', component: ItemCreateComponent, canActivate: [LoggedInGuard] },
-  { path: 'ver-items', component: ItemListComponent, canActivate: [LoggedInGuard] },
-  { path: 'registrar-eventos', component: EventoCreateComponent, canActivate: [LoggedInGuard] },
-  { path: 'cronograma-eventos', component: EventoListComponent, canActivate: [LoggedInGuard] },
-  { path: 'ver-roles', component: RolListComponent, canActivate: [LoggedInGuard] },
-  { path: 'ver-rutas', component: RutaListComponent, canActivate: [LoggedInGuard] },
-  { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent, canActivate: [LoggedInGuard] },
-  { path: 'historias-clinicas', component: AsistenciamedicaListComponent, canActivate: [LoggedInGuard] },
-  { path: 'generar-reportes', component: ReporteListComponent, canActivate: [LoggedInGuard] },
-  { path: 'ver-periodos', component: PeriodoacademicoListComponent, canActivate: [LoggedInGuard] },
+  { path: 'registrar-asistencias', component: AsistenciasubcategoriaCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'crear-categorias', component: CategoriaCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-categorias', component: CategoriaListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'registrar-items', component: ItemCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-items', component: ItemListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'registrar-eventos', component: EventoCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'cronograma-eventos', component: EventoListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-roles', component: RolListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-rutas', component: RutaListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'registrar-asistencia-medica', component: AsistenciamedicaCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'historias-clinicas', component: AsistenciamedicaListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'generar-reportes', component: ReporteListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-periodos', component: PeriodoacademicoListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
 
 ];
 

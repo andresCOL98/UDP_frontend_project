@@ -42,12 +42,12 @@ export class EventoParticipacionCreateComponent {
     let hoy = new Date(tiempoTranscurrido);
     
     let logg={
-       id:0,
-       evento:evento,
-       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
-       mensaje:mensaje,
-       nivel:"INFO",
-       id_usuario:Number(localStorage.getItem('idUser'))
+      id:0,
+      evento:evento,
+      fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
+      mensaje:mensaje,
+      nivel:"INFO",
+      id_usuario:Number(localStorage.getItem('idUser'))
     }
     this.logService.createLog(logg).subscribe();
   }
@@ -72,12 +72,14 @@ export class EventoParticipacionCreateComponent {
     this.eventoAsistenciasService.createAsistenciaEvento(valores).subscribe(res => {
       this.snackBar.open('Asistencia registrada correctamente', undefined, {duration: 4000});
       this.log('Crear asistencia evento', `Usuario: ${this.user} registró la asistencia de ${valores.id_pege} en evento ${valores.evento_id}`);
+      this.loading.cargando.next(false);
       this.cerrar();
     }, (error) => {
       this.snackBar.open('Proceso fallido, intente nuevamente', undefined, {duration: 4000});
       this.log('Crear asistencia evento', `Usuario: ${this.user} falló al registrar la asistencia de ${valores.id_pege} en evento ${valores.evento_id}`);
+      this.loading.cargando.next(false);
     });
-    return this.loading.cargando.next(false);
+    return;
   }
 
   cerrar() {
