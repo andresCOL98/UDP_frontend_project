@@ -4,7 +4,7 @@ export class Reporte {
         public descripcion:string,
         public fecha:Date,
         public nombre:string,
-        public periodoAcademicoId:number,
-        public tipoReporte:string
+        public periodo_academico_id:number,
+        public tipo_reporte:string
     ){}
 }
