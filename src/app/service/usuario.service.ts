@@ -11,14 +11,14 @@ export class UsuarioService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getUsuarios() {
+  getUsuarios(estado:boolean) {
     let url = this.api + "persona/usuario/findAll";
-    return this.httpClient.get(url);
+    return this.httpClient.post(url, {estado});
   }
 
   getByUsuario(user:string) {
     let url = this.api + "persona/usuario/getByUsuario";
-    let data = {estado: true, usuario: user};
+    let data = {estado: 1, usuario: user};
     return this.httpClient.post(url, data);
   }
 

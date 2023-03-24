@@ -65,7 +65,7 @@ export class AsistenciamedicaCreateComponent {
   registrarAtencion() {
     let datos:Asistenciamedica = {
       id: 0,
-      fecha: moment().format('DD-MM-YYYY'),
+      fecha: moment().format('YYYY-MM-DD'),
       observacion: this.form.observacion,
       recomendacion: this.form.recomendacion,
       otros_datos: this.form.otros_datos,

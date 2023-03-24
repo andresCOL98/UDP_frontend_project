@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Rol } from 'src/app/domain/rol';
 import { LoadingService } from 'src/app/service/loading.service';
-import { RolService } from 'src/app/service/rol.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import { PermisoCreateComponent } from '../../Create/permiso-create/permiso-create.component';
 import { RolCreateComponent } from '../../Create/rol-create/rol-create.component';
 
@@ -17,13 +17,13 @@ import { RolCreateComponent } from '../../Create/rol-create/rol-create.component
 })
 export class UsuariosListComponent {
   public usuarios = new MatTableDataSource<any>();
-  public displayedColumns: string[] = ['id', 'nombre', 'acciones'];
+  public displayedColumns: string[] = ['id', 'usuario', 'rol', 'acciones'];
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   activos:boolean = true;
 
   constructor(public dialog: MatDialog,
-    private rolService:RolService,
+    private usuarioService:UsuarioService,
     private loading:LoadingService,
     private snackBar: MatSnackBar,) {}
 
@@ -38,7 +38,7 @@ export class UsuariosListComponent {
 
   traerUsuarios() {
     this.loading.cargando.next(true);
-    this.rolService.getRoles(this.activos).subscribe((res:any) => {
+    this.usuarioService.getUsuarios(this.activos).subscribe((res:any) => {
       this.usuarios.data = res;
       this.loading.cargando.next(false);
     }, (error) => {
