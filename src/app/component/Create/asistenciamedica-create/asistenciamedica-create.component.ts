@@ -6,6 +6,7 @@ import { Asistenciamedica } from 'src/app/domain/asistenciamedica';
 import { AsistenciamedicaService } from 'src/app/service/asistenciamedica.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
+import { PeriodoacademicoService } from 'src/app/service/periodoacademico.service';
 
 @Component({
   selector: 'app-asistenciamedica-create',
@@ -15,21 +16,25 @@ import { LogService } from 'src/app/service/log.service';
 export class AsistenciamedicaCreateComponent {
   user = localStorage.getItem('currentUser');
   idUser = localStorage.getItem('idUser');
+  periodos:any;
   form:any = {
     observacion: '',
     recomendacion: '',
     otros_datos: '',
-    id_pege: null,
     nombre: '',
-    documento: null
+    documento: null,
+    tipoServicio: '',
+    periodo: ''
   }
 
   constructor(private snackBar: MatSnackBar,
     private logService:LogService,
     private asistencia:AsistenciamedicaService,
-    private loading:LoadingService) {}
+    private loading:LoadingService,
+    private periodoService:PeriodoacademicoService) {}
 
   ngOnInit() {
+    this.traerPeriodos();
   }
 
   log(evento:string,mensaje:string){
@@ -46,6 +51,16 @@ export class AsistenciamedicaCreateComponent {
     this.logService.createLog(logg).subscribe();
   }
 
+  traerPeriodos() {
+    this.loading.cargando.next(true);
+    this.periodoService.getPeriodosAcademicos(true).subscribe((res:any) => {
+      this.periodos = res;
+      this.loading.cargando.next(false);
+    },(error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al mostrar los periodos académicos', undefined, {duration: 3000});
+    })
+  }
 
   registrarAtencion() {
     let datos:Asistenciamedica = {
@@ -54,10 +69,11 @@ export class AsistenciamedicaCreateComponent {
       observacion: this.form.observacion,
       recomendacion: this.form.recomendacion,
       otros_datos: this.form.otros_datos,
-      id_pege: this.form.id_pege,
       nombre: this.form.nombre,
       documento: this.form.documento,
-      usuario_id: Number(this.idUser)
+      usuario_id: Number(this.idUser),
+      tipo_servicio: this.form.tipoServicio,
+      periodo_academico_id: this.form.periodo
     }
 
     this.loading.cargando.next(true);
@@ -66,11 +82,11 @@ export class AsistenciamedicaCreateComponent {
       this.loading.cargando.next(false);
       this.limpiarCampos();
       this.snackBar.open('Historia guardada correctamente', 'OK', {duration: 3000});
-      this.log('Crear atención médica', `Usuario: ${this.user} creó la historia médica de ${this.form.id_pege}`);
+      this.log('Crear atención médica', `Usuario: ${this.user} creó la historia médica de ${datos.documento}`);
     }, (error) => {
       this.loading.cargando.next(false);
       this.snackBar.open('Error al guardar la historia', 'ERROR', {duration: 3000});
-      this.log('Crear atención médica', `Usuario: ${this.user} falló al crear historia médica de ${this.form.id_pege}`);
+      this.log('Crear atención médica', `Usuario: ${this.user} falló al crear historia médica de ${datos.documento}`);
     })
   }
 
@@ -79,9 +95,10 @@ export class AsistenciamedicaCreateComponent {
       observacion: '',
       recomendacion: '',
       otros_datos: '',
-      id_pege: null,
       nombre: '',
-      documento: null
+      documento: null,
+      tipoServicio: '',
+      periodo: ''
     }
   }
 }

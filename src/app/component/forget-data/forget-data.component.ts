@@ -39,7 +39,7 @@ export class ForgetDataComponent implements OnInit{
 
     this.validarForm();
     if(this.varidador==true){
-      window.open('mailto:os-w316@hotmail.com?Subject=Recuperar%20cuenta%20UDP&body=Hola perdí el acceso a mi cuenta. NOMBRE:'+this.nombre+', CEDULA:'+this.cedula+', DETALLE:'+this.detalle,'_blank');
+      window.open('mailto:avas@unipacifico.edu.co?Subject=Recuperar%20cuenta%20UDP&body=Hola, perdí el acceso a mi cuenta. NOMBRE:'+this.nombre+', CEDULA:'+this.cedula+', DETALLE:'+this.detalle,'_blank');
       this.cerrar();
     }else{
       this.openSnackBar('Verifique los campos','Error');

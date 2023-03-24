@@ -14,6 +14,7 @@ import { PeriodoacademicoListComponent } from './component/List/periodoacademico
 import { ReporteListComponent } from './component/List/reporte-list/reporte-list.component';
 import { RolListComponent } from './component/List/rol-list/rol-list.component';
 import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
+import { UsuariosListComponent } from './component/List/usuarios-list/usuarios-list.component';
 import { LoginComponent } from './component/login/login.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { VerificarPermisoGuard } from './guards/verificar-permiso.guard';
@@ -23,7 +24,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'index-menu', component: IndexMenuComponent, canActivate: [LoggedInGuard] },
   { path: 'registrar-asistencias', component: AsistenciasubcategoriaCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
-  { path: 'crear-categorias', component: CategoriaCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'ver-categorias', component: CategoriaListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'registrar-items', component: ItemCreateComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'ver-items', component: ItemListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'historias-clinicas', component: AsistenciamedicaListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'generar-reportes', component: ReporteListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'ver-periodos', component: PeriodoacademicoListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'ver-usuarios', component: UsuariosListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
 
 ];
 

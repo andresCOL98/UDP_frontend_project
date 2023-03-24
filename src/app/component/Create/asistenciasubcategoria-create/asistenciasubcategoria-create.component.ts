@@ -18,7 +18,6 @@ export class AsistenciasubcategoriaCreateComponent {
   user=localStorage.getItem('currentUser');
   fechaHoy = moment().format('YYYY-MM-DD');
   form = {
-    id_pege: '',
     cedula: '',
     nombre: '',
     periodo: '',
@@ -42,7 +41,6 @@ export class AsistenciasubcategoriaCreateComponent {
   ngOnInit() {
     this.traerCategorias();
     this.traerPeriodos();
-    this.log("hola","hoaa");
   }
   
 
@@ -81,7 +79,7 @@ export class AsistenciasubcategoriaCreateComponent {
   }
 
   registrarAsistencia() {
-    if(!this.form.id_pege || !this.form.cedula || !this.form.nombre || !this.form.periodo || !this.form.categoria || !this.form.fecha) {
+    if(!this.form.cedula || !this.form.nombre || !this.form.periodo || !this.form.categoria || !this.form.fecha) {
       return this.snackBar.open('Llene los campos correctamente', 'OK', {duration: 3000})
     }
 
@@ -90,7 +88,6 @@ export class AsistenciasubcategoriaCreateComponent {
     const valores:Asistenciasubcategoria = {
       id: 0,
       fecha: this.form.fecha,
-      id_pege: Number(this.form.id_pege),
       nombre: this.form.nombre,
       documento: Number(this.form.cedula),
       periodo_academico_id: Number(this.form.periodo),
@@ -100,12 +97,12 @@ export class AsistenciasubcategoriaCreateComponent {
 
     this.asistenciaService.createAsistenciaSubcategoria(valores).subscribe(res => {
       this.snackBar.open('Asistencia registrada correctamente', undefined, {duration: 4000});
-      this.log('Crear asistencia', `Usuario: ${this.user} registró la asistencia de ${valores.id_pege} en categoría ${valores.subcategoria_id}`);
+      this.log('Crear asistencia', `Usuario: ${this.user} registró la asistencia de ${valores.documento} en categoría ${valores.subcategoria_id}`);
       this.loading.cargando.next(false);
       this.limpiarCampos();
     }, (error) => {
       this.snackBar.open('Proceso fallido, intente nuevamente', undefined, {duration: 4000});
-      this.log('Crear asistencia', `Usuario: ${this.user} falló al registrar la asistencia de ${valores.id_pege} en categoría ${valores.subcategoria_id}`);
+      this.log('Crear asistencia', `Usuario: ${this.user} falló al registrar la asistencia de ${valores.documento} en categoría ${valores.subcategoria_id}`);
       this.loading.cargando.next(false);
     });
     return
@@ -113,7 +110,6 @@ export class AsistenciasubcategoriaCreateComponent {
 
   limpiarCampos() {
     this.form = {
-      id_pege: '',
       cedula: '',
       nombre: '',
       periodo: '',
