@@ -15,7 +15,7 @@ export class ReporteListComponent {
 
   user=localStorage.getItem('currentUser');
   eventos = [
-    { id: 1, titulo: 'Reporte de asistencias por categorías' },
+    { id: 1, titulo: 'Reporte de asistencias por área' },
     { id: 2, titulo: 'Informe de atención médica y psicológica' },
     { id: 3, titulo: 'Reporte de inventarios' },
     { id: 4, titulo: 'Informe de participación de eventos' },

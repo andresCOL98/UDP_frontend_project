@@ -95,7 +95,8 @@ export class EventoCreateComponent {
       fecha_inicio: this.form.fechaIni,
       periodo_academico_id: this.form.periodo,
       subcategoria_id: this.form.categoria,
-      usuario_id: Number(this.idUser)
+      usuario_id: Number(this.idUser),
+      informe: ''
     }
 
     this.loading.cargando.next(true);

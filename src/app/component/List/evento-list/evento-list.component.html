@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Categoría:</label>
+            <label class="col-form-label label-formulario">Área:</label>
             <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
                 <option value="">Seleccionar...</option>
                 <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
@@ -45,8 +45,9 @@
                 <span class="contenido-card">
                     <b>Descripción:</b> <br> {{evento.descripcion}}
                 </span>
-                <div class="d-flex justify-content-end mt-3">
-                    <button mat-raised-button color="accent" (click)="registrarParticipacion(evento)">Registrar participación</button>
+                <div class="d-flex mt-3" [ngClass]="{'justify-content-between': evento.informe, 'justify-content-end': !evento.informe}">
+                    <button mat-raised-button color="warn" (click)="escribirInforme(evento)" *ngIf="evento.informe">Informe</button>
+                    <button class="align-self-end" mat-raised-button color="accent" (click)="registrarParticipacion(evento)">Registrar participación</button>
                 </div>
             </div>
         </mat-expansion-panel>

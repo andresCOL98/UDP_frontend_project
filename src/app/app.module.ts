@@ -31,6 +31,10 @@ import { EventoParticipacionCreateComponent } from './component/Create/evento-pa
 import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
 import { RutaListComponent } from './component/List/ruta-list/ruta-list.component';
 import { RutaCreateComponent } from './component/Create/ruta-create/ruta-create.component';
+import { EventoInformeCreateComponent } from './component/Create/evento-informe-create/evento-informe-create.component';
+import { NotificacionDialogoComponent } from './component/core/notificacion-dialogo/notificacion-dialogo.component';
+import { UsuariosCreateComponent } from './component/Create/usuarios-create/usuarios-create.component';
+import { UsuariosListComponent } from './component/List/usuarios-list/usuarios-list.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { RutaCreateComponent } from './component/Create/ruta-create/ruta-create.
     EventoParticipacionCreateComponent,
     AsistenciamedicaListComponent,
     RutaListComponent,
-    RutaCreateComponent
+    RutaCreateComponent,
+    EventoInformeCreateComponent,
+    NotificacionDialogoComponent,
+    UsuariosCreateComponent,
+    UsuariosListComponent
   ],
   imports: [
     BrowserModule,

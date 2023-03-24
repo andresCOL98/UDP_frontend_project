@@ -5,10 +5,10 @@ export class Asistenciamedica {
         public observacion:string,
         public recomendacion:string,
         public otros_datos:string,
-        public id_pege:number,
         public nombre:string,
         public documento:number,
-        public usuario_id:number
-        
+        public usuario_id:number,
+        public tipo_servicio:string,
+        public periodo_academico_id:number
     ){}
 }

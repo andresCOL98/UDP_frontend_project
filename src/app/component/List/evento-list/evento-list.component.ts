@@ -7,6 +7,7 @@ import { EventoService } from 'src/app/service/evento.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
 import { PeriodoacademicoService } from 'src/app/service/periodoacademico.service';
+import { EventoInformeCreateComponent } from '../../Create/evento-informe-create/evento-informe-create.component';
 import { EventoParticipacionCreateComponent } from '../../Create/evento-participacion-create/evento-participacion-create.component';
 
 @Component({
@@ -90,6 +91,22 @@ export class EventoListComponent {
 
   filtrarNombre() {
     this.eventosFiltrados = this.eventos.filter((res:any) => res.nombre.toLowerCase().indexOf(this.form.nombre) > -1);
+
+    // Condicional para mostrar u ocultar el botón de informes
+    let fechaHoy = moment();
+    this.eventosFiltrados.map((res:any) => {
+      if(fechaHoy > moment(res.fecha_fin)) res.informe = true;
+      else res.informe = false;
+    })
+  }
+
+  escribirInforme(evento:any) {
+    let dialogRef = this.dialog.open(EventoInformeCreateComponent, {
+      width: '800px',
+      height: 'max-content',
+      autoFocus: false,
+      data: evento
+    });
   }
   
 }

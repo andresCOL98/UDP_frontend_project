@@ -2,19 +2,27 @@
     <h2 class="evento-titulo">Registrar Atención</h2>
 
     <form class="formulario-evento row">
-        <div class="col-sm-12 col-md-4 mb-3">
-            <label class="col-form-label label-formulario">PEGE:</label>
-            <input type="number" class="form-control" name="pege" [(ngModel)]="form.id_pege" placeholder="Id...">
-        </div>
-
-        <div class="col-sm-12 col-md-4 mb-3">
+        <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Cédula del paciente:</label>
             <input type="number" class="form-control" name="documento" [(ngModel)]="form.documento" placeholder="Cédula...">
         </div>
 
-        <div class="col-sm-12 col-md-4 mb-3">
+        <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Nombre del paciente:</label>
             <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre...">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Tipo de servicio:</label>
+            <input type="text" class="form-control" name="tipoServicio" [(ngModel)]="form.tipoServicio" placeholder="Tipo...">
+        </div>
+
+        <div class="col-sm-12 col-md-6 mb-3">
+            <label class="col-form-label label-formulario">Periodo académico:</label>
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+                <option value="" disabled>Seleccionar...</option>
+                <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
+            </select>
         </div>
 
         <div class="col-sm-12 mb-3">
@@ -24,12 +32,12 @@
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Detalles:</label>
-            <textarea class="form-control" name="otros_datos" [(ngModel)]="form.otros_datos" rows="5"></textarea>
+            <textarea class="form-control" name="otros_datos" [(ngModel)]="form.otros_datos" rows="5" placeholder="Detalles de lo sucedido..."></textarea>
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Recomendaciones:</label>
-            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.recomendacion" rows="5"></textarea>
+            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.recomendacion" rows="5" placeholder="Recomendaciones a seguir..."></textarea>
         </div>
 
         <div class="boton-registrar mt-3 mb-2">

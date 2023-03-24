@@ -62,7 +62,6 @@ export class AsistenciamedicaListComponent {
   buscarPorAmbos() {
     let fecha = moment(this.form.fecha, 'YYYY-MM-DD').format('DD-MM-YYYY');
     this.asistencia.findByIdPegeAndFecha(fecha, this.form.id_pege).subscribe(res => {
-      console.log(res);
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
