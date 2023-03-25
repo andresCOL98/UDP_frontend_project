@@ -13,7 +13,7 @@ export class UsuarioService {
 
   getUsuarios(estado:boolean) {
     let url = this.api + "persona/usuario/findAll";
-    return this.httpClient.post(url, {estado});
+    return this.httpClient.get(url);
   }
 
   getByUsuario(user:string) {
