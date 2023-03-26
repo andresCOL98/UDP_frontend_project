@@ -11,17 +11,19 @@
     margin: 0;
 
     mat-sidenav {
-        // background-color: #0e77a8;
-        // color: #fff;
+        background-color: #096f9c;
+        color: #fff;
         mat-nav-list {
+            padding: 0;
             img {
                 width: 100%;
                 padding: 12px 32px;
+                background-color: #fff;
             }
         }
         mat-expansion-panel {
-            // background-color: #2a8cb9;
-            // color: #fff;
+            background-color: #096f9c;
+            color: #fff;
 
             mat-expansion-panel-header {
                 font-size: 1.25em;
