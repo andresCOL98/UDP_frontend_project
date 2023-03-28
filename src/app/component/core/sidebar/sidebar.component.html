@@ -12,12 +12,12 @@
     </button>
     
     <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-        <button mat-menu-item routerLink="#">
+        <!-- <button mat-menu-item routerLink="#">
             <mat-icon>person</mat-icon><span>Mi cuenta</span>
         </button>
-        <mat-divider></mat-divider>
+        <mat-divider></mat-divider> -->
         <button mat-menu-item routerLink="login" (click)="cerrarSesion()">
-            <mat-icon>exit_to_app</mat-icon><span>Cerrar Sesión</span>
+            <mat-icon>exit_to_app</mat-icon><span class="text-dark">Cerrar Sesión</span>
         </button>
     </mat-menu>
 </mat-toolbar>
