@@ -106,12 +106,10 @@ export class PermisoCreateComponent implements OnInit  {
       this.permisoService.createPermiso(datos).subscribe(res => {
         this.log('Otorgar permiso', `Usuario ${this.user} asignó la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.openSnackBar('Permiso otorgado', 'OK');
-        window.location.reload();
         this.traerPermisos();
       },(error) => {
         this.log('Otorgar permiso', `Usuario ${this.user} falló al asignar la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.traerPermisos();
-        window.location.reload();
         this.openSnackBar('Fallo al otorgar permiso', 'OK');
       });
     }
@@ -119,7 +117,6 @@ export class PermisoCreateComponent implements OnInit  {
       this.permisoService.deletePermiso(datos).subscribe(res => {
         this.log('Remover permiso', `Usuario ${this.user} eliminó la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
         this.openSnackBar('Permiso removido', 'OK');
-        window.location.reload();
         this.traerPermisos();
       },(error) => {
         this.log('Remover permiso', `Usuario ${this.user} falló al quitar la ruta ${permiso.nombre} al rol ${datos.rol_id}`);
