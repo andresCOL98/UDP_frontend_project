@@ -5,22 +5,22 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Cédula:</label>
-            <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedula" placeholder="Cédula...">
+            <input type="number" class="form-control" name="cedula" [(ngModel)]="form.cedula" placeholder="Cédula..." matTooltip="Cédula del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Nombre completo:</label>
-            <input type="text" class="form-control" name="nombres" [(ngModel)]="form.nombre" placeholder="Nombre...">
+            <input type="text" class="form-control" name="nombres" [(ngModel)]="form.nombre" placeholder="Nombre..." matTooltip="Nombre del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Programa:</label>
-            <input type="text" class="form-control" name="programa" [(ngModel)]="form.programa" placeholder="Programa...">
+            <label class="col-form-label label-formulario">Programa académico:</label>
+            <input type="text" class="form-control" name="programa" [(ngModel)]="form.programa" placeholder="Programa..." matTooltip="Programa académico del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Período:</label>
-            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo" matTooltip="Periodo académico actual">
                 <option value="" disabled>Seleccionar...</option>
                 <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
             </select>
@@ -28,7 +28,7 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Área:</label>
-            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
+            <select class="form-select" name="categoria" [(ngModel)]="form.categoria" matTooltip="Área">
                 <option value="">Seleccionar...</option>
                 <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
@@ -36,7 +36,7 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha:</label>
-            <input type="date" class="form-control" name="fecha" min="{{fechaHoy}}" [(ngModel)]="form.fecha">
+            <input type="date" class="form-control" name="fecha" min="{{fechaHoy}}" [(ngModel)]="form.fecha" matTooltip="Fecha de la asistencia">
         </div>
 
         <div class="boton-registrar mt-3 mb-2">

@@ -50,7 +50,7 @@
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Periodo académico:</label>
-            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo" matTooltip="Periodo académico actual">
                 <option value="" disabled>Seleccionar...</option>
                 <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
             </select>

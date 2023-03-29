@@ -5,7 +5,7 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Periodo académico</label>
-            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo" matTooltip="Periodo académico actual">
                 <option value="0" disabled>Seleccionar...</option>
                 <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
             </select>
@@ -13,7 +13,7 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Área:</label>
-            <select class="form-select" name="categoria" [(ngModel)]="form.categoria">
+            <select class="form-select" name="categoria" [(ngModel)]="form.categoria" matTooltip="Área">
                 <option value="0" disabled>Seleccionar...</option>
                 <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
@@ -21,22 +21,22 @@
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha de inicio:</label>
-            <input type="date" class="form-control" name="fechaInicio" min="{{fechaHoy}}" [(ngModel)]="form.fechaIni">
+            <input type="date" class="form-control" name="fechaInicio" min="{{fechaHoy}}" [(ngModel)]="form.fechaIni" matTooltip="Fecha en la que comenzará del evento">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Fecha final:</label>
-            <input type="date" class="form-control" name="fechaFin" min="{{form.fechaIni || fechaHoy}}" [(ngModel)]="form.fechaFin">
+            <input type="date" class="form-control" name="fechaFin" min="{{form.fechaIni || fechaHoy}}" [(ngModel)]="form.fechaFin" matTooltip="Fecha final del evento">
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Nombre del evento:</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento...">
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Evento..." matTooltip="Nombre del evento">
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Descripción:</label>
-            <textarea class="form-control" name="descripcion" [(ngModel)]="form.descripcion" placeholder="Hora del evento y más detalles..."></textarea>
+            <textarea class="form-control" name="descripcion" [(ngModel)]="form.descripcion" placeholder="Descripción del evento..." matTooltip="Detalles del evento como hora, fecha, lugar, etc."></textarea>
         </div>
 
         <div class="boton-registrar mt-3 mb-2">

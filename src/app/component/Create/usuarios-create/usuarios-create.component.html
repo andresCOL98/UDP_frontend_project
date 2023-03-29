@@ -4,7 +4,7 @@
     <form class="formulario-categoria row">
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Seleccionar rol:</label>
-            <select class="form-control" name="rol" [(ngModel)]="rol">
+            <select class="form-control" name="rol" [(ngModel)]="rol" matTooltip="Rol que tendrá este usuario">
                 <option [value]="rol.id" *ngFor="let rol of roles">{{rol.nombre}}</option>
             </select>
         </div>

@@ -11,6 +11,7 @@
                 placeholder="Nombre del item..."
                 name="nombre"
                 [(ngModel)]="nombreItem"
+                matTooltip="Nombre del item"
             />
         </div>
 
@@ -23,12 +24,13 @@
                 name="cantidad"
                 [(ngModel)]="cantidad"
                 min="1"
+                matTooltip="Cantidad inicial del item"
             />
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Área:</label>
-            <select class="form-select" name="subcategoria_id" [(ngModel)]="subcategoria_id">
+            <select class="form-select" name="subcategoria_id" [(ngModel)]="subcategoria_id" matTooltip="Área">
                 <option value="0" selected disabled>Seleccionar...</option>
                 <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
             </select>
