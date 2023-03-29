@@ -73,7 +73,7 @@ export class SidebarComponent {
       {titulo: 'Asistencias', subtitulos: []},
       {titulo: 'Eventos', subtitulos: []},
       {titulo: 'Inventario', subtitulos: []},
-      {titulo: 'Atención Médica y psicológica', subtitulos: []},
+      {titulo: 'Atención médica y psicológica', subtitulos: []},
       {titulo: 'Reportes', subtitulos: []},
       {titulo: 'Configuración sistema', subtitulos: []}
     ];
@@ -84,7 +84,8 @@ export class SidebarComponent {
         if(res.id == 1) this.menus[0].subtitulos.push({path: res.path, nombre: 'Página de inicio'});
         if(res.id == 2) this.menus[1].subtitulos.push({path: res.path, nombre: 'Registrar asistencias'});
         if(res.id == 4) this.menus[6].subtitulos.push({path: res.path, nombre: 'Administrar áreas'});
-        if(res.id == 6) this.menus[3].subtitulos.push({path: res.path, nombre: 'Administrar inventario'});
+        if(res.id == 6) this.menus[3].subtitulos.push({path: res.path, nombre: 'Administrar items'});
+        if(res.id == 17) this.menus[3].subtitulos.push({path: res.path, nombre: 'Control de inventario'});
         if(res.id == 7) this.menus[2].subtitulos.push({path: res.path, nombre: 'Registrar evento'});
         if(res.id == 8) this.menus[2].subtitulos.push({path: res.path, nombre: 'Cronograma de eventos'});
         if(res.id == 9) this.menus[6].subtitulos.push({path: res.path, nombre: 'Administrar roles'});

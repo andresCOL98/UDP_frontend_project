@@ -11,7 +11,7 @@ import { LoadingService } from 'src/app/service/loading.service';
 })
 export class AsistenciamedicaListComponent {
   form = {
-    id_pege: null,
+    cedula: null,
     fecha: '',
   }
   historiasMedicas:any = [];
@@ -29,11 +29,11 @@ export class AsistenciamedicaListComponent {
     this.loading.cargando.next(true);
     this.historiasMedicas = [];
 
-    if(!this.form.id_pege && this.form.fecha) {
+    if(!this.form.cedula && this.form.fecha) {
       this.buscarPorFecha();
-    } else if(this.form.id_pege && !this.form.fecha) {
-      this.buscarPorPege();
-    } else if(this.form.id_pege && this.form.fecha) {
+    } else if(this.form.cedula && !this.form.fecha) {
+      this.buscarPorCedula();
+    } else if(this.form.cedula && this.form.fecha) {
       this.buscarPorAmbos();
     }
   }
@@ -49,8 +49,8 @@ export class AsistenciamedicaListComponent {
     });
   }
 
-  buscarPorPege() {
-    this.asistencia.findByIdPege(this.form.id_pege).subscribe(res => {
+  buscarPorCedula() {
+    this.asistencia.findByIdPege(this.form.cedula).subscribe(res => {
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
@@ -61,7 +61,7 @@ export class AsistenciamedicaListComponent {
 
   buscarPorAmbos() {
     let fecha = moment(this.form.fecha, 'YYYY-MM-DD').format('DD-MM-YYYY');
-    this.asistencia.findByIdPegeAndFecha(fecha, this.form.id_pege).subscribe(res => {
+    this.asistencia.findByIdPegeAndFecha(fecha, this.form.cedula).subscribe(res => {
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
