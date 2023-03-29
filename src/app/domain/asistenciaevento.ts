@@ -7,6 +7,6 @@ export class Asistenciaevento {
         public usuario_id:number,
         public evento_id:number,
         public periodo_academico_id:number,
-        public programa:string
+        public programa_academico:string
     ){}
 }

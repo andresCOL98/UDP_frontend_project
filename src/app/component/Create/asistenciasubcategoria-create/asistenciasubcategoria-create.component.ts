@@ -94,7 +94,7 @@ export class AsistenciasubcategoriaCreateComponent {
       periodo_academico_id: Number(this.form.periodo),
       subcategoria_id: Number(this.form.categoria),
       usuario_id: Number(this.idUser),
-      programa: this.form.programa
+      programa_academico: this.form.programa
     }
 
     this.asistenciaService.createAsistenciaSubcategoria(valores).subscribe(res => {

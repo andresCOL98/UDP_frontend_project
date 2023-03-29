@@ -7,6 +7,6 @@ export class Asistenciasubcategoria {
         public periodo_academico_id:number,
         public subcategoria_id:number,
         public usuario_id:number,
-        public programa:string
+        public programa_academico:string
     ){}
 }

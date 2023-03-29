@@ -10,6 +10,6 @@ export class Asistenciamedica {
         public usuario_id:number,
         public tipo_servicio:string,
         public periodo_academico_id:number,
-        public programa:string
+        public programa_academico:string
     ){}
 }

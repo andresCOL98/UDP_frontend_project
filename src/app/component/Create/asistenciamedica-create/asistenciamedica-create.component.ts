@@ -75,7 +75,7 @@ export class AsistenciamedicaCreateComponent {
       usuario_id: Number(this.idUser),
       tipo_servicio: this.form.tipoServicio,
       periodo_academico_id: this.form.periodo,
-      programa: this.form.programa
+      programa_academico: this.form.programa
     }
 
     this.loading.cargando.next(true);

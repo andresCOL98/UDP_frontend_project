@@ -82,7 +82,7 @@ export class EventoParticipacionCreateComponent {
       evento_id: this.data.id,
       usuario_id: Number(this.idUser),
       periodo_academico_id: Number(this.form.periodo),
-      programa:this.form.programa
+      programa_academico:this.form.programa
     }
 
     this.eventoAsistenciasService.createAsistenciaEvento(valores).subscribe(res => {
