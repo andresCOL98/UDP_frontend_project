@@ -21,14 +21,14 @@ export class AsistenciamedicaService {
     return this.httpClient.post(url, {fecha});
   }
 
-  findByIdPege(id_pege:any) {
-    let url = this.api + "asistencias/asistenciamedica/findByIdPege";
-    return this.httpClient.post(url, {id_pege});
+  findByDocumento(documento:any) {
+    let url = this.api + "asistencias/asistenciamedica/findByDocumento";
+    return this.httpClient.post(url, {documento});
   }
 
-  findByIdPegeAndFecha(fecha:string, id_pege:any) {
-    let url = this.api + "asistencias/asistenciamedica/findByIdPegeAndFecha";
-    return this.httpClient.post(url, {fecha, id_pege});
+  findByDocumentoAndFecha(fecha:string, documento:any) {
+    let url = this.api + "asistencias/asistenciamedica/findByDocumentoAndFecha";
+    return this.httpClient.post(url, {fecha, documento});
   }
 
   createAsistenciaMedica(asistenciaMedica:Asistenciamedica) {
