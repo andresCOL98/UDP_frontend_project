@@ -22,7 +22,8 @@ export class AsistenciasubcategoriaCreateComponent {
     nombre: '',
     periodo: '',
     categoria: '',
-    fecha: ''
+    fecha: '',
+    programa:''
   }
   categorias:any;
   periodos:any;
@@ -92,7 +93,8 @@ export class AsistenciasubcategoriaCreateComponent {
       documento: Number(this.form.cedula),
       periodo_academico_id: Number(this.form.periodo),
       subcategoria_id: Number(this.form.categoria),
-      usuario_id: Number(this.idUser)
+      usuario_id: Number(this.idUser),
+      programa: this.form.programa
     }
 
     this.asistenciaService.createAsistenciaSubcategoria(valores).subscribe(res => {
@@ -115,6 +117,7 @@ export class AsistenciasubcategoriaCreateComponent {
       periodo: '',
       categoria: '',
       fecha: '',
+      programa:''
     }
   }
 }

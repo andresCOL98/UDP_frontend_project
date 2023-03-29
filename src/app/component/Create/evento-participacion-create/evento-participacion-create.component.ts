@@ -22,7 +22,8 @@ export class EventoParticipacionCreateComponent {
     cedula: '',
     nombre: '',
     fecha: '',
-    periodo: null
+    periodo: null,
+    programa:''
   }
 
   user=localStorage.getItem('currentUser');
@@ -80,7 +81,8 @@ export class EventoParticipacionCreateComponent {
       documento: Number(this.form.cedula),
       evento_id: this.data.id,
       usuario_id: Number(this.idUser),
-      periodo_academico_id: Number(this.form.periodo)
+      periodo_academico_id: Number(this.form.periodo),
+      programa:this.form.programa
     }
 
     this.eventoAsistenciasService.createAsistenciaEvento(valores).subscribe(res => {

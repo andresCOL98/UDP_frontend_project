@@ -24,7 +24,8 @@ export class AsistenciamedicaCreateComponent {
     nombre: '',
     documento: null,
     tipoServicio: '',
-    periodo: ''
+    periodo: '',
+    programa:''
   }
 
   constructor(private snackBar: MatSnackBar,
@@ -73,7 +74,8 @@ export class AsistenciamedicaCreateComponent {
       documento: this.form.documento,
       usuario_id: Number(this.idUser),
       tipo_servicio: this.form.tipoServicio,
-      periodo_academico_id: this.form.periodo
+      periodo_academico_id: this.form.periodo,
+      programa: this.form.programa
     }
 
     this.loading.cargando.next(true);
