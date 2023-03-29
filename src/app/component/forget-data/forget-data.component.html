@@ -11,6 +11,7 @@
                 [(ngModel)]="nombre"
                 placeholder="Nombre..."
                 required minlength="4"
+                matTooltip="Nombre completo para ser reconocido al recuperar clave"
             />
         </div>
         <div class="col-sm-12 mb-3">
@@ -22,6 +23,7 @@
                 [(ngModel)]="cedula"
                 placeholder="Cédula..." 
                 required minlength="4"
+                matTooltip="Cédula de la persona que necesita recuperar la clave"
             />
         </div>
 
@@ -29,7 +31,10 @@
             <label class="col-form-label label-formulario">Detalles:</label>
             <textarea  class="form-control"
             name="detalle"
-            [(ngModel)]="detalle" placeholder="Detalle..." required minlength="4" >
+            [(ngModel)]="detalle"
+            placeholder="Detalle..."
+            required minlength="4"
+            matTooltip="Detalles de cómo perdió el acceso para evaluar su recuperación">
             </textarea>
         </div>
 
