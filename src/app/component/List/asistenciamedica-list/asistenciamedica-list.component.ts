@@ -35,37 +35,47 @@ export class AsistenciamedicaListComponent {
       this.buscarPorCedula();
     } else if(this.form.cedula && this.form.fecha) {
       this.buscarPorAmbos();
+    } else {
+      this.buscarPorNinguno();
     }
   }
 
   buscarPorFecha() {
-    let fecha = moment(this.form.fecha, 'YYYY-MM-DD').format('DD-MM-YYYY');
-    this.asistencia.findByFecha(fecha).subscribe(res => {
+    this.asistencia.findByFecha(this.form.fecha).subscribe(res => {
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
-      this.snackBar.open('No se encontraron resultados');
+      this.snackBar.open('No se encontraron resultados', undefined, {duration: 3000});
       this.loading.cargando.next(false);
     });
   }
 
   buscarPorCedula() {
-    this.asistencia.findByIdPege(this.form.cedula).subscribe(res => {
+    this.asistencia.findByDocumento(this.form.cedula).subscribe(res => {
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
-      this.snackBar.open('No se encontraron resultados');
+      this.snackBar.open('No se encontraron resultados', undefined, {duration: 3000});
       this.loading.cargando.next(false);
     });
   }
 
   buscarPorAmbos() {
-    let fecha = moment(this.form.fecha, 'YYYY-MM-DD').format('DD-MM-YYYY');
-    this.asistencia.findByIdPegeAndFecha(fecha, this.form.cedula).subscribe(res => {
+    this.asistencia.findByDocumentoAndFecha(this.form.fecha, this.form.cedula).subscribe(res => {
       this.historiasMedicas = res;
       this.loading.cargando.next(false);
     }, (error) => {
-      this.snackBar.open('No se encontraron resultados');
+      this.snackBar.open('No se encontraron resultados', undefined, {duration: 3000});
+      this.loading.cargando.next(false);
+    });
+  }
+
+  buscarPorNinguno() {
+    this.asistencia.getAsistenciasMedicas().subscribe(res => {
+      this.historiasMedicas = res;
+      this.loading.cargando.next(false);
+    }, (error) => {
+      this.snackBar.open('No se encontraron resultados', undefined, {duration: 3000});
       this.loading.cargando.next(false);
     });
   }
