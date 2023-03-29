@@ -4,27 +4,27 @@
     <form class="formulario-evento row">
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Cédula del paciente:</label>
-            <input type="number" class="form-control" name="documento" [(ngModel)]="form.documento" placeholder="Cédula...">
+            <input type="number" class="form-control" name="documento" [(ngModel)]="form.documento" placeholder="Cédula..." matTooltip="Cédula del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Nombre del paciente:</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre...">
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre..." matTooltip="Nombre del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Tipo de servicio:</label>
-            <input type="text" class="form-control" name="tipoServicio" [(ngModel)]="form.tipoServicio" placeholder="Tipo...">
+            <input type="text" class="form-control" name="tipoServicio" [(ngModel)]="form.tipoServicio" placeholder="Tipo..." matTooltip="Tipo de atención que se prestará">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
-            <label class="col-form-label label-formulario">Programa:</label>
-            <input type="text" class="form-control" name="programa" [(ngModel)]="form.programa" placeholder="Programa...">
+            <label class="col-form-label label-formulario">Programa académico:</label>
+            <input type="text" class="form-control" name="programa" [(ngModel)]="form.programa" placeholder="Programa..." matTooltip="Programa académico del estudiante">
         </div>
 
         <div class="col-sm-12 col-md-6 mb-3">
             <label class="col-form-label label-formulario">Periodo académico:</label>
-            <select class="form-select" name="periodo" [(ngModel)]="form.periodo">
+            <select class="form-select" name="periodo" [(ngModel)]="form.periodo" matTooltip="Periodo académico actual">
                 <option value="" disabled>Seleccionar...</option>
                 <option *ngFor="let periodo of periodos" [value]="periodo.id">{{periodo.anio}} - {{periodo.periodo}}</option>
             </select>
@@ -32,17 +32,17 @@
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Observación:</label>
-            <input type="text" class="form-control" name="observacion" [(ngModel)]="form.observacion" placeholder="Observación...">
+            <input type="text" class="form-control" name="observacion" [(ngModel)]="form.observacion" placeholder="Observación..." matTooltip="Descripción superficial de lo que le ocurre al paciente">
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Detalles:</label>
-            <textarea class="form-control" name="otros_datos" [(ngModel)]="form.otros_datos" rows="5" placeholder="Detalles de lo sucedido..."></textarea>
+            <textarea class="form-control" name="otros_datos" [(ngModel)]="form.otros_datos" rows="5" placeholder="Detalles de lo sucedido..." matTooltip="Descripción detallada del evento por el que el paciente ingresa al consultorio"></textarea>
         </div>
 
         <div class="col-sm-12 mb-3">
             <label class="col-form-label label-formulario">Recomendaciones:</label>
-            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.recomendacion" rows="5" placeholder="Recomendaciones a seguir..."></textarea>
+            <textarea class="form-control" name="tratamiento" [(ngModel)]="form.recomendacion" rows="5" placeholder="Recomendaciones a seguir..." matTooltip="Recomendaciones e instrucciones para la mejoría del paciente"></textarea>
         </div>
 
         <div class="boton-registrar mt-3 mb-2">
