@@ -45,8 +45,8 @@
                 <span class="contenido-card">
                     <b>Descripción:</b> <br> {{evento.descripcion}}
                 </span>
-                <div class="d-flex mt-3" [ngClass]="{'justify-content-between': evento.informe, 'justify-content-end': !evento.informe}">
-                    <button mat-raised-button color="warn" (click)="escribirInforme(evento)" *ngIf="evento.informe">Informe</button>
+                <div class="d-flex mt-3" [ngClass]="{'justify-content-between': evento.tieneInforme, 'justify-content-end': !evento.tieneInforme}">
+                    <button mat-raised-button color="warn" (click)="escribirInforme(evento)" *ngIf="evento.tieneInforme">Informe</button>
                     <button class="align-self-end" mat-raised-button color="accent" (click)="registrarParticipacion(evento)">Registrar participación</button>
                 </div>
             </div>

@@ -95,9 +95,9 @@ export class EventoListComponent {
     // Condicional para mostrar u ocultar el botón de informes
     let fechaHoy = moment();
     this.eventosFiltrados.map((res:any) => {
-      if(fechaHoy > moment(res.fecha_fin)) res.informe = true;
-      else res.informe = false;
-    })
+      if(fechaHoy > moment(res.fecha_fin)) res.tieneInforme = true;
+      else res.tieneInforme = false;
+    });
   }
 
   escribirInforme(evento:any) {
@@ -106,6 +106,10 @@ export class EventoListComponent {
       height: 'max-content',
       autoFocus: false,
       data: evento
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if(res) this.buscar();
     });
   }
   

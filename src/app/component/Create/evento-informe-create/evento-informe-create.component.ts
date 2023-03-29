@@ -2,7 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
-import { AsistenciaeventoService } from 'src/app/service/asistenciaevento.service';
+import { Evento } from 'src/app/domain/evento';
+import { EventoService } from 'src/app/service/evento.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
 import { EventoParticipacionCreateComponent } from '../evento-participacion-create/evento-participacion-create.component';
@@ -15,16 +16,14 @@ import { EventoParticipacionCreateComponent } from '../evento-participacion-crea
 export class EventoInformeCreateComponent {
   idUser = localStorage.getItem('idUser');
   user=localStorage.getItem('currentUser');
-  informe = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
+  constructor(@Inject(MAT_DIALOG_DATA) public data:Evento,
     public dialogRef: MatDialogRef<EventoParticipacionCreateComponent>,
     private logService:LogService,
     private loading:LoadingService,
-    private eventoAsistenciasService:AsistenciaeventoService,
+    private eventoAsistenciasService:EventoService,
     public snackBar:MatSnackBar
   ) {
-    this.informe = data.informe_evento || '';
   }
 
   log(evento:string,mensaje:string){
@@ -43,6 +42,13 @@ export class EventoInformeCreateComponent {
   }
   
   registrarInforme() {
-    this.dialogRef.close();
+    this.eventoAsistenciasService.updateEvento(this.data).subscribe((res:any) => {
+      this.dialogRef.close('Proceso exitoso');
+      this.snackBar.open('Informe guardado', undefined, {duration: 3000});
+      this.log('Registrar informe', `Usuario ${this.user} registró el informe del evento ${this.data.id} ${this.data.nombre}`);
+    }, (error) => {
+      this.snackBar.open('Error al guardar', undefined, {duration: 3000});
+      this.log('Registrar informe', `Usuario ${this.user} falló al registrar el informe del evento ${this.data.id} ${this.data.nombre}`);
+    });
   }
 }
