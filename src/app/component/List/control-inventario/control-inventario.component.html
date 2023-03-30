@@ -4,8 +4,9 @@
     <form class="row contenedor-evento pt-4 pb-4">
         <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
             <label class="col-form-label label-formulario">Item:</label>
-            <select name="item" [(ngModel)]="form.item" class="form-control" matTooltip="Item que se transaccionará">
+            <select name="item" [(ngModel)]="form.item" class="form-control" matTooltip="Item que se transaccionará" (change)="traerTransaccionesItem()">
                 <option value="">Seleccionar...</option>
+                <option [value]="item.id" *ngFor="let item of items">{{item.item}}</option>ption>
             </select>
         </div>
 
@@ -25,8 +26,8 @@
             <label class="col-form-label label-formulario">Transacción:</label>
             <select name="item" [(ngModel)]="form.transaccion" class="form-control" matTooltip="Tipo de transacción que se realizará">
                 <option value="">Seleccionar...</option>
-                <option value="1">Entrada</option>
-                <option value="2">Salida</option>
+                <option value="Entrada">Entrada</option>
+                <option value="Salida">Salida</option>
             </select>
         </div>
 
@@ -41,10 +42,18 @@
             matTooltip="Cantidad que entrará o saldrá del item seleccionado">
         </div>
 
-        <div class="col-sm-12  mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+            <label class="col-form-label label-formulario">Periodo académico:</label>
+            <select name="item" [(ngModel)]="form.periodo" class="form-control" matTooltip="Periodo académico actual">
+                <option value="">Seleccionar...</option>
+                <option [value]="periodo.id" *ngFor="let periodo of periodos">{{periodo.anio}} - {{periodo.periodo}}</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-xl-9 mb-3">
             <label class="col-form-label label-formulario">Concepto:</label>
             <input
-            type="number"
+            type="text"
             class="form-control"
             name="concepto"
             [(ngModel)]="form.concepto"
@@ -64,9 +73,9 @@
                 <td mat-cell *matCellDef="let element">{{element.id}}</td>
             </ng-container>
     
-            <ng-container matColumnDef="nombre">
+            <ng-container matColumnDef="item">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>
-                <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+                <td mat-cell *matCellDef="let element">{{element.nombre_item}}</td>
             </ng-container>
 
             <ng-container matColumnDef="transaccion">

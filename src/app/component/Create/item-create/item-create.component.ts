@@ -21,7 +21,7 @@ export class ItemCreateComponent implements OnInit {
   nombreItem:string = '';
   tiempoTranscurrido = Date.now();
   hoy = new Date(this.tiempoTranscurrido);
-  subcategoria_id:number = 0;
+  subcategoria_id:any = '';
   cantidad:number = 0;
   estado:boolean = true;
   activos:boolean = true;
@@ -69,8 +69,7 @@ export class ItemCreateComponent implements OnInit {
   }
 
   crearItem() {
-    if(this.nombreItem.length < 2) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
-    if(this.cantidad <= 0) return this.snackBar.open('Inserte una cantidad', undefined, {duration: 3000});
+    if(this.nombreItem.length < 4) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
     if(!this.subcategoria_id) return this.snackBar.open('Seleccione una categoría', undefined, {duration: 3000});
 
     let datosInventario = {
@@ -78,7 +77,7 @@ export class ItemCreateComponent implements OnInit {
       fecha: this.hoy.toLocaleDateString(),
       subcategoria_id:this.subcategoria_id,
       item:this.nombreItem,
-      cantidad:this.cantidad,
+      cantidad:0,
       estado:true
 
     };
@@ -98,8 +97,6 @@ export class ItemCreateComponent implements OnInit {
   }
 
   editarItem() {
-    if(this.nombreItem.length < 2) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
-    if(this.cantidad <= 0) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
     if(this.nombreItem.length < 4) return this.snackBar.open('Inserte un nombre válido', undefined, {duration: 3000});
 
     let datosInventario={
@@ -107,7 +104,7 @@ export class ItemCreateComponent implements OnInit {
       fecha: this.data.fecha,
       subcategoria_id:this.subcategoria_id,
       item:this.nombreItem,
-      cantidad:this.cantidad,
+      cantidad:this.data.cantidad,
       estado:this.data.estado
 
     };
