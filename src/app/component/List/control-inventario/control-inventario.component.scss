@@ -1,0 +1,26 @@
+.categoria-container {
+    width: 90%;
+    margin: 0 auto;
+
+    .categoria-titulo {
+        text-align: center;
+        font-size: 2.5em;
+        margin: 1em 0
+    }
+
+    .contenedor-evento {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 12px 24px;
+    }
+
+    .contenedor-tabla {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+
+        .tabla-resultados {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+<div class="categoria-container">
+    <h2 class="categoria-titulo">Control de inventario</h2>
+
+    <form class="row contenedor-evento pt-4 pb-4">
+        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+            <label class="col-form-label label-formulario">Item:</label>
+            <select name="item" [(ngModel)]="form.item" class="form-control" matTooltip="Item que se transaccionará">
+                <option value="">Seleccionar...</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+            <label class="col-form-label label-formulario">Cantidad actual:</label>
+            <input
+            type="number"
+            class="form-control"
+            name="actual"
+            [(ngModel)]="form.actual"
+            placeholder="Cantidad actual..."
+            matTooltip="Cantidad que existe actualmente del item seleccionado"
+            disabled>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+            <label class="col-form-label label-formulario">Transacción:</label>
+            <select name="item" [(ngModel)]="form.transaccion" class="form-control" matTooltip="Tipo de transacción que se realizará">
+                <option value="">Seleccionar...</option>
+                <option value="1">Entrada</option>
+                <option value="2">Salida</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+            <label class="col-form-label label-formulario">Cantidad:</label>
+            <input
+            type="number"
+            class="form-control"
+            name="cantidad"
+            [(ngModel)]="form.cantidad"
+            placeholder="Cantidad..."
+            matTooltip="Cantidad que entrará o saldrá del item seleccionado">
+        </div>
+
+        <div class="text-center col-sm-12 mt-2">
+            <button mat-raised-button color="primary" class="col-sm-12 col-md-6 col-xl-3" (click)="crearNuevaCategoria()">Registrar movimiento</button>
+        </div>
+    </form>
+
+    <div class="contenedor-tabla row mt-3 me-0 ms-0">
+        <table mat-table [dataSource]="categorias" class="mat-elevation-z8" class="tabla-resultados" matSort #tablaResultados>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>
+                <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="transaccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Transacción</th>
+                <td mat-cell *matCellDef="let element">{{element.transaccion}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
+                <td mat-cell *matCellDef="let element">{{element.cantidad}}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+                <td mat-cell *matCellDef="let element">{{element.fecha}}</td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+            class="tabla-resultados"
+            #paginator
+            [pageSize]="10"
+            showFirstLastButtons>
+        </mat-paginator>
+    </div>
+</div>
