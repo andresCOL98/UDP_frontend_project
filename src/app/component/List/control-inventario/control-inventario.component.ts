@@ -25,7 +25,8 @@ export class ControlInventarioComponent {
     item: '',
     actual: '',
     transaccion: '',
-    cantidad: ''
+    cantidad: '',
+    concepto:''
   }
   
   constructor(public dialog: MatDialog,

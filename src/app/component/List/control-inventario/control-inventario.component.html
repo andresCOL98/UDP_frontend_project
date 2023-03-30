@@ -41,6 +41,17 @@
             matTooltip="Cantidad que entrará o saldrá del item seleccionado">
         </div>
 
+        <div class="col-sm-12  mb-3">
+            <label class="col-form-label label-formulario">Concepto:</label>
+            <input
+            type="number"
+            class="form-control"
+            name="concepto"
+            [(ngModel)]="form.concepto"
+            placeholder="Detalle..."
+            matTooltip="Motivo de la transacción">
+        </div>
+
         <div class="text-center col-sm-12 mt-2">
             <button mat-raised-button color="primary" class="col-sm-12 col-md-6 col-xl-3" (click)="crearNuevaCategoria()">Registrar movimiento</button>
         </div>
