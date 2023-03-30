@@ -35,6 +35,7 @@ import { EventoInformeCreateComponent } from './component/Create/evento-informe-
 import { NotificacionDialogoComponent } from './component/core/notificacion-dialogo/notificacion-dialogo.component';
 import { UsuariosCreateComponent } from './component/Create/usuarios-create/usuarios-create.component';
 import { UsuariosListComponent } from './component/List/usuarios-list/usuarios-list.component';
+import { ControlInventarioComponent } from './component/List/control-inventario/control-inventario.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { UsuariosListComponent } from './component/List/usuarios-list/usuarios-l
     EventoInformeCreateComponent,
     NotificacionDialogoComponent,
     UsuariosCreateComponent,
-    UsuariosListComponent
+    UsuariosListComponent,
+    ControlInventarioComponent
   ],
   imports: [
     BrowserModule,

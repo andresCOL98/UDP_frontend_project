@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AsistenciamedicaCreateComponent } from './component/Create/asistenciamedica-create/asistenciamedica-create.component';
 import { AsistenciasubcategoriaCreateComponent } from './component/Create/asistenciasubcategoria-create/asistenciasubcategoria-create.component';
-import { CategoriaCreateComponent } from './component/Create/categoria-create/categoria-create.component';
 import { EventoCreateComponent } from './component/Create/evento-create/evento-create.component';
 import { ItemCreateComponent } from './component/Create/item-create/item-create.component';
 import { IndexMenuComponent } from './component/index-menu/index-menu.component';
 import { AsistenciamedicaListComponent } from './component/List/asistenciamedica-list/asistenciamedica-list.component';
 import { CategoriaListComponent } from './component/List/categoria-list/categoria-list.component';
+import { ControlInventarioComponent } from './component/List/control-inventario/control-inventario.component';
 import { EventoListComponent } from './component/List/evento-list/evento-list.component';
 import { ItemListComponent } from './component/List/item-list/item-list.component';
 import { PeriodoacademicoListComponent } from './component/List/periodoacademico-list/periodoacademico-list.component';
@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'generar-reportes', component: ReporteListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'ver-periodos', component: PeriodoacademicoListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
   { path: 'ver-usuarios', component: UsuariosListComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
+  { path: 'control-inventario', component: ControlInventarioComponent, canActivate: [LoggedInGuard, VerificarPermisoGuard] },
 
 ];
 
