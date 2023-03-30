@@ -5,4 +5,5 @@ export class Controlinventario {
     public transaccion:string;
     public fecha:string;
     public cantidad:number;
+    public periodo_academico_id:number
 }

@@ -17,9 +17,9 @@ export class ControlinventarioService {
     return this.httpClient.post(url, {estado});
   }
 
-  getInventarioByItem(id:number) {
-    let url = this.api + "inventario/inventarios/findById";
-    return this.httpClient.post(url, {id});
+  getInventarioByItem(id_item:number) {
+    let url = this.api + "inventario/controlInventario/findByItem";
+    return this.httpClient.post(url, {id_item});
   }
 
   createInventario(registro:Controlinventario) {

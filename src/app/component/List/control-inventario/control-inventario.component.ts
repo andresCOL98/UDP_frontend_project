@@ -12,7 +12,7 @@ import { ControlinventarioService } from 'src/app/service/controlinventario.serv
 import { ItemService } from 'src/app/service/item.service';
 import { LoadingService } from 'src/app/service/loading.service';
 import { LogService } from 'src/app/service/log.service';
-import { CategoriaCreateComponent } from '../../Create/categoria-create/categoria-create.component';
+import { PeriodoacademicoService } from 'src/app/service/periodoacademico.service';
 
 @Component({
   selector: 'app-control-inventario',
@@ -20,18 +20,21 @@ import { CategoriaCreateComponent } from '../../Create/categoria-create/categori
   styleUrls: ['./control-inventario.component.scss']
 })
 export class ControlInventarioComponent {
-  user = 'virtualo' //localStorage.getItem('currentUser');
+  user = localStorage.getItem('currentUser');
   public inventario = new MatTableDataSource<any>();
-  public displayedColumns: string[] = ['id', 'nombre', 'transaccion', 'cantidad', 'fecha'];
+  public displayedColumns: string[] = ['id', 'item', 'transaccion', 'cantidad', 'fecha'];
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   items:any;
+  periodos:any;
 
   form:any = {
     item: '',
     actual: '',
     transaccion: '',
-    cantidad: ''
+    cantidad: '',
+    concepto: '',
+    periodo: ''
   }
   
   constructor(
@@ -40,7 +43,8 @@ export class ControlInventarioComponent {
     private snackBar: MatSnackBar,
     private itemService:ItemService,
     private inventarioService:ControlinventarioService,
-    private logService:LogService
+    private logService:LogService,
+    private periodoService:PeriodoacademicoService
   ) {}
 
   ngAfterViewInit(): void {
@@ -50,6 +54,18 @@ export class ControlInventarioComponent {
 
   ngOnInit():void {
     this.traerItems();
+    this.traerPeriodos();
+  }
+
+  traerPeriodos() {
+    this.loading.cargando.next(true);
+    this.periodoService.getPeriodosAcademicos(true).subscribe((res:any) => {
+      this.periodos = res;
+      this.loading.cargando.next(false);
+    },(error) => {
+      this.loading.cargando.next(false);
+      this.snackBar.open('Error al mostrar los periodos académicos', undefined, {duration: 3000});
+    })
   }
 
   log(evento:string,mensaje:string){
@@ -83,6 +99,11 @@ export class ControlInventarioComponent {
 
     this.loading.cargando.next(true);
     this.inventarioService.getInventarioByItem(this.form.item).subscribe((res:any) => {
+      if(!res.length) {
+        this.inventario.data = [];
+      } else {
+        this.joinItems(res);
+      }
       this.inventario.data = res;
       this.loading.cargando.next(false);
     }, (error) => {
@@ -91,25 +112,58 @@ export class ControlInventarioComponent {
     });
   }
 
+  joinItems(data:any) {
+    data.map((res:any) => {
+      let item = this.items.filter((elem:any) => elem.id == res.id_item);
+      res.nombreItem = item[0].item;
+    });
+
+    this.inventario.data = data;
+    console.log(data);
+  }
+
   registrarTransaccion() {
-    this.loading.cargando.next(true);
     let data:Controlinventario = {
       id: 0,
       id_item: this.form.item,
       transaccion: this.form.transaccion,
       cantidad: this.form.cantidad,
       fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
-      concepto: this.form.concepto
+      concepto: this.form.concepto,
+      periodo_academico_id: this.form.periodo
     }
-    
+
+    if(data.cantidad < 0) return this.snackBar.open('Ingrese una cantidad válida', 'OK', {duration: 4000})
+    if(data.transaccion == 'Salida' && this.form.actual < data.cantidad) return this.snackBar.open('No puede sacar más items de los disponibles', 'OK', {duration: 5000});
+    if(data.transaccion != 'Salida' && data.transaccion != 'Entrada') return;
+
+    if(!data.id_item || !data.transaccion || !data.cantidad || !data.concepto || !data.periodo_academico_id) {
+      return this.snackBar.open('Debe diligenciar todos los campos', undefined, {duration: 4000});
+    }
+
+    this.loading.cargando.next(true);
     this.inventarioService.createInventario(data).subscribe((res:any) => {
       this.snackBar.open('Registro creado exitosamente', undefined, {duration: 4000})
       this.loading.cargando.next(false);
       this.log('Registrar transacción', `Usuario ${this.user} ingresó ${data.cantidad} unidades al item ${data.id_item}`);
+      this.limpiar();
+      this.traerTransaccionesItem();
     }, (error) => {
-      this.snackBar.open('Error al traer las transacciones del item seleccionado', undefined, {duration: 4000});
+      this.snackBar.open('Error al crear la transacción', undefined, {duration: 4000});
       this.loading.cargando.next(false);
       this.log('Registrar transacción', `Usuario ${this.user} falló al ingresar ${data.cantidad} unidades al item ${data.id_item}`);
     });
+    return;
+  }
+
+  limpiar() {
+    this.form = {
+      item: '',
+      actual: '',
+      transaccion: '',
+      cantidad: '',
+      concepto: '',
+      periodo: ''
+    }
   }
 }
