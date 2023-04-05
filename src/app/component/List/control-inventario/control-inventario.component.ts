@@ -22,11 +22,12 @@ import { PeriodoacademicoService } from 'src/app/service/periodoacademico.servic
 export class ControlInventarioComponent {
   user = localStorage.getItem('currentUser');
   public inventario = new MatTableDataSource<any>();
-  public displayedColumns: string[] = ['id', 'item', 'transaccion', 'cantidad', 'fecha'];
+  public displayedColumns: string[] = ['id', 'item', 'transaccion', 'cantidad', 'concepto', 'fecha'];
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   items:any;
   periodos:any;
+  categorias:any;
 
   form:any = {
     item: '',
@@ -44,7 +45,8 @@ export class ControlInventarioComponent {
     private itemService:ItemService,
     private inventarioService:ControlinventarioService,
     private logService:LogService,
-    private periodoService:PeriodoacademicoService
+    private periodoService:PeriodoacademicoService,
+    private categoriaService:CategoriaService
   ) {}
 
   ngAfterViewInit(): void {
@@ -58,19 +60,26 @@ export class ControlInventarioComponent {
   }
 
   traerPeriodos() {
-    this.loading.cargando.next(true);
     this.periodoService.getPeriodosAcademicos(true).subscribe((res:any) => {
       this.periodos = res;
-      this.loading.cargando.next(false);
     },(error) => {
-      this.loading.cargando.next(false);
       this.snackBar.open('Error al mostrar los periodos académicos', undefined, {duration: 3000});
     })
   }
 
+  traerCategorias() {
+    this.categoriaService.getCategorias(true).subscribe((res:any) => {
+      this.items.map((item:any) => {
+        let catego = res.filter((cate:any) => cate.id == item.subcategoria_id)
+        item.item += ` (${catego[0].nombre})`
+      });
+      this.loading.cargando.next(false);
+    }, (error) => {
+      this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
+    });
+  }
+
   log(evento:string,mensaje:string){
-    let tiempoTranscurrido = Date.now();
-    let hoy = new Date(tiempoTranscurrido);
     let logg={
        id:0,
        evento:evento,
@@ -86,7 +95,7 @@ export class ControlInventarioComponent {
     this.loading.cargando.next(true);
     this.itemService.getItems(true).subscribe((res:any) => {
       this.items = res;
-      this.loading.cargando.next(false);
+      this.traerCategorias();
     }, (error) => {
       this.snackBar.open('Error al traer la lista de items', undefined, {duration: 4000});
       this.loading.cargando.next(false);
@@ -102,24 +111,17 @@ export class ControlInventarioComponent {
       if(!res.length) {
         this.inventario.data = [];
       } else {
-        this.joinItems(res);
+        res.map((res:any) => {
+          let item = this.items.filter((elem:any) => elem.id == res.id_item);
+          res.nombreItem = item[0].item;
+        });
+        this.inventario.data = res;
       }
-      this.inventario.data = res;
       this.loading.cargando.next(false);
     }, (error) => {
       this.snackBar.open('Error al traer las transacciones del item seleccionado', undefined, {duration: 4000});
       this.loading.cargando.next(false);
     });
-  }
-
-  joinItems(data:any) {
-    data.map((res:any) => {
-      let item = this.items.filter((elem:any) => elem.id == res.id_item);
-      res.nombreItem = item[0].item;
-    });
-
-    this.inventario.data = data;
-    console.log(data);
   }
 
   registrarTransaccion() {
@@ -147,6 +149,7 @@ export class ControlInventarioComponent {
       this.loading.cargando.next(false);
       this.log('Registrar transacción', `Usuario ${this.user} ingresó ${data.cantidad} unidades al item ${data.id_item}`);
       this.limpiar();
+      this.traerItems();
       this.traerTransaccionesItem();
     }, (error) => {
       this.snackBar.open('Error al crear la transacción', undefined, {duration: 4000});

@@ -75,17 +75,24 @@
     
             <ng-container matColumnDef="item">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>
-                <td mat-cell *matCellDef="let element">{{element.nombre_item}}</td>
+                <td mat-cell *matCellDef="let element">{{element.nombreItem}}</td>
             </ng-container>
 
             <ng-container matColumnDef="transaccion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Transacción</th>
-                <td mat-cell *matCellDef="let element">{{element.transaccion}}</td>
+                <td mat-cell *matCellDef="let element" [ngClass]="{'text-success': element.transaccion == 'Entrada', 'text-danger': element.transaccion == 'Salida'}">
+                    {{element.transaccion}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="cantidad">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
                 <td mat-cell *matCellDef="let element">{{element.cantidad}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="concepto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Concepto</th>
+                <td mat-cell *matCellDef="let element">{{element.concepto}}</td>
             </ng-container>
     
             <ng-container matColumnDef="fecha">

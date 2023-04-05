@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiJava: 'https://4a16-191-95-27-74.ngrok.io/api/v1/',
+  apiJava: 'https://cf32-186-119-198-99.ngrok.io/api/v1/',
   apiUdp: 'http://api.unipacifico.edu.co/apiunipacifico/public/api/auth/userLogin'
 };
 
