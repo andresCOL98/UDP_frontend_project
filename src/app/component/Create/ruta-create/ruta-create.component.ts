@@ -33,8 +33,6 @@ export class RutaCreateComponent {
   }
 
   log(evento:string,mensaje:string){
-    let tiempoTranscurrido = Date.now();
-    let hoy = new Date(tiempoTranscurrido);
     
     let logg={
        id:0,
