@@ -1,0 +1,36 @@
+<div class="categoria-container">
+    <h3 class="categoria-titulo">Seleccionar evento</h3>
+    
+    <form class="formulario-categoria row">
+        <div class="row col-sm-12 mt-3 mb-3" *ngIf="eventos.length">
+            <input
+            type="text"
+            class="form-control"
+            name="nombre"
+            [(ngModel)]="filtro"
+            placeholder="Filtrar por nombre..."
+            matTooltip="Filtrar eventos por nombre"
+            (keyup)="filtrarNombre()">
+        </div>
+
+        <table class="table table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Evento</th>
+                    <th>Fechas</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let evento of eventosFiltrados">
+                    <td>{{evento.nombre}}</td>
+                    <td>{{evento.fecha_inicio}} - {{evento.fecha_fin}}</td>
+                    <td>
+                        <button mat-raised-button color="primary" (click)="seleccionar(evento.id, evento.nombre)">Seleccionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
