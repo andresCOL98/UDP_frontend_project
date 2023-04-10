@@ -2,25 +2,25 @@
     <h2 class="reportes-titulo">Generar reportes</h2>
 
     <form class="row contenedor-form pt-4 pb-4">
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
             <label class="col-form-label label-formulario">Tipo de reporte:</label>
-            <select name="reporte" [(ngModel)]="form.reporte" class="form-control" matTooltip="Reporte que se generará">
+            <select name="reporte" [(ngModel)]="form.reporte" class="form-control" matTooltip="Reporte que se generará" (change)="mostrarOcultarInputs()">
                 <option value="">Seleccionar...</option>
                 <option [value]="reporte.id" *ngFor="let reporte of tipoReportes">{{reporte.titulo}}</option>
             </select>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputFechas">
             <label class="col-form-label label-formulario">Fecha inicial:</label>
             <input type="date" class="form-control" name="fechaIni" [(ngModel)]="form.fechaIni" matTooltip="Fecha inicial del reporte">
         </div>
 
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputFechas">
             <label class="col-form-label label-formulario">Fecha final:</label>
             <input type="date" class="form-control" name="fechaFin" [(ngModel)]="form.fechaFin" matTooltip="Última fecha del reporte">
         </div>
 
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputPeriodo">
             <label class="col-form-label label-formulario">Periodo académico:</label>
             <select name="periodo" [(ngModel)]="form.periodo" class="form-control" matTooltip="Periodo académico actual">
                 <option value="">Seleccionar...</option>
@@ -28,7 +28,7 @@
             </select>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputArea">
             <label class="col-form-label label-formulario">Área:</label>
             <select name="area" [(ngModel)]="form.area" class="form-control" matTooltip="Área">
                 <option value="">Seleccionar...</option>
@@ -36,39 +36,13 @@
             </select>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
-            <label class="col-form-label label-formulario">Transacción:</label>
-            <select name="item" [(ngModel)]="form.transaccion" class="form-control" matTooltip="Tipo de transacción que se realizará">
-                <option value="">Seleccionar...</option>
-                <option value="Entrada">Entrada</option>
-                <option value="Salida">Salida</option>
-            </select>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
-            <label class="col-form-label label-formulario">Cantidad:</label>
-            <input
-            type="number"
-            class="form-control"
-            name="cantidad"
-            [(ngModel)]="form.cantidad"
-            placeholder="Cantidad..."
-            matTooltip="Cantidad que entrará o saldrá del item seleccionado">
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-xl-3 mb-3">
-            <label class="col-form-label label-formulario">Concepto:</label>
-            <input
-            type="text"
-            class="form-control"
-            name="concepto"
-            [(ngModel)]="form.concepto"
-            placeholder="Detalle..."
-            matTooltip="Motivo de la transacción">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputEvento">
+            <label class="col-form-label label-formulario">Evento:</label>
+            <button mat-raised-button class="col-sm-12 text-start" (click)="dialogoEventos()">{{form.nombreEvento}}</button>
         </div>
 
         <div class="text-center col-sm-12 mt-2">
-            <button mat-raised-button color="primary" class="col-sm-12 col-md-6 col-xl-3" (click)="descargar()">Registrar movimiento</button>
+            <button mat-raised-button color="primary" class="col-sm-12 col-md-6 col-xl-3" (click)="descargar()">Generar reporte</button>
         </div>
     </form>
 </div>
