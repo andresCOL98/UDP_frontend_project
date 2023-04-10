@@ -22,7 +22,7 @@ export class AsistenciasubcategoriaCreateComponent {
     nombre: '',
     periodo: '',
     categoria: '',
-    fecha: '',
+    fecha: this.fechaHoy,
     programa:''
   }
   categorias:any;
@@ -114,7 +114,7 @@ export class AsistenciasubcategoriaCreateComponent {
       nombre: '',
       periodo: '',
       categoria: '',
-      fecha: '',
+      fecha: this.fechaHoy,
       programa:''
     }
   }
