@@ -35,4 +35,9 @@ export class AsistenciasubcategoriaService {
     let url = this.api + "asistencias/asistenciasubcategoria/" + id;
     return this.httpClient.delete(url);
   }
+
+  reporte(fecha_inicio:string,fecha_fin:string,periodo_academico_id:number,subcategoria_id:number) {
+    let url = this.api + "asistencias/asistenciasubcategoria/findByFechaCategoriaPeriodo" ;
+    return this.httpClient.post(url,{fecha_inicio,fecha_fin,periodo_academico_id,subcategoria_id});
+  }
 }

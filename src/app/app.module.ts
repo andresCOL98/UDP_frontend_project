@@ -37,6 +37,12 @@ import { UsuariosCreateComponent } from './component/Create/usuarios-create/usua
 import { UsuariosListComponent } from './component/List/usuarios-list/usuarios-list.component';
 import { ControlInventarioComponent } from './component/List/control-inventario/control-inventario.component';
 import { DialogoEventosComponent } from './component/List/reporte-list/dialogo-eventos/dialogo-eventos.component';
+import { AsistenciaCategoriaReportComponent } from './component/reports/asistencia-categoria-report/asistencia-categoria-report.component';
+import { EventosReportComponent } from './component/reports/eventos-report/eventos-report.component';
+import { AsistenciaEventosReportComponent } from './component/reports/asistencia-eventos-report/asistencia-eventos-report.component';
+import { ControlInventarioReportComponent } from './component/reports/control-inventario-report/control-inventario-report.component';
+import { InventarioReportComponent } from './component/reports/inventario-report/inventario-report.component';
+import { AsistenciaMedicaReportComponent } from './component/reports/asistencia-medica-report/asistencia-medica-report.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +74,13 @@ import { DialogoEventosComponent } from './component/List/reporte-list/dialogo-e
     UsuariosCreateComponent,
     UsuariosListComponent,
     ControlInventarioComponent,
-    DialogoEventosComponent
+    DialogoEventosComponent,
+    AsistenciaCategoriaReportComponent,
+    EventosReportComponent,
+    AsistenciaEventosReportComponent,
+    ControlInventarioReportComponent,
+    InventarioReportComponent,
+    AsistenciaMedicaReportComponent
   ],
   imports: [
     BrowserModule,
