@@ -22,56 +22,82 @@ export class ItemListComponent implements OnInit, AfterViewInit{
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
   activos:boolean = true;
+  valoresItems:any;
+  valoresCategorias:any;
 
-
-  
   constructor(public dialog: MatDialog,
-    private categoriaService:CategoriaService,
+    private itemService:ItemService,
     private loading:LoadingService,
-    private snackBar: MatSnackBar) {}
+    private snackBar: MatSnackBar,
+    private categoriaService:CategoriaService) {}
 
   ngAfterViewInit(): void {
-    this.categorias.paginator = this.paginator;
-    this.categorias.sort = this.sort
+    this.itemsTabla.paginator = this.paginator;
+    this.itemsTabla.sort = this.sort
   }
 
   ngOnInit():void {
-   this.traerCategorias();
+    this.traerItems();
   }
 
-  traerCategorias() {
+  traerItems() {
     this.loading.cargando.next(true);
-    this.categoriaService.getCategorias(this.activos).subscribe((res:any) => {
-      this.categorias.data = res;
-      this.loading.cargando.next(false);
+    this.itemService.getItems(this.activos).subscribe((res:any) => {
+      if(!res.length) {
+        this.itemsTabla.data = [];
+        this.snackBar.open('Sin resultados', undefined, {duration: 3000});
+        this.loading.cargando.next(false);
+        return;
+      }
+      this.valoresItems = res;
+      this.traerCategorias();
     }, (error) => {
       this.snackBar.open('Error al traer los datos de la tabla', undefined, {duration: 4000});
       this.loading.cargando.next(false);
     });
   }
 
-  crearNuevaCategoria() {
-    let dialogRef = this.dialog.open(CategoriaCreateComponent, {
+  traerCategorias() {
+    this.categoriaService.getCategorias(true).subscribe((res:any) => {
+      this.valoresCategorias = res || [];
+      this.imprimirTabla();
+      this.loading.cargando.next(false);
+    }, (error) => {
+      this.loading.cargando.next(false);
+    })
+  }
+
+  imprimirTabla() {
+    this.valoresItems.map((item:any) => {
+      let catego = this.valoresCategorias.filter((res:any) => res.id == item.subcategoria_id);
+      item.nombreCategoria = catego[0].nombre || '';
+    });
+    this.itemsTabla.data = this.valoresItems;
+  }
+
+  crearNuevoItem() {
+    let dialogRef = this.dialog.open(ItemCreateComponent, {
       width: '400px',
       height: 'max-content',
       autoFocus: false,
       data: {}
     });
+
     dialogRef.afterClosed().subscribe(res => {
-      if(res) this.traerCategorias();
+      if(res) this.traerItems();
     })
   }
 
-  editarCategoria(categoria:Categoria) {
-    let dialogRef = this.dialog.open(CategoriaCreateComponent, {
+  editarItem(item:Inventario) {
+    let dialogRef = this.dialog.open(ItemCreateComponent, {
       width: '400px',
       height: 'max-content',
       autoFocus: false,
-      data: categoria
+      data: item
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      if(res) this.traerCategorias();
+      if(res) this.traerItems();
     })
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-control-inventario-report',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./control-inventario-report.component.scss']
 })
 export class ControlInventarioReportComponent {
-
+  fechaHoy = moment().format('DD/MM/YYYY');
+  horaActual = moment().format('HH:mm:ss');
 }
