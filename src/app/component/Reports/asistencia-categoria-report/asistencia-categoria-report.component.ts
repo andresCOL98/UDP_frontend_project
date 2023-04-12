@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
 import { AsistenciasubcategoriaService } from 'src/app/service/asistenciasubcategoria.service';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { LoadingService } from 'src/app/service/loading.service';
@@ -19,6 +20,8 @@ export class AsistenciaCategoriaReportComponent implements OnInit, AfterViewInit
   public itemsTabla = new MatTableDataSource<any>();
   @ViewChild('paginator') paginator:any = MatPaginator;
   @ViewChild(MatSort, { static: true }) sort:any = MatSort;
+  fechaHoy = moment().format('DD/MM/YYYY');
+  horaActual = moment().format('HH:mm:ss');
 
   activos:boolean = true;
   fecha_inico:string;
@@ -41,7 +44,7 @@ export class AsistenciaCategoriaReportComponent implements OnInit, AfterViewInit
   }
 
   ngOnInit():void {
-   this.traerAsistencias();
+    // this.traerAsistencias();
   }
 
   traerAsistencias(){

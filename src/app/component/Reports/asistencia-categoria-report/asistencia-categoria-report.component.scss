@@ -1,20 +1,20 @@
-.categoria-container {
+.contenedor-reporte {
     width: 90%;
+    min-height: 90%;
     margin: 0 auto;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
 
-    .categoria-titulo {
-        text-align: center;
-        font-size: 2.5em;
-        margin: 1em 0
+    #logo-unipacifico {
+        width: 30%;
+        margin-bottom: 8px;
     }
 
-    .contenedor-tabla {
-        width: 100%;
-        border-radius: 12px;
-        overflow: hidden;
-
-        .tabla-resultados {
-            width: 100%;
-        }
+    .titulo-reporte {
+        text-align: center;
+        font-weight: 800;
+        margin-top: 8px;
     }
 }
