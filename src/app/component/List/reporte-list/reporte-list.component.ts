@@ -12,6 +12,7 @@ import { LoadingService } from 'src/app/service/loading.service';
 import { ItemService } from 'src/app/service/item.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-reporte-list',
@@ -467,5 +468,17 @@ export class ReporteListComponent {
       pdf.addImage(contentDataUrl, 'PNG', 0, 0, width, height);
       pdf.save(this.fechaHoy + '_' + this.nombreReporte);
     })
+  }
+
+  generarExcel() {
+    let tabla = 'tabla'+this.form.reporte
+    let element = document.getElementById(tabla);
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Reporte');
+
+    let nombreArchivo = this.fechaHoy + '_' + this.nombreReporte + '.xlsx'
+    XLSX.writeFile(wb, nombreArchivo);
   }
 }
