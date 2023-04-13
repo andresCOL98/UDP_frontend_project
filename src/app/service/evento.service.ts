@@ -11,6 +11,8 @@ export class EventoService {
 
   constructor(private httpClient:HttpClient) { }
 
+ 
+
   getEventos() {
     let url = this.api + "evento/eventos/findAll";
     return this.httpClient.get(url);

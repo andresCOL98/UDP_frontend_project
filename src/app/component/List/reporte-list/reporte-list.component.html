@@ -156,18 +156,20 @@
     <table class="table text-center" *ngIf="tabla5">
         <thead class="table-dark">
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Nombre</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Periodo</th>
+                <th>Area</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>dato 1</td>
-                <td>dato 2</td>
-                <td>dato 3</td>
-                <td>dato 4</td>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.nombre}}</td>
+                <td>{{dato.fechaIni}}</td>
+                <td>{{dato.fechaFin}}</td>
+                <td>{{dato.periodoA}}</td>
+                <td>{{dato.area}}</td>
             </tr>
         </tbody>
     </table>
@@ -175,18 +177,22 @@
     <table class="table text-center" *ngIf="tabla6">
         <thead class="table-dark">
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Nombre Evento</th>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Programa</th>
+                <th>Periodo</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>dato 1</td>
-                <td>dato 2</td>
-                <td>dato 3</td>
-                <td>dato 4</td>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.nombreEvento}}</td>
+                <td>{{dato.cedula}}</td>
+                <td>{{dato.nombre}}</td>
+                <td>{{dato.fecha}}</td>
+                <td>{{dato.programa_academico}}</td>
+                <td>{{dato.periodoA}}</td>
             </tr>
         </tbody>
     </table>

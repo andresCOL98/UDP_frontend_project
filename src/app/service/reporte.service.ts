@@ -42,7 +42,7 @@ export class ReporteService {
   }
 
   asistenciaEvento(fecha_inicio:string="", fecha_fin:string="", periodo_academico_id:number=0, evento_id:number=0) {
-    let url = this.api + "evento/eventos/findByFechaCategoriaEvento" ;
+    let url = this.api + "asistencias/asistenciaevento/findByFechaCategoriaEvento" ;
     let data = {fecha_inicio, fecha_fin, periodo_academico_id, evento_id};
     return this.httpClient.post(url, data);
   }

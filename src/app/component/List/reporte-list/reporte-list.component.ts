@@ -208,10 +208,10 @@ export class ReporteListComponent {
 
     switch(this.form.reporte) {
       case '1':
-        if(!this.form.area) {
-          msg = 'Debe seleccionar un área para filtrar';
-          valido = false;
-        }
+       // if(!this.form.area) {
+        //  msg = 'Debe seleccionar un área para filtrar';
+         // valido = false;
+       // }
         break;
       case '2':
         if(!this.form.fechaIni && !this.form.periodo) {
@@ -274,9 +274,9 @@ export class ReporteListComponent {
     .subscribe((res:any) => {
       this.tabla1 = true;
       let datosMostrar:any = [];
-      let nomArea = this.categorias.filter((cat:any) => cat.id == this.form.area)[0].nombre;
       
       res.map((res2:any) => {
+        let nomArea = this.categorias.filter((cat:any) => cat.id == res2.subcategoria_id)[0].nombre;
         let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
         periodo = periodo.anio + ' - ' + periodo.periodo;
 
@@ -288,6 +288,7 @@ export class ReporteListComponent {
           nomArea: nomArea,
           fecha: res2.fecha,
         }
+        
         datosMostrar.push(obj)
       });
       this.bodyTabla = datosMostrar;
@@ -389,19 +390,64 @@ export class ReporteListComponent {
   }
 
   reporteEventos() {
-    this.reporteService.asistenciaPorArea(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
+    
+    this.reporteService.evento(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
     .subscribe((res:any) => {
-      console.log(res);
+      this.tabla5 = true;
+      let datosMostrar:any = [];
+      res.map((res2:any) => {
+
+        let categoria = this.categorias.filter((catego:any) => catego.id == res2.subcategoria_id)[0].nombre;
+        let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
+        periodo = periodo.anio + ' - ' + periodo.periodo;
+
+        let obj:any = {
+          nombre: res2.nombre,
+          fechaIni: res2.fecha_inicio,
+          fechaFin: res2.fecha_fin,
+          periodoA: periodo,
+          area:categoria,
+
+        }
+        datosMostrar.push(obj)
+      });
+   
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
     }, (error) => {
+      this.loadingService.cargando.next(false);
       this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
       throw error;
     });
   }
 
   reporteAsistenciaEventos() {
-    this.reporteService.asistenciaPorArea(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
+    this.reporteService.asistenciaEvento(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.evento || 0)
     .subscribe((res:any) => {
-      console.log(res);
+      this.tabla6 = true;
+      let datosMostrar:any = [];
+      res.map((res2:any) => {
+        let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
+        periodo = periodo.anio + ' - ' + periodo.periodo;
+
+        let evento = this.eventos.filter((peri:any) => peri.id == res2.evento_id)[0].nombre;
+
+
+        let obj:any = {
+          nombre: res2.nombre,
+          cedula:res2.documento,
+          fecha: res2.fecha,
+          periodoA: periodo,
+          programa_academico:res2.programa_academico,
+          nombreEvento:evento,
+        }
+        datosMostrar.push(obj)
+      });
+   
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
     }, (error) => {
       this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
       throw error;
