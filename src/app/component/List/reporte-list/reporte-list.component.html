@@ -57,7 +57,7 @@
 
 <div class="contenedor-reporte col-12 text-end" *ngIf="bodyTabla.length">
     <button mat-raised-button color="warn" class="col-3 me-4" (click)="generarPdf()">Guardar como pdf</button>
-    <button mat-raised-button color="accent" class="col-3">Guardar como excel</button>
+    <button mat-raised-button color="accent" class="col-3" (click)="generarExcel()">Guardar como excel</button>
 </div>
 
 <div class="contenedor-reporte" id="contenedor-reporte" style="min-height: 100%;" *ngIf="bodyTabla.length" #contenedorReporte>
@@ -67,7 +67,7 @@
 
     <h4 class="mb-4">Reporte generado el {{fechaHoy}} a las {{horaActual}}</h4>
 
-    <table class="table text-center" *ngIf="tabla1">
+    <table class="table text-center" id="tabla1" *ngIf="tabla1">
         <thead class="table-dark">
             <tr>
                 <th>Cédula</th>
@@ -90,7 +90,7 @@
         </tbody>
     </table>
 
-    <table class="table text-center" *ngIf="tabla2">
+    <table class="table text-center" id="tabla2" *ngIf="tabla2">
         <thead class="table-dark">
             <tr>
                 <th>Cédula</th>
@@ -113,7 +113,7 @@
         </tbody>
     </table>
 
-    <table class="table text-center" *ngIf="tabla3">
+    <table class="table text-center" id="tabla3" *ngIf="tabla3">
         <thead class="table-dark">
             <tr>
                 <th>Fecha</th>
@@ -134,7 +134,7 @@
         </tbody>
     </table>
 
-    <table class="table text-center" *ngIf="tabla4">
+    <table class="table text-center" id="tabla4" *ngIf="tabla4">
         <thead class="table-dark">
             <tr>
                 <th>Creación</th>
@@ -153,7 +153,7 @@
         </tbody>
     </table>
 
-    <table class="table text-center" *ngIf="tabla5">
+    <table class="table text-center" id="tabla5" *ngIf="tabla5">
         <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
@@ -174,7 +174,7 @@
         </tbody>
     </table>
     
-    <table class="table text-center" *ngIf="tabla6">
+    <table class="table text-center" id="tabla6" *ngIf="tabla6">
         <thead class="table-dark">
             <tr>
                 <th>Nombre Evento</th>
