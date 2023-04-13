@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { EventoService } from 'src/app/service/evento.service';
@@ -11,6 +10,8 @@ import { DialogoEventosComponent } from './dialogo-eventos/dialogo-eventos.compo
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/service/loading.service';
 import { ItemService } from 'src/app/service/item.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-reporte-list',
@@ -18,6 +19,7 @@ import { ItemService } from 'src/app/service/item.service';
   styleUrls: ['./reporte-list.component.scss']
 })
 export class ReporteListComponent {
+  @ViewChild('contenedorReporte', {static: false}) el!:ElementRef
   user=localStorage.getItem('currentUser');
   inputFechas = true;
   inputPeriodo = false;
@@ -452,5 +454,18 @@ export class ReporteListComponent {
       this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
       throw error;
     });
+  }
+
+  generarPdf() {
+    html2canvas(this.el.nativeElement).then(canvas => {
+      const contentDataUrl = canvas.toDataURL('image/png');
+      
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      let width = pdf.internal.pageSize.getWidth();
+      let height = canvas.height * width / canvas.width;
+  
+      pdf.addImage(contentDataUrl, 'PNG', 0, 0, width, height);
+      pdf.save(this.fechaHoy + '_' + this.nombreReporte);
+    })
   }
 }
