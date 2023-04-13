@@ -36,6 +36,14 @@
             </select>
         </div>
 
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputItem">
+            <label class="col-form-label label-formulario">Item:</label>
+            <select name="item" [(ngModel)]="form.item" class="form-control" matTooltip="Elemento del inventario">
+                <option value="">Seleccionar...</option>
+                <option [value]="item.id" *ngFor="let item of items">{{item.item}}</option>
+            </select>
+        </div>
+
         <div class="col-sm-12 col-md-6 col-xl-4 mb-3" *ngIf="inputEvento">
             <label class="col-form-label label-formulario">Evento:</label>
             <button mat-raised-button class="col-sm-12 text-start" (click)="dialogoEventos()">{{form.nombreEvento}}</button>
@@ -45,4 +53,141 @@
             <button mat-raised-button color="primary" class="col-sm-12 col-md-6 col-xl-3" (click)="descargar()">Generar reporte</button>
         </div>
     </form>
+</div>
+
+<div class="contenedor-reporte col-12 text-end" *ngIf="bodyTabla.length">
+    <button mat-raised-button color="warn" class="col-3 me-4">Guardar como pdf</button>
+    <button mat-raised-button color="accent" class="col-3">Guardar como excel</button>
+</div>
+
+<div class="contenedor-reporte" id="contenedor-reporte" style="min-height: 100%;" *ngIf="bodyTabla.length">
+    <img src="../../../../assets/logo-udp.png" alt="logo unipacifico" id="logo-unipacifico">
+
+    <h1 class="titulo-reporte">REPORTE DE {{nombreReporte}}</h1>
+
+    <h4 class="mb-4">Reporte generado el {{fechaHoy}} a las {{horaActual}}</h4>
+
+    <table class="table text-center" *ngIf="tabla1">
+        <thead class="table-dark">
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Programa</th>
+                <th>Periodo</th>
+                <th>Área</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.cedula}}</td>
+                <td>{{dato.nombre}}</td>
+                <td>{{dato.programa_academico}}</td>
+                <td>{{dato.periodo}}</td>
+                <td>{{dato.nomArea}}</td>
+                <td>{{dato.fecha}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center" *ngIf="tabla2">
+        <thead class="table-dark">
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Programa</th>
+                <th>Periodo</th>
+                <th>Servicio</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.cedula}}</td>
+                <td>{{dato.nombre}}</td>
+                <td>{{dato.programa_academico}}</td>
+                <td>{{dato.periodo}}</td>
+                <td>{{dato.servicio}}</td>
+                <td>{{dato.fecha}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center" *ngIf="tabla3">
+        <thead class="table-dark">
+            <tr>
+                <th>Fecha</th>
+                <th>Item</th>
+                <th>Transaccion</th>
+                <th>Cantidad</th>
+                <th>Periodo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.fecha}}</td>
+                <td>{{dato.nomItem}}</td>
+                <td  [ngClass]="{'text-success': dato.transaccion=='Entrada', 'text-danger': dato.transaccion=='Salida'}">{{dato.transaccion}}</td>
+                <td>{{dato.cantidad}}</td>
+                <td>{{dato.periodo}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center" *ngIf="tabla4">
+        <thead class="table-dark">
+            <tr>
+                <th>Creación</th>
+                <th>Item</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of bodyTabla">
+                <td>{{dato.fecha}}</td>
+                <td>{{dato.item}}</td>
+                <td>{{dato.cantidad}}</td>
+                <td>{{dato.nomCategoria}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center" *ngIf="tabla5">
+        <thead class="table-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dato 1</td>
+                <td>dato 2</td>
+                <td>dato 3</td>
+                <td>dato 4</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="table text-center" *ngIf="tabla6">
+        <thead class="table-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>dato 1</td>
+                <td>dato 2</td>
+                <td>dato 3</td>
+                <td>dato 4</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

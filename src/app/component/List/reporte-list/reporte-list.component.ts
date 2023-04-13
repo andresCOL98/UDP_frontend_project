@@ -9,6 +9,8 @@ import { PeriodoacademicoService } from 'src/app/service/periodoacademico.servic
 import { ReporteService } from 'src/app/service/reporte.service';
 import { DialogoEventosComponent } from './dialogo-eventos/dialogo-eventos.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoadingService } from 'src/app/service/loading.service';
+import { ItemService } from 'src/app/service/item.service';
 
 @Component({
   selector: 'app-reporte-list',
@@ -20,14 +22,15 @@ export class ReporteListComponent {
   inputFechas = true;
   inputPeriodo = false;
   inputArea = false;
+  inputItem = false;
   inputEvento = false;
   tipoReportes = [
-    { id: 1, titulo: 'Asistencia por área'},
-    { id: 2, titulo: 'Atención médica y psicológica'},
-    { id: 3, titulo: 'Control de inventario'},
-    { id: 4, titulo: 'Estado del inventario'},
-    { id: 5, titulo: 'Eventos'},
-    { id: 6, titulo: 'Participación de eventos'}
+    {id: 1, titulo: 'Asistencia por área'},
+    {id: 2, titulo: 'Atención médica y psicológica'},
+    {id: 3, titulo: 'Control de inventario'},
+    {id: 4, titulo: 'Estado del inventario'},
+    {id: 5, titulo: 'Eventos'},
+    {id: 6, titulo: 'Participación de eventos'}
   ];
   form:any = {
     reporte: '',
@@ -35,12 +38,28 @@ export class ReporteListComponent {
     fechaFin: '',
     periodo: '',
     area: '',
+    item: '',
     evento: '',
     nombreEvento: 'Seleccionar...',
   };
   eventos:any;
   periodos:any;
   categorias:any;
+  items:any;
+
+  // Para el reporte
+  fechaHoy = moment().format('DD/MM/YYYY');
+  horaActual = moment().format('hh:mm a');
+  nombreReporte = '';
+  headersTabla:any = [];
+  bodyTabla:any = [];
+  tabla1 = false;
+  tabla2 = false;
+  tabla3 = false;
+  tabla4 = false;
+  tabla5 = false;
+  tabla6 = false;
+  usuarios:any;
 
   constructor(
     private reporteService:ReporteService,
@@ -50,13 +69,15 @@ export class ReporteListComponent {
     private categoriaService:CategoriaService,
     private eventoService:EventoService,
     public dialog: MatDialog,
+    private loadingService:LoadingService,
+    private itemService:ItemService
   ) {}
 
   ngOnInit() {
     this.traerPeriodos();
     this.traerCategorias();
     this.traerEventos();
-    this.snackBar.open('Seleccione un tipo de reporte para mostrar los filtros', 'OK', {duration: 10000});
+    this.traerItems();
   }
 
   traerPeriodos() {
@@ -83,6 +104,14 @@ export class ReporteListComponent {
     });
   }
 
+  traerItems() {
+    this.itemService.getItems(true).subscribe((res:any) => {
+      this.items = res;
+    }, (error) => {
+      this.snackBar.open('Error al traer los items', undefined, {duration: 4000});
+    });
+  }
+
   dialogoEventos() {
     let dialogRef = this.dialog.open(DialogoEventosComponent, {
       width: '800px',
@@ -103,7 +132,15 @@ export class ReporteListComponent {
     this.inputFechas = true;
     this.inputPeriodo = false;
     this.inputArea = false;
+    this.inputItem = false;
     this.inputEvento = false;
+    this.tabla1 = false;
+    this.tabla2 = false;
+    this.tabla3 = false;
+    this.tabla4 = false;
+    this.tabla5 = false;
+    this.tabla6 = false;
+    this.limpiar();
 
     switch(this.form.reporte) {
       case '1':
@@ -114,7 +151,7 @@ export class ReporteListComponent {
         this.inputPeriodo = true;
         break;
       case '3':
-        this.inputArea = true;
+        this.inputItem = true;
         this.inputPeriodo = true;
         break;
       case '4':
@@ -143,24 +180,231 @@ export class ReporteListComponent {
     this.logService.createLog(logg).subscribe();
   }
 
-  descargar() {
+  limpiar() {
+    this.form = {
+      reporte: this.form.reporte,
+      fechaIni: '',
+      fechaFin: '',
+      periodo: '',
+      area: '',
+      item: '',
+      evento: '',
+      nombreEvento: 'Seleccionar...',
+    };
+    this.bodyTabla = [];
+  }
+
+  validarInputs() {
+    let valido = true;
+    let msg = 'Los campos no fueron diligenciados correctamente';
+
+    if(this.form.fechaIni && !this.form.fechaFin) {
+      valido = false;
+    }
+    if(this.form.fechaIni > this.form.fechaFin) {
+      msg = 'La fecha de inicio no puede ser mayor a la fecha final';
+      valido = false;
+    }
+
     switch(this.form.reporte) {
-      case 1:
-        this.log("Generar Reporte","Usuario: " + this.user + " generó reporte de inventarios");
+      case '1':
+        if(!this.form.area) {
+          msg = 'Debe seleccionar un área para filtrar';
+          valido = false;
+        }
         break;
-      case 2:
-        this.log("Generar Reporte","Usuario: " + this.user + " generó reporte de inventarios");
+      case '2':
+        if(!this.form.fechaIni && !this.form.periodo) {
+          valido = false;
+        }
         break;
-      case 3:
-        window.open(this.reporteService.getRerporteInventario());
-        this.log("Generar Reporte","Usuario: " + this.user + " generó reporte de inventarios");
+      case '3':
+        if(!this.form.fechaIni && !this.form.periodo && !this.form.item) {
+          valido = false;
+        }
         break;
-      case 4:
-        this.log("Generar Reporte","Usuario: " + this.user + " generó reporte de inventarios");
+      case '4':
+        valido = true; // En este caso no se pide nada, así que siempre será true
         break;
-      case 5:
-        this.log("Generar Reporte","Usuario: " + this.user + " generó reporte de inventarios");
+      case '5':
+        if(!this.form.fechaIni && !this.form.periodo && !this.form.area) {
+          valido = false;
+        }
+        break;
+      case '6':
+        if(!this.form.fechaIni && !this.form.periodo && !this.form.evento) {
+          valido = false;
+        }
+        break;
+      default:
+        valido = false;
         break;
     }
+    if(!valido) this.snackBar.open(msg, undefined, {duration: 5000});
+    return valido;
+  }
+
+  descargar() {
+    let valido = this.validarInputs();
+    if(!valido) return;
+
+    this.fechaHoy = moment().format('DD/MM/YYYY');
+    this.horaActual = moment().format('hh:mm a');
+
+    if(this.form.reporte == '1') {
+      this.reporteAsistenciaPorArea();
+    } else if(this.form.reporte == '2') {
+      this.reporteAtencionMedica();
+    } else if(this.form.reporte == '3') {
+      this.reporteControlInventario();
+    } else if(this.form.reporte == '4') {
+      this.reporteEstadoInventario();
+    } else if(this.form.reporte == '5') {
+      this.reporteEventos();
+    } else if(this.form.reporte == '6') {
+      this.reporteAsistenciaEventos();
+    }
+    this.nombreReporte = this.tipoReportes.filter((repo:any) => repo.id == this.form.reporte)[0].titulo.toUpperCase() || '';
+    return;
+  }
+
+  reporteAsistenciaPorArea() {
+    this.loadingService.cargando.next(true);
+    this.reporteService.asistenciaPorArea(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
+    .subscribe((res:any) => {
+      this.tabla1 = true;
+      let datosMostrar:any = [];
+      let nomArea = this.categorias.filter((cat:any) => cat.id == this.form.area)[0].nombre;
+      
+      res.map((res2:any) => {
+        let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
+        periodo = periodo.anio + ' - ' + periodo.periodo;
+
+        let obj:any = {
+          cedula: res2.documento,
+          nombre: res2.nombre,
+          programa_academico: res2.programa_academico,
+          periodo: periodo,
+          nomArea: nomArea,
+          fecha: res2.fecha,
+        }
+        datosMostrar.push(obj)
+      });
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
+    }, (error) => {
+      this.loadingService.cargando.next(false);
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
+  }
+
+  reporteAtencionMedica() {
+    this.loadingService.cargando.next(true);
+    this.reporteService.atencionMedica(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0)
+    .subscribe((res:any) => {
+      this.tabla2 = true;
+      let datosMostrar:any = [];
+      
+      res.map((res2:any) => {
+        let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
+        periodo = periodo.anio + ' - ' + periodo.periodo;
+
+        let obj:any = {
+          cedula: res2.documento,
+          nombre: res2.nombre,
+          programa_academico: res2.programa_academico,
+          periodo: periodo,
+          servicio: res2.tipo_servicio,
+          fecha: res2.fecha,
+        }
+        datosMostrar.push(obj)
+      });
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
+    }, (error) => {
+      this.loadingService.cargando.next(false);
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
+  }
+
+  reporteControlInventario() {
+    this.loadingService.cargando.next(true);
+    this.reporteService.controlInventario(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.item || 0)
+    .subscribe((res:any) => {
+      this.tabla3 = true;
+      let datosMostrar:any = [];
+      
+      res.map((res2:any) => {
+        let nomItem = this.items.filter((item:any) => item.id == res2.id_item)[0].item;
+        let periodo = this.periodos.filter((peri:any) => peri.id == res2.periodo_academico_id)[0];
+        periodo = periodo.anio + ' - ' + periodo.periodo;
+
+        let obj:any = {
+          fecha: res2.fecha,
+          nomItem: nomItem,
+          transaccion: res2.transaccion,
+          cantidad: res2.cantidad,
+          periodo: periodo,
+        }
+        datosMostrar.push(obj)
+      });
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
+    }, (error) => {
+      this.loadingService.cargando.next(false);
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
+  }
+
+  reporteEstadoInventario() {
+    this.loadingService.cargando.next(true);
+    this.itemService.getItems(true).subscribe((res:any) => {
+      this.tabla4 = true;
+      let datosMostrar:any = [];
+      res.map((res2:any) => {
+        let categoria = this.categorias.filter((catego:any) => catego.id == res2.subcategoria_id)[0].nombre;
+
+        let obj:any = {
+          fecha: res2.fecha,
+          item: res2.item,
+          cantidad: res2.cantidad,
+          nomCategoria: categoria,
+        }
+        datosMostrar.push(obj)
+      });
+      this.bodyTabla = datosMostrar;
+      this.loadingService.cargando.next(false);
+      this.log('Generar reporte', `El usuario ${this.user} generó el reporte ${this.nombreReporte}`);
+    }, (error) => {
+      this.loadingService.cargando.next(false);
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
+  }
+
+  reporteEventos() {
+    this.reporteService.asistenciaPorArea(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
+    .subscribe((res:any) => {
+      console.log(res);
+    }, (error) => {
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
+  }
+
+  reporteAsistenciaEventos() {
+    this.reporteService.asistenciaPorArea(this.form.fechaIni, this.form.fechaFin, this.form.periodo || 0, this.form.area || 0)
+    .subscribe((res:any) => {
+      console.log(res);
+    }, (error) => {
+      this.snackBar.open('Ha ocurrido un error inesperado', undefined, {duration: 3000});
+      throw error;
+    });
   }
 }
