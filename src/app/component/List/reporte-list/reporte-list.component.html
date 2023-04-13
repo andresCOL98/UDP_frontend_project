@@ -56,11 +56,11 @@
 </div>
 
 <div class="contenedor-reporte col-12 text-end" *ngIf="bodyTabla.length">
-    <button mat-raised-button color="warn" class="col-3 me-4">Guardar como pdf</button>
+    <button mat-raised-button color="warn" class="col-3 me-4" (click)="generarPdf()">Guardar como pdf</button>
     <button mat-raised-button color="accent" class="col-3">Guardar como excel</button>
 </div>
 
-<div class="contenedor-reporte" id="contenedor-reporte" style="min-height: 100%;" *ngIf="bodyTabla.length">
+<div class="contenedor-reporte" id="contenedor-reporte" style="min-height: 100%;" *ngIf="bodyTabla.length" #contenedorReporte>
     <img src="../../../../assets/logo-udp.png" alt="logo unipacifico" id="logo-unipacifico">
 
     <h1 class="titulo-reporte">REPORTE DE {{nombreReporte}}</h1>
