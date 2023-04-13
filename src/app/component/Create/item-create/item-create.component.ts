@@ -20,7 +20,6 @@ export class ItemCreateComponent implements OnInit {
   
   nombreItem:string = '';
   tiempoTranscurrido = Date.now();
-  hoy = new Date(this.tiempoTranscurrido);
   subcategoria_id:any = '';
   cantidad:number = 0;
   estado:boolean = true;
@@ -72,7 +71,7 @@ export class ItemCreateComponent implements OnInit {
 
     let datosInventario = {
       id: this.data.id,
-      fecha: this.hoy.toLocaleDateString(),
+      fecha: moment().format('YYYY-MM-DD'),
       subcategoria_id:this.subcategoria_id,
       item:this.nombreItem,
       cantidad:0,
